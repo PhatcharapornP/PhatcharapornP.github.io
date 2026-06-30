@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phatcharaporn Phayakaniti — Unity Programmer</title>
+<meta name="description" content="Phatcharaporn Phayakaniti — Unity programmer. Game development portfolio and work log.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #16140F;
+    --ink: #F2EDE2;
+    --ink-soft: #A8A092;
+    --line: #3A352A;
+    --gold: #E08F3C;
+    --teal: #4FA89C;
+    --max: 760px;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::before{
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px);
+    background-size: 100% 2.1em;
+    opacity: 0.5;
+    z-index: 0;
+  }
+
+  .wrap{
+    position: relative;
+    z-index: 1;
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 5rem 1.5rem 6rem;
+  }
+
+  /* ---- header / card ---- */
+  .card-no{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 0.6rem;
+    margin-bottom: 2.2rem;
+  }
+
+  h1{
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(2.6rem, 7vw, 4rem);
+    line-height: 1.02;
+    margin: 0 0 0.3rem;
+    letter-spacing: -0.01em;
+  }
+
+  .role{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.95rem;
+    color: var(--teal);
+    margin: 0 0 2rem;
+  }
+
+  .role::before{ content: "// "; color: var(--line); }
+
+  p.lede{
+    font-size: 1.08rem;
+    max-width: 56ch;
+    color: var(--ink-soft);
+    margin: 0 0 2.6rem;
+  }
+
+  /* ---- nav stamp links ---- */
+  .stamps{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-bottom: 4.5rem;
+  }
+
+  .stamp{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    text-decoration: none;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+    padding: 0.45rem 0.85rem;
+    border-radius: 2px;
+    letter-spacing: 0.03em;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .stamp:hover{ background: var(--ink); color: var(--paper); }
+
+  /* ---- section labels ---- */
+  .section-head{
+    display: flex;
+    align-items: baseline;
+    gap: 0.8rem;
+    margin: 0 0 1.6rem;
+  }
+
+  .section-head .tag{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+
+  .section-head h2{
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.4rem;
+    margin: 0;
+  }
+
+  section{ margin-bottom: 4rem; }
+
+  /* ---- log entries (projects) ---- */
+  .entry{
+    display: grid;
+    grid-template-columns: 5.5rem 1fr;
+    gap: 1.2rem;
+    padding: 1.3rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .entry:first-of-type{ border-top: 1px solid var(--line); }
+
+  .entry time{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    padding-top: 0.15rem;
+  }
+
+  .entry h3{
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 1.05rem;
+    margin: 0 0 0.35rem;
+  }
+
+  .entry h3 a{
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold);
+  }
+
+  .entry h3 a:hover{ color: var(--gold); }
+
+  .entry p{
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+  }
+
+  .entry .stack{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--teal);
+    margin-top: 0.5rem;
+    display: block;
+  }
+
+  /* ---- about ---- */
+  .about p{
+    color: var(--ink-soft);
+    max-width: 60ch;
+    margin: 0 0 1rem;
+  }
+
+  /* ---- footer ---- */
+  footer{
+    border-top: 1px solid var(--ink);
+    padding-top: 1.4rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  a{ color: inherit; }
+
+  @media (max-width: 480px){
+    .entry{ grid-template-columns: 1fr; gap: 0.3rem; }
+    .card-no{ flex-direction: column; gap: 0.3rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="card-no">
+    <span>Register · No. 001</span>
+    <span>Bangkok, TH</span>
+  </div>
+
+  <header>
+    <h1>Phatcharaporn Phayakaniti</h1>
+    <p class="role">Unity programmer</p>
+    <p class="lede">
+      Game programmer working mainly in Unity and C#, with experience across
+      mobile, AR, and a released Steam title. This page indexes my work
+      experience and side projects.
+    </p>
+
+    <nav class="stamps">
+      <a class="stamp" href="https://www.linkedin.com/in/phatcharaporn/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="stamp" href="mailto:phatcharaporn.pha@gmail.com">Email</a>
+      <a class="stamp" href="tel:+66850574311">+66 85-057-4311</a>
+      <a class="stamp" href="https://9806a680-e62f-4228-934c-4980111c8026.filesusr.com/ugd/b2af35_736b0fa8db924c21a03b7f2b9151d86f.pdf" target="_blank" rel="noopener">Resume ↗</a>
+      <a class="stamp" href="#work">Work</a>
+      <a class="stamp" href="#about">About</a>
+    </nav>
+  </header>
+
+  <section id="work">
+    <div class="section-head">
+      <span class="tag">01</span>
+      <h2>Work experience</h2>
+    </div>
+
+    <div class="entry">
+      <time>2024–25</time>
+      <div>
+        <h3><a href="https://tanphayakaniti.wixsite.com/portforlio/aka" target="_blank" rel="noopener">Airship: Kingdom Adrift</a></h3>
+        <p>1 year and 9 months on this title with Revolution Industry's team, released on Steam.</p>
+        <span class="stack">unity · c#</span>
+      </div>
+    </div>
+
+    <div class="entry">
+      <time>2022–24</time>
+      <div>
+        <h3><a href="https://tanphayakaniti.wixsite.com/portforlio/ais5g" target="_blank" rel="noopener">AIS 5G — AR app</a></h3>
+        <p>2 years on AR-specific apps built in Unity for both iOS and Android.</p>
+        <span class="stack">unity · c# · ar</span>
+      </div>
+    </div>
+
+    <div class="entry">
+      <time>2021–22</time>
+      <div>
+        <h3><a href="https://tanphayakaniti.wixsite.com/portforlio/replace" target="_blank" rel="noopener">Replace</a></h3>
+        <p>Junior game programmer project at RingZero Game Studio, built using Scrum.</p>
+        <span class="stack">unity · c#</span>
+      </div>
+    </div>
+
+    <div class="entry">
+      <time>2021–22</time>
+      <div>
+        <h3><a href="https://tanphayakaniti.wixsite.com/portforlio/recall" target="_blank" rel="noopener">Recall</a></h3>
+        <p>Junior game programmer project at RingZero Game Studio, built using Scrum.</p>
+        <span class="stack">unity · c#</span>
+      </div>
+    </div>
+
+    <div class="entry">
+      <time>—</time>
+      <div>
+        <h3><a href="https://www.9apps.com/android-games/City-of-Games-Slots-Baccarat/" target="_blank" rel="noopener">City of Games: Slots, Baccarat</a></h3>
+        <p>Mobile casino-style game, published on 9Apps for Android.</p>
+        <span class="stack">unity · c# · mobile</span>
+      </div>
+    </div>
+
+    <div class="entry">
+      <time>—</time>
+      <div>
+        <h3><a href="https://tanphayakaniti.wixsite.com/portforlio/unreleasedfpspuzzlegame" target="_blank" rel="noopener">Unreleased FPS puzzle game</a></h3>
+        <p>First-person puzzle game prototype, unreleased.</p>
+        <span class="stack">unity · c#</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="other-projects">
+    <div class="section-head">
+      <span class="tag">02</span>
+      <h2>Other exercises / projects</h2>
+    </div>
+
+    <div class="entry">
+      <time>—</time>
+      <div>
+        <h3><a href="https://tanphayakaniti.wixsite.com/portforlio/silentnight" target="_blank" rel="noopener">Silent Night</a></h3>
+        <p>Milestone project, senior year at university.</p>
+        <span class="stack">unity · c#</span>
+      </div>
+    </div>
+
+    <div class="entry">
+      <time>—</time>
+      <div>
+        <h3><a href="https://tanphayakaniti.wixsite.com/portforlio/randomgrid" target="_blank" rel="noopener">Random Grid</a></h3>
+        <p>Random grid size exercise.</p>
+        <span class="stack">unity · c#</span>
+      </div>
+    </div>
+
+    <div class="entry">
+      <time>—</time>
+      <div>
+        <h3><a href="https://tanphayakaniti.wixsite.com/portforlio/centipedegame" target="_blank" rel="noopener">Centipede Game</a></h3>
+        <p>Centipede game exercise.</p>
+        <span class="stack">unity · c#</span>
+      </div>
+    </div>
+
+    <div class="entry">
+      <time>—</time>
+      <div>
+        <h3><a href="https://tanphayakaniti.wixsite.com/portforlio/tactoegame" target="_blank" rel="noopener">Fantasy RPG Snake game</a></h3>
+        <p>Snake game exercise with a fantasy RPG theme. (Note: link slug on the original site reads "tactoegame" — worth double-checking this points to the right project.)</p>
+        <span class="stack">unity · c#</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="section-head">
+      <span class="tag">03</span>
+      <h2>About</h2>
+    </div>
+    <p>
+      <strong>Education</strong> — Bachelor of Science, Faculty of Information
+      and Communication Technology, majoring in Game Design.
+    </p>
+    <p>
+      <strong>Work experience</strong> — 1 year as a junior game programmer
+      at RingZero Game Studio (Agile/Scrum). 2 years building AR apps in
+      Unity for iOS and Android. 1 year and 9 months on Airship: Kingdom
+      Adrift, released on Steam as part of Revolution Industry's team.
+    </p>
+    <p>
+      <strong>Languages</strong> — English, Thai.
+    </p>
+    <p>
+      <strong>Skills</strong> — C#, Unity, Git and version control (Git flow
+      model), game design research, Agile/Scrum.
+    </p>
+    <p>
+      <strong>Software</strong> — Unity, SourceTree, Rider, Visual Studio,
+      Photoshop, Wwise.
+    </p>
+  </section>
+
+  <footer>
+    <span>© 2026 Phatcharaporn Phayakaniti</span>
+    <span>built with plain HTML, no framework</span>
+  </footer>
+
+</div>
+</body>
+</html>
