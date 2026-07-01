@@ -52,6 +52,16 @@
     padding: 5rem 1.5rem 6rem;
   }
 
+  .avatar{
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--line);
+    margin-bottom: 1.4rem;
+    display: block;
+  }
+
   /* ---- header / card ---- */
   .card-no{
     font-family: 'IBM Plex Mono', monospace;
@@ -189,11 +199,73 @@
     display: block;
   }
 
+  .entry-media{
+    grid-column: 1 / -1;
+    margin-top: 0.6rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .entry-media img.gif-preview{
+    width: 100%;
+    max-width: 480px;
+    border-radius: 4px;
+    border: 1px solid var(--line);
+    display: block;
+  }
+
+  .entry-media + .entry-media{
+    margin-top: 0.5rem;
+  }
+
+  .yt-wrap{
+    max-width: 480px;
+  }
+
+  .yt-embed{
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+  }
+
+  .yt-embed iframe{
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: 0;
+  }
+
+  .yt-label{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--ink-soft);
+    margin-top: 0.4rem;
+  }
+
   /* ---- about ---- */
   .about p{
     color: var(--ink-soft);
     max-width: 60ch;
     margin: 0 0 1rem;
+  }
+
+  .software-icons{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 0.6rem 0 1.4rem;
+  }
+
+  .software-icons img{
+    height: 36px;
+    width: auto;
+    max-width: 90px;
+    object-fit: contain;
+    filter: grayscale(0.15);
+    opacity: 0.9;
   }
 
   /* ---- footer ---- */
@@ -230,6 +302,7 @@
   </div>
 
   <header>
+    <img class="avatar" src="assets/avatar.jpg" alt="Phatcharaporn Phayakaniti">
     <h1>Phatcharaporn Phayakaniti</h1>
     <p class="role">Unity programmer</p>
     <p class="lede">
@@ -239,7 +312,10 @@
     </p>
 
     <nav class="stamps">
-      <a class="stamp" href="https://www.linkedin.com/in/phatcharaporn/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="stamp" href="https://www.linkedin.com/in/phatcharaporn/" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:0.4rem;">
+        <img src="assets/linkedin.png" alt="" style="height:14px; width:auto;">
+        LinkedIn ↗
+      </a>
       <a class="stamp" href="mailto:phatcharaporn.pha@gmail.com">Email</a>
       <a class="stamp" href="tel:+66850574311">+66 85-057-4311</a>
       <a class="stamp" href="https://9806a680-e62f-4228-934c-4980111c8026.filesusr.com/ugd/b2af35_736b0fa8db924c21a03b7f2b9151d86f.pdf" target="_blank" rel="noopener">Resume ↗</a>
@@ -315,39 +391,79 @@
       <h2>Other exercises / projects</h2>
     </div>
 
+    <!-- Silent Night -->
     <div class="entry">
-      <time>—</time>
+      <time>10 mo.</time>
       <div>
         <h3><a href="https://tanphayakaniti.wixsite.com/portforlio/silentnight" target="_blank" rel="noopener">Silent Night</a></h3>
-        <p>Milestone project, senior year at university.</p>
-        <span class="stack">unity · c#</span>
+        <p>Stealth FPS — milestone project, senior year. Handled game mechanics and AI behaviours (FSM via Unity animator controller) alongside 2 artists. Also built the FPS controller and interacting object system.</p>
+        <span class="stack">unity · c# · fsm · solo programmer in team of 3</span>
+      </div>
+      <div class="entry-media">
+        <div class="yt-wrap">
+          <div class="yt-embed">
+            <iframe src="https://www.youtube.com/embed/0oMrCdpUZ5g" title="Silent Night Alpha" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <p class="yt-label">Silent Night — Alpha build</p>
+        </div>
+      </div>
+      <div class="entry-media">
+        <div class="yt-wrap">
+          <div class="yt-embed">
+            <iframe src="https://www.youtube.com/embed/0JEyj_yyVKw" title="Silent Night Gameplay pre-Alpha" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <p class="yt-label">Silent Night — Gameplay pre-Alpha</p>
+        </div>
+      </div>
+      <div class="entry-media">
+        <div class="yt-wrap">
+          <div class="yt-embed">
+            <iframe src="https://www.youtube.com/embed/djTyDT1XMhc" title="Apply Looking Around anim to station state" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <p class="yt-label">AI — Looking Around animation on station state</p>
+        </div>
       </div>
     </div>
 
+    <!-- Random Grid -->
     <div class="entry">
-      <time>—</time>
+      <time>5 days</time>
       <div>
         <h3><a href="https://tanphayakaniti.wixsite.com/portforlio/randomgrid" target="_blank" rel="noopener">Random Grid</a></h3>
-        <p>Random grid size exercise.</p>
-        <span class="stack">unity · c#</span>
+        <p>Colour-matching game with a twist: the grid size randomises. Single scene with a state manager; used object pooling for pieces and borders for dynamic board scaling. Difficulty tweaks trigger on each randomise.</p>
+        <span class="stack">unity · c# · object pooling · <a href="https://github.com/PhatcharapornP/Git_GridGame" target="_blank" rel="noopener" style="color:var(--teal);">GitHub ↗</a></span>
+      </div>
+      <div class="entry-media">
+        <img class="gif-preview" src="https://static.wixstatic.com/media/b2af35_948d26b8c04a45508949d8a91054f5c8~mv2.gif" alt="Random Grid banner preview" loading="lazy">
+      </div>
+      <div class="entry-media">
+        <img class="gif-preview" src="https://static.wixstatic.com/media/b2af35_472eacdc3c11493a8b5ff2cda5634dd7~mv2.gif" alt="Random Grid gameplay" loading="lazy">
       </div>
     </div>
 
+    <!-- Centipede -->
     <div class="entry">
-      <time>—</time>
+      <time>6 days</time>
       <div>
         <h3><a href="https://tanphayakaniti.wixsite.com/portforlio/centipedegame" target="_blank" rel="noopener">Centipede Game</a></h3>
-        <p>Centipede game exercise.</p>
-        <span class="stack">unity · c#</span>
+        <p>Shoot to destroy all enemies for the highest score. Shooting the leader spawns a new head; shooting the middle splits the centipede into independent chains. Object pooling for bullets, dictionary for centipede, obstacle and player positions.</p>
+        <span class="stack">unity · c# · object pooling · <a href="https://gitlab.com/Gwynbliedd/centipedegame" target="_blank" rel="noopener" style="color:var(--teal);">GitLab ↗</a></span>
+      </div>
+      <div class="entry-media">
+        <img class="gif-preview" src="https://static.wixstatic.com/media/b2af35_74fc83c705e84b1b9d7395740337c562~mv2.gif" alt="Centipede game gameplay" loading="lazy">
       </div>
     </div>
 
+    <!-- Fantasy RPG Snake -->
     <div class="entry">
-      <time>—</time>
+      <time>6 days</time>
       <div>
-        <h3><a href="https://tanphayakaniti.wixsite.com/portforlio/tactoegame" target="_blank" rel="noopener">Fantasy RPG Snake game</a></h3>
-        <p>Snake game exercise with a fantasy RPG theme. (Note: link slug on the original site reads "tactoegame" — worth double-checking this points to the right project.)</p>
-        <span class="stack">unity · c#</span>
+        <h3><a href="https://tanphayakaniti.wixsite.com/portforlio/tactoegame" target="_blank" rel="noopener">Fantasy RPG Snake</a></h3>
+        <p>Snake game with RPG elements — collect heroes as party members and battle enemies along the way. Adjustable tile map size; spawn percentages for heroes, enemies, and obstacles. Each move scales all unit stats. Uses states, a pool system, lists, dictionaries, and queues for board management.</p>
+        <span class="stack">unity · c# · state machine · object pooling · <a href="https://github.com/PhatcharapornP/FantasySnakeGame" target="_blank" rel="noopener" style="color:var(--teal);">GitHub ↗</a></span>
+      </div>
+      <div class="entry-media">
+        <img class="gif-preview" src="https://static.wixstatic.com/media/b2af35_a0824baf820e4ae0a3a5d1d84c00a8d7~mv2.gif" alt="Fantasy RPG Snake gameplay" loading="lazy">
       </div>
     </div>
   </section>
@@ -378,6 +494,14 @@
       <strong>Software</strong> — Unity, SourceTree, Rider, Visual Studio,
       Photoshop, Wwise.
     </p>
+    <div class="software-icons">
+      <img src="assets/unity.png" alt="Unity">
+      <img src="assets/sourcetree.png" alt="SourceTree">
+      <img src="assets/rider.png" alt="Rider">
+      <img src="assets/visual-studio.png" alt="Visual Studio">
+      <img src="assets/photoshop.png" alt="Photoshop">
+      <img src="assets/wwise.png" alt="Wwise">
+    </div>
   </section>
 
   <footer>
