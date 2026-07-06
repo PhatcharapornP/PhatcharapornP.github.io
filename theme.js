@@ -15,4 +15,22 @@ document.addEventListener('DOMContentLoaded', function(){
       localStorage.setItem('theme', next);
     });
   });
+
+  document.querySelectorAll('[data-copy]').forEach(function(el){
+    var tip = el.querySelector('.copy-tooltip');
+    if(!tip) return;
+    var original = tip.textContent;
+    el.addEventListener('click', function(){
+      navigator.clipboard.writeText(el.getAttribute('data-copy')).then(function(){
+        tip.textContent = 'Copied!';
+        tip.classList.add('copied');
+      });
+    });
+    el.addEventListener('mouseleave', function(){
+      setTimeout(function(){
+        tip.textContent = original;
+        tip.classList.remove('copied');
+      }, 200);
+    });
+  });
 });

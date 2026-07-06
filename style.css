@@ -226,12 +226,51 @@ ul.hud-list li strong{ color: var(--ink); font-weight: 600; }
 /* ---- links / stamps ---- */
 .stamps{ display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1.6rem 0; }
 .stamp{
+  position: relative;
   font-family: var(--mono); font-size: 0.76rem; color: var(--ink);
+  background: transparent;
   border: 1px solid var(--line-2); padding: 0.45rem 0.85rem;
+  cursor: pointer;
   transition: border-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
 }
 .stamp:hover{ border-color: var(--accent); color: var(--accent); }
 .stamp:active{ transform: scale(0.96); }
+
+/* ---- click-to-copy tooltip (used on Email stamp) ---- */
+.copy-tooltip{
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: var(--bg-3);
+  border: 1px solid var(--line-2);
+  color: var(--ink-soft);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.02em;
+  padding: 0.45rem 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 10;
+}
+.copy-tooltip::after{
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--line-2);
+}
+.stamp:hover .copy-tooltip,
+.stamp:focus-visible .copy-tooltip{
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+.copy-tooltip.copied{ color: var(--accent); border-color: var(--accent); }
+.copy-tooltip.copied::after{ border-top-color: var(--accent); }
 
 /* ---- youtube embeds ---- */
 .yt-wrap{ max-width: 100%; }
@@ -242,16 +281,20 @@ ul.hud-list li strong{ color: var(--ink); font-weight: 600; }
 
 /* ---- entry rows (index list use) ---- */
 .entry{
+  position: relative;
   display: grid;
   grid-template-columns: 5.5rem 1fr;
   gap: 1.2rem;
-  padding: 1.3rem 1rem;
-  margin: 0 -1rem;
-  border-bottom: 1px solid var(--line);
-  transition: background 0.2s ease;
+  padding: 1.5rem 1.4rem;
+  margin: 0 0 1rem;
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
-.entry:first-of-type{ border-top: 1px solid var(--line); }
-.entry:hover{ background: rgba(232, 117, 46, 0.04); }
+.entry::before, .entry::after{ content: ""; position: absolute; width: 12px; height: 12px; pointer-events: none; }
+.entry::before{ top: -1px; left: -1px; border-top: 2px solid var(--accent); border-left: 2px solid var(--accent); }
+.entry::after{ bottom: -1px; right: -1px; border-bottom: 2px solid var(--accent); border-right: 2px solid var(--accent); }
+.entry:hover{ background: var(--bg-3); border-color: var(--accent-dim); box-shadow: 0 0 0 1px var(--accent-glow); }
 .entry time{ font-family: var(--mono); font-size: 0.76rem; color: var(--ink-dim); padding-top: 0.15rem; font-variant-numeric: tabular-nums; }
 .entry h3{ font-family: var(--display); font-size: 1.15rem; text-transform: none; letter-spacing: 0; margin: 0 0 0.35rem; }
 .entry h3 a{ position: relative; }
