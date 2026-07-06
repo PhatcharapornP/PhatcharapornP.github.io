@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//d/Works/**)",
+      "Read(//c/Users/ADMIN/**)",
+      "Bash(find \"C:/Users/ADMIN/Documents/GitHub/PhatcharapornP.github.io\" -maxdepth 2 2>&1)",
+      "WebFetch(domain:phatcharapornp.github.io)"
+    ]
+  }
+}

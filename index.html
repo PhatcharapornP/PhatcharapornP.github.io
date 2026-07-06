@@ -7,302 +7,23 @@
 <meta name="description" content="Phatcharaporn Phayakaniti — Unity programmer. Game development portfolio and work log.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --paper: #16140F;
-    --ink: #F2EDE2;
-    --ink-soft: #A8A092;
-    --line: #3A352A;
-    --gold: #E08F3C;
-    --teal: #4FA89C;
-    --max: 760px;
-  }
-
-  *{ box-sizing: border-box; }
-
-  html{ scroll-behavior: smooth; }
-
-  body{
-    margin: 0;
-    background: var(--paper);
-    color: var(--ink);
-    font-family: 'Inter', sans-serif;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  body::before{
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    background-image:
-      linear-gradient(var(--line) 1px, transparent 1px);
-    background-size: 100% 2.1em;
-    opacity: 0.5;
-    z-index: 0;
-  }
-
-  .wrap{
-    position: relative;
-    z-index: 1;
-    max-width: var(--max);
-    margin: 0 auto;
-    padding: 5rem 1.5rem 6rem;
-  }
-
-  .avatar{
-    width: 88px;
-    height: 88px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 1px solid var(--line);
-    margin-bottom: 1.4rem;
-    display: block;
-  }
-
-  /* ---- header / card ---- */
-  .card-no{
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
-    color: var(--ink-soft);
-    text-transform: uppercase;
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid var(--ink);
-    padding-bottom: 0.6rem;
-    margin-bottom: 2.2rem;
-  }
-
-  h1{
-    font-family: 'Fraunces', serif;
-    font-weight: 600;
-    font-size: clamp(2.6rem, 7vw, 4rem);
-    line-height: 1.02;
-    margin: 0 0 0.3rem;
-    letter-spacing: -0.01em;
-  }
-
-  .role{
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.95rem;
-    color: var(--teal);
-    margin: 0 0 2rem;
-  }
-
-  .role::before{ content: "// "; color: var(--line); }
-
-  p.lede{
-    font-size: 1.08rem;
-    max-width: 56ch;
-    color: var(--ink-soft);
-    margin: 0 0 2.6rem;
-  }
-
-  /* ---- nav stamp links ---- */
-  .stamps{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.7rem;
-    margin-bottom: 4.5rem;
-  }
-
-  .stamp{
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.78rem;
-    text-decoration: none;
-    color: var(--ink);
-    border: 1px solid var(--ink);
-    padding: 0.45rem 0.85rem;
-    border-radius: 2px;
-    letter-spacing: 0.03em;
-    transition: background 0.15s ease, color 0.15s ease;
-  }
-
-  .stamp:hover{ background: var(--ink); color: var(--paper); }
-
-  /* ---- section labels ---- */
-  .section-head{
-    display: flex;
-    align-items: baseline;
-    gap: 0.8rem;
-    margin: 0 0 1.6rem;
-  }
-
-  .section-head .tag{
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--gold);
-    border: 1px solid var(--gold);
-    padding: 0.15rem 0.5rem;
-    border-radius: 2px;
-    white-space: nowrap;
-  }
-
-  .section-head h2{
-    font-family: 'Fraunces', serif;
-    font-weight: 500;
-    font-size: 1.4rem;
-    margin: 0;
-  }
-
-  section{ margin-bottom: 4rem; }
-
-  /* ---- log entries (projects) ---- */
-  .entry{
-    display: grid;
-    grid-template-columns: 5.5rem 1fr;
-    gap: 1.2rem;
-    padding: 1.3rem 0;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .entry:first-of-type{ border-top: 1px solid var(--line); }
-
-  .entry time{
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.78rem;
-    color: var(--ink-soft);
-    padding-top: 0.15rem;
-  }
-
-  .entry h3{
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    font-size: 1.05rem;
-    margin: 0 0 0.35rem;
-  }
-
-  .entry h3 a{
-    color: var(--ink);
-    text-decoration: none;
-    border-bottom: 1px solid var(--gold);
-  }
-
-  .entry h3 a:hover{ color: var(--gold); }
-
-  .entry p{
-    margin: 0;
-    color: var(--ink-soft);
-    font-size: 0.95rem;
-  }
-
-  .entry .stack{
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--teal);
-    margin-top: 0.5rem;
-    display: block;
-  }
-
-  .entry-media{
-    grid-column: 1 / -1;
-    margin-top: 0.6rem;
-    margin-bottom: 0.4rem;
-  }
-
-  .entry-media img.gif-preview{
-    width: 100%;
-    max-width: 480px;
-    border-radius: 4px;
-    border: 1px solid var(--line);
-    display: block;
-  }
-
-  .entry-media + .entry-media{
-    margin-top: 0.5rem;
-  }
-
-  .yt-wrap{
-    max-width: 480px;
-  }
-
-  .yt-embed{
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
-    border: 1px solid var(--line);
-    border-radius: 4px;
-  }
-
-  .yt-embed iframe{
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    border: 0;
-  }
-
-  .yt-label{
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--ink-soft);
-    margin-top: 0.4rem;
-  }
-
-  /* ---- about ---- */
-  .about p{
-    color: var(--ink-soft);
-    max-width: 60ch;
-    margin: 0 0 1rem;
-  }
-
-  .software-icons{
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin: 0.6rem 0 1.4rem;
-  }
-
-  .software-icons img{
-    height: 36px;
-    width: auto;
-    max-width: 90px;
-    object-fit: contain;
-    filter: grayscale(0.15);
-    opacity: 0.9;
-  }
-
-  /* ---- footer ---- */
-  footer{
-    border-top: 1px solid var(--ink);
-    padding-top: 1.4rem;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--ink-soft);
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-  }
-
-  a{ color: inherit; }
-
-  @media (max-width: 480px){
-    .entry{ grid-template-columns: 1fr; gap: 0.3rem; }
-    .card-no{ flex-direction: column; gap: 0.3rem; }
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    html{ scroll-behavior: auto; }
-  }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Public+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
 </head>
 <body>
 <div class="wrap">
 
   <div class="card-no">
-    <span>Register · No. 001</span>
-    <span>Bangkok, TH</span>
+    <span>Register &middot; No. 001</span>
+    <span class="topbar-right">
+      <span>Bangkok, TH</span>
+      <button class="theme-toggle" type="button" aria-label="Toggle light/dark theme"></button>
+    </span>
   </div>
 
   <header>
-    <img class="avatar" src="assets/avatar.jpg" alt="Phatcharaporn Phayakaniti">
+    <img class="avatar" src="assets/avatar.png" alt="Phatcharaporn Phayakaniti">
     <h1>Phatcharaporn Phayakaniti</h1>
     <p class="role">Unity programmer</p>
     <p class="lede">
@@ -314,11 +35,11 @@
     <nav class="stamps">
       <a class="stamp" href="https://www.linkedin.com/in/phatcharaporn/" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:0.4rem;">
         <img src="assets/linkedin.png" alt="" style="height:14px; width:auto;">
-        LinkedIn ↗
+        LinkedIn &#8599;
       </a>
       <a class="stamp" href="mailto:phatcharaporn.pha@gmail.com">Email</a>
       <a class="stamp" href="tel:+66850574311">+66 85-057-4311</a>
-      <a class="stamp" href="https://9806a680-e62f-4228-934c-4980111c8026.filesusr.com/ugd/b2af35_736b0fa8db924c21a03b7f2b9151d86f.pdf" target="_blank" rel="noopener">Resume ↗</a>
+      <a class="stamp" href="https://9806a680-e62f-4228-934c-4980111c8026.filesusr.com/ugd/b2af35_736b0fa8db924c21a03b7f2b9151d86f.pdf" target="_blank" rel="noopener">Resume &#8599;</a>
       <a class="stamp" href="#work">Work</a>
       <a class="stamp" href="#about">About</a>
     </nav>
@@ -331,56 +52,77 @@
     </div>
 
     <div class="entry">
-      <time>2024–25</time>
+      <time>2025&ndash;now</time>
       <div>
-        <h3><a href="https://tanphayakaniti.wixsite.com/portforlio/aka" target="_blank" rel="noopener">Airship: Kingdom Adrift</a></h3>
-        <p>1 year and 9 months on this title with Revolution Industry's team, released on Steam.</p>
-        <span class="stack">unity · c#</span>
+        <h3><a class="glitch" href="projects/league-of-bomb.html">League of Bomb &mdash; Nanuq Studio</a></h3>
+        <p>Core combat systems on a deterministic multiplayer simulation for a real-time mobile game (closed beta) &mdash; ability framework, status-effect system, aiming/targeting, and the VFX/SFX pipeline. Also live-service features: social, progression/economy, and loadout.</p>
+        <span class="stack">unity &middot; c# &middot; photon quantum &middot; real-time multiplayer</span>
       </div>
     </div>
 
     <div class="entry">
-      <time>2022–24</time>
-      <div>
-        <h3><a href="https://tanphayakaniti.wixsite.com/portforlio/ais5g" target="_blank" rel="noopener">AIS 5G — AR app</a></h3>
-        <p>2 years on AR-specific apps built in Unity for both iOS and Android.</p>
-        <span class="stack">unity · c# · ar</span>
+      <time>2024&ndash;25</time>
+      <div class="entry-body">
+        <img class="entry-thumb" src="https://static.wixstatic.com/media/b2af35_4aedb979a5b846b596072cbefac9b4e6~mv2.gif" alt="Airship: Kingdom Adrift gameplay" loading="lazy">
+        <div class="entry-text">
+          <h3><a class="glitch" href="projects/airship.html">Airship: Kingdom Adrift</a></h3>
+          <p>1 year and 9 months on this title with Revolution Industry's team &mdash; CI/CD, quality-of-life systems, gameplay features, and ship AI. Released on Steam, GOG, and Epic Games Store.</p>
+          <span class="stack">unity &middot; c#</span>
+        </div>
       </div>
     </div>
 
     <div class="entry">
-      <time>2021–22</time>
+      <time>2024</time>
       <div>
-        <h3><a href="https://tanphayakaniti.wixsite.com/portforlio/replace" target="_blank" rel="noopener">Replace</a></h3>
-        <p>Junior game programmer project at RingZero Game Studio, built using Scrum.</p>
-        <span class="stack">unity · c#</span>
+        <h3><a class="glitch" href="projects/ais5g.html">AIS 5G &mdash; AR app</a></h3>
+        <p>AR/VR content-viewing app for Illusion Connect Thailand, built in cooperation with AIS 5G &mdash; AR mode via Vuforia, VR companion via Google Cardboard XR.</p>
+        <span class="stack">unity &middot; c# &middot; ar</span>
       </div>
     </div>
 
     <div class="entry">
-      <time>2021–22</time>
-      <div>
-        <h3><a href="https://tanphayakaniti.wixsite.com/portforlio/recall" target="_blank" rel="noopener">Recall</a></h3>
-        <p>Junior game programmer project at RingZero Game Studio, built using Scrum.</p>
-        <span class="stack">unity · c#</span>
+      <time>2021&ndash;22</time>
+      <div class="entry-body">
+        <img class="entry-thumb" src="https://static.wixstatic.com/media/b2af35_d2eae8c590cf4167beed1f4a951919f8~mv2.png" alt="Replace AR furniture visualization" loading="lazy">
+        <div class="entry-text">
+          <h3><a class="glitch" href="projects/replace.html">Replace</a></h3>
+          <p>AR furniture/entertainment viewer for Illusion Connect Thailand &mdash; IStates architecture, asset bundling.</p>
+          <span class="stack">unity &middot; c#</span>
+        </div>
       </div>
     </div>
 
     <div class="entry">
-      <time>—</time>
+      <time>2021&ndash;22</time>
+      <div class="entry-body">
+        <img class="entry-thumb" src="https://static.wixstatic.com/media/b2af35_f711a80725884eed995203ccf836cbf7~mv2.gif" alt="Recall AR application demonstration" loading="lazy">
+        <div class="entry-text">
+          <h3><a class="glitch" href="projects/recall.html">Recall</a></h3>
+          <p>Illusion Connect Thailand's flagship AR content viewer &mdash; IStates, Bundles, and Deeplink systems.</p>
+          <span class="stack">unity &middot; c#</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <time>2018&ndash;20</time>
       <div>
         <h3><a href="https://www.9apps.com/android-games/City-of-Games-Slots-Baccarat/" target="_blank" rel="noopener">City of Games: Slots, Baccarat</a></h3>
-        <p>Mobile casino-style game, published on 9Apps for Android.</p>
-        <span class="stack">unity · c# · mobile</span>
+        <p>Mobile casino-style game at RingZero Game Studio, published on 9Apps for Android.</p>
+        <span class="stack">unity &middot; c# &middot; mobile</span>
       </div>
     </div>
 
     <div class="entry">
-      <time>—</time>
-      <div>
-        <h3><a href="https://tanphayakaniti.wixsite.com/portforlio/unreleasedfpspuzzlegame" target="_blank" rel="noopener">Unreleased FPS puzzle game</a></h3>
-        <p>First-person puzzle game prototype, unreleased.</p>
-        <span class="stack">unity · c#</span>
+      <time>2018&ndash;20</time>
+      <div class="entry-body">
+        <img class="entry-thumb" src="https://static.wixstatic.com/media/b2af35_cf170ec40f2d4bcf85fa3c542616c93b~mv2.png" alt="Unreleased FPS puzzle game title screenshot" loading="lazy">
+        <div class="entry-text">
+          <h3><a class="glitch" href="projects/unreleased-fps-puzzle.html">Unreleased FPS puzzle game</a></h3>
+          <p>First-person puzzle game prototype at RingZero Game Studio, for PC/PS4/Xbox One, team of 12&ndash;15. Never released after multiple revisions.</p>
+          <span class="stack">unity &middot; c#</span>
+        </div>
       </div>
     </div>
   </section>
@@ -391,79 +133,50 @@
       <h2>Other exercises / projects</h2>
     </div>
 
-    <!-- Silent Night -->
     <div class="entry">
-      <time>10 mo.</time>
+      <time>2016&ndash;17</time>
       <div>
-        <h3><a href="https://tanphayakaniti.wixsite.com/portforlio/silentnight" target="_blank" rel="noopener">Silent Night</a></h3>
-        <p>Stealth FPS — milestone project, senior year. Handled game mechanics and AI behaviours (FSM via Unity animator controller) alongside 2 artists. Also built the FPS controller and interacting object system.</p>
-        <span class="stack">unity · c# · fsm · solo programmer in team of 3</span>
-      </div>
-      <div class="entry-media">
-        <div class="yt-wrap">
-          <div class="yt-embed">
-            <iframe src="https://www.youtube.com/embed/0oMrCdpUZ5g" title="Silent Night Alpha" allowfullscreen loading="lazy"></iframe>
-          </div>
-          <p class="yt-label">Silent Night — Alpha build</p>
-        </div>
-      </div>
-      <div class="entry-media">
-        <div class="yt-wrap">
-          <div class="yt-embed">
-            <iframe src="https://www.youtube.com/embed/0JEyj_yyVKw" title="Silent Night Gameplay pre-Alpha" allowfullscreen loading="lazy"></iframe>
-          </div>
-          <p class="yt-label">Silent Night — Gameplay pre-Alpha</p>
-        </div>
-      </div>
-      <div class="entry-media">
-        <div class="yt-wrap">
-          <div class="yt-embed">
-            <iframe src="https://www.youtube.com/embed/djTyDT1XMhc" title="Apply Looking Around anim to station state" allowfullscreen loading="lazy"></iframe>
-          </div>
-          <p class="yt-label">AI — Looking Around animation on station state</p>
-        </div>
+        <h3><a class="glitch" href="projects/silent-night.html">Silent Night</a></h3>
+        <p>Stealth FPS &mdash; milestone project, senior year. Game mechanics and AI behaviours (FSM via Unity animator controller) alongside 2 artists, plus the FPS controller and interacting object system.</p>
+        <span class="stack">unity &middot; c# &middot; fsm &middot; solo programmer in team of 3</span>
       </div>
     </div>
 
-    <!-- Random Grid -->
     <div class="entry">
       <time>5 days</time>
-      <div>
-        <h3><a href="https://tanphayakaniti.wixsite.com/portforlio/randomgrid" target="_blank" rel="noopener">Random Grid</a></h3>
-        <p>Colour-matching game with a twist: the grid size randomises. Single scene with a state manager; used object pooling for pieces and borders for dynamic board scaling. Difficulty tweaks trigger on each randomise.</p>
-        <span class="stack">unity · c# · object pooling · <a href="https://github.com/PhatcharapornP/Git_GridGame" target="_blank" rel="noopener" style="color:var(--teal);">GitHub ↗</a></span>
-      </div>
-      <div class="entry-media">
-        <img class="gif-preview" src="https://static.wixstatic.com/media/b2af35_948d26b8c04a45508949d8a91054f5c8~mv2.gif" alt="Random Grid banner preview" loading="lazy">
-      </div>
-      <div class="entry-media">
-        <img class="gif-preview" src="https://static.wixstatic.com/media/b2af35_472eacdc3c11493a8b5ff2cda5634dd7~mv2.gif" alt="Random Grid gameplay" loading="lazy">
+      <div class="entry-body">
+        <img class="entry-thumb" src="assets/randomgrid-banner.gif" alt="Random Grid banner preview" loading="lazy">
+        <div class="entry-text">
+          <h3><a class="glitch" href="projects/random-grid.html">Random Grid</a></h3>
+          <p>Colour-matching game with a twist: the grid size randomises. Object pooling for pieces and borders for dynamic board scaling.</p>
+          <span class="stack">unity &middot; c# &middot; object pooling &middot; <a href="https://github.com/PhatcharapornP/Git_GridGame" target="_blank" rel="noopener" style="color:var(--cyan);">GitHub &#8599;</a></span>
+        </div>
       </div>
     </div>
 
-    <!-- Centipede -->
     <div class="entry">
       <time>6 days</time>
-      <div>
-        <h3><a href="https://tanphayakaniti.wixsite.com/portforlio/centipedegame" target="_blank" rel="noopener">Centipede Game</a></h3>
-        <p>Shoot to destroy all enemies for the highest score. Shooting the leader spawns a new head; shooting the middle splits the centipede into independent chains. Object pooling for bullets, dictionary for centipede, obstacle and player positions.</p>
-        <span class="stack">unity · c# · object pooling · <a href="https://gitlab.com/Gwynbliedd/centipedegame" target="_blank" rel="noopener" style="color:var(--teal);">GitLab ↗</a></span>
-      </div>
-      <div class="entry-media">
-        <img class="gif-preview" src="https://static.wixstatic.com/media/b2af35_74fc83c705e84b1b9d7395740337c562~mv2.gif" alt="Centipede game gameplay" loading="lazy">
+      <div class="entry-body">
+        <img class="entry-thumb" src="assets/centipede.gif" alt="Centipede game gameplay" loading="lazy">
+        <div class="entry-text">
+          <h3><a class="glitch" href="projects/centipede-game.html">Centipede Game</a></h3>
+          <p>Shoot to destroy all enemies for the highest score. Object pooling for bullets, dictionaries for entity positions.</p>
+          <span class="stack">unity &middot; c# &middot; object pooling &middot; <a href="https://gitlab.com/Gwynbliedd/centipedegame" target="_blank" rel="noopener" style="color:var(--cyan);">GitLab &#8599;</a></span>
+        </div>
       </div>
     </div>
 
-    <!-- Fantasy RPG Snake -->
     <div class="entry">
       <time>6 days</time>
-      <div>
-        <h3><a href="https://tanphayakaniti.wixsite.com/portforlio/tactoegame" target="_blank" rel="noopener">Fantasy RPG Snake</a></h3>
-        <p>Snake game with RPG elements — collect heroes as party members and battle enemies along the way. Adjustable tile map size; spawn percentages for heroes, enemies, and obstacles. Each move scales all unit stats. Uses states, a pool system, lists, dictionaries, and queues for board management.</p>
-        <span class="stack">unity · c# · state machine · object pooling · <a href="https://github.com/PhatcharapornP/FantasySnakeGame" target="_blank" rel="noopener" style="color:var(--teal);">GitHub ↗</a></span>
+      <div class="entry-body">
+        <img class="entry-thumb" src="assets/fantasy-snake.gif" alt="Fantasy RPG Snake gameplay" loading="lazy">
+        <div class="entry-text">
+          <h3><a class="glitch" href="projects/fantasy-rpg-snake.html">Fantasy RPG Snake</a></h3>
+          <p>Snake game with RPG elements &mdash; collect heroes as party members and battle enemies along the way. State machine, object pooling, tweakable data containers.</p>
+          <span class="stack">unity &middot; c# &middot; state machine &middot; object pooling &middot; <a href="https://github.com/PhatcharapornP/FantasySnakeGame" target="_blank" rel="noopener" style="color:var(--cyan);">GitHub &#8599;</a></span>
+        </div>
       </div>
-      <div class="entry-media">
-        <img class="gif-preview" src="https://static.wixstatic.com/media/b2af35_a0824baf820e4ae0a3a5d1d84c00a8d7~mv2.gif" alt="Fantasy RPG Snake gameplay" loading="lazy">
+    </div>
       </div>
     </div>
   </section>
@@ -473,39 +186,52 @@
       <span class="tag">03</span>
       <h2>About</h2>
     </div>
-    <p>
-      <strong>Education</strong> — Bachelor of Science, Faculty of Information
-      and Communication Technology, majoring in Game Design.
-    </p>
-    <p>
-      <strong>Work experience</strong> — 1 year as a junior game programmer
-      at RingZero Game Studio (Agile/Scrum). 2 years building AR apps in
-      Unity for iOS and Android. 1 year and 9 months on Airship: Kingdom
-      Adrift, released on Steam as part of Revolution Industry's team.
-    </p>
-    <p>
-      <strong>Languages</strong> — English, Thai.
-    </p>
-    <p>
-      <strong>Skills</strong> — C#, Unity, Git and version control (Git flow
-      model), game design research, Agile/Scrum.
-    </p>
-    <p>
-      <strong>Software</strong> — Unity, SourceTree, Rider, Visual Studio,
-      Photoshop, Wwise.
-    </p>
-    <div class="software-icons">
-      <img src="assets/unity.png" alt="Unity">
-      <img src="assets/sourcetree.png" alt="SourceTree">
-      <img src="assets/rider.png" alt="Rider">
-      <img src="assets/visual-studio.png" alt="Visual Studio">
-      <img src="assets/photoshop.png" alt="Photoshop">
-      <img src="assets/wwise.png" alt="Wwise">
+    <div class="about-grid">
+      <div class="panel about-card">
+        <span class="eyebrow">Education</span>
+        <p>Bachelor of Science, Faculty of Information and Communication Technology, majoring in Game Design.</p>
+      </div>
+
+      <div class="panel about-card">
+        <span class="eyebrow">Languages</span>
+        <div class="chip-row">
+          <span class="chip">English</span>
+          <span class="chip">Thai</span>
+        </div>
+      </div>
+
+      <div class="panel about-card about-card--wide">
+        <span class="eyebrow">Work experience</span>
+        <p>1 year as a junior game programmer at RingZero Game Studio (Agile/Scrum). 2 years building AR apps for Illusion Connect Thailand in Unity for iOS and Android. 1 year and 9 months on Airship: Kingdom Adrift, released on Steam as part of Revolution Industry's team. Currently at Nanuq Studio on League of Bomb.</p>
+      </div>
+
+      <div class="panel about-card about-card--wide">
+        <span class="eyebrow">Skills</span>
+        <div class="chip-row">
+          <span class="chip">C#</span>
+          <span class="chip">Unity</span>
+          <span class="chip">Git &amp; Git Flow</span>
+          <span class="chip">Game design research</span>
+          <span class="chip">Agile / Scrum</span>
+        </div>
+      </div>
+
+      <div class="panel about-card about-card--wide">
+        <span class="eyebrow">Software</span>
+        <div class="software-icons">
+          <span class="icon-chip"><img src="assets/unity.png" alt="Unity"></span>
+          <span class="icon-chip"><img src="assets/sourcetree.png" alt="SourceTree"></span>
+          <span class="icon-chip"><img src="assets/rider.png" alt="Rider"></span>
+          <span class="icon-chip"><img src="assets/visual-studio.png" alt="Visual Studio"></span>
+          <span class="icon-chip"><img src="assets/photoshop.png" alt="Photoshop"></span>
+          <span class="icon-chip"><img src="assets/wwise.png" alt="Wwise"></span>
+        </div>
+      </div>
     </div>
   </section>
 
   <footer>
-    <span>© 2026 Phatcharaporn Phayakaniti</span>
+    <span>&copy; 2026 Phatcharaporn Phayakaniti</span>
     <span>built with plain HTML, no framework</span>
   </footer>
 

@@ -6,7 +6,7 @@
 mkdir -p assets
 
 # --- Profile & icons ---
-curl -L -o assets/avatar.jpg        "https://static.wixstatic.com/media/b2af35_f143429720db4c4ba7372ec5aea5a565~mv2.jpg"
+# avatar.png is a real personal photo, not fetched from Wix — see D:\Works\Documents\Resume\SquareRoundBorder.png
 curl -L -o assets/linkedin.png      "https://static.wixstatic.com/media/b2af35_27a56b582763434a8396bbb1a135d0e7~mv2.png"
 
 # --- Software icons ---
