@@ -213,9 +213,11 @@ ul.hud-list li strong{ color: var(--ink); font-weight: 600; }
 }
 
 /* ---- media grid: secondary/supporting shots ---- */
-.media-grid{ display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.1rem; margin: 1.4rem 0; }
+/* masonry columns: mixed portrait/landscape shots pack without row-height gaps */
+.media-grid{ column-count: 2; column-gap: 1.1rem; margin: 1.4rem 0; }
+.media-grid figure, .media-grid .yt-wrap{ break-inside: avoid; margin: 0 0 1.1rem; }
 .media-grid img{ width: 100%; display: block; border: 1px solid var(--line); background: var(--bg-2); transition: border-color 0.2s ease; }
-.media-grid figure{ margin: 0; }
+@media (max-width: 560px){ .media-grid{ column-count: 1; } }
 .media-grid figure:hover img{ border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
 .hero-media:hover{ box-shadow: 0 0 0 3px var(--accent-glow); }
 .media-grid figcaption{ font-family: var(--mono); font-size: 0.68rem; color: var(--ink-dim); margin-top: 0.4rem; }
