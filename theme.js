@@ -33,4 +33,20 @@ document.addEventListener('DOMContentLoaded', function(){
       }, 200);
     });
   });
+
+  // back-to-top button, injected on every page that loads this script
+  var toTop = document.createElement('button');
+  toTop.className = 'to-top';
+  toTop.type = 'button';
+  toTop.setAttribute('aria-label', 'Back to top');
+  toTop.textContent = '▲ top';
+  document.body.appendChild(toTop);
+  toTop.addEventListener('click', function(){
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  var onScroll = function(){
+    toTop.classList.toggle('show', window.scrollY > 600);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 });
