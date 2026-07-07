@@ -184,6 +184,27 @@ p.lede{ font-size: 1.05rem; max-width: 62ch; color: var(--ink-soft); text-wrap: 
 .spec .k{ font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-dim); }
 .spec .v{ font-family: var(--mono); font-size: 0.92rem; color: var(--ink); margin-top: 0.3rem; font-variant-numeric: tabular-nums; }
 
+/* ---- narrative intro inside a briefing panel ---- */
+.panel-label{
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.6rem;
+}
+.panel-label::before{ content: ">> "; color: var(--ink-dim); }
+.panel-intro{
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 64ch;
+  text-wrap: pretty;
+  padding-bottom: 1.4rem;
+  border-bottom: 1px solid var(--line);
+}
+.panel-intro + .specs{ margin-top: 1.4rem; }
+
 /* ---- section rhythm ---- */
 section{ margin: 3.2rem 0; }
 .section-head{ display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.2rem; }

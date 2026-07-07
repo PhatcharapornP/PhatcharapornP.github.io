@@ -22,9 +22,11 @@
   <header>
     <p class="eyebrow">Other projects · 2016&ndash;17</p>
     <h1>Silent Night</h1>
-    <p class="lede">A stealth FPS built for our senior-year milestone project. Handled game mechanics and AI behaviours alongside 2 artists, plus the FPS controller and interacting object system.</p>
+    <p class="lede">A stealth FPS built for our senior-year milestone project. Handled game mechanics and AI behaviours alongside 2 artists, plus the FPS controller and interacting-object system.</p>
 
     <div class="panel">
+      <p class="panel-label">Introduction</p>
+      <p class="panel-intro">As the game programmer I handled the game mechanics and AI behaviours alongside two artists. It was my first time learning a finite state machine &mdash; my early AI was one long script of ifs that got impossible to manage, and even on a state machine I couldn't tell what the AI was doing without littering it with debug messages.</p>
       <div class="specs">
         <div class="spec"><div class="k">Role</div><div class="v">Game Programmer</div></div>
         <div class="spec"><div class="k">Team</div><div class="v">3 people</div></div>
@@ -41,13 +43,18 @@
   <section>
     <div class="section-head"><span class="tag">01</span><h2>AI &amp; systems</h2></div>
     <ul class="hud-list">
-      <li>Built AI behaviours as a <strong>finite state machine</strong> via Unity's Animator Controller &mdash; evolving away from long conditional scripts into a structured state architecture.</li>
+      <li>Built the AI as a <strong>finite state machine</strong> on Unity's Animator Controller &mdash; each behaviour living on its own animation state, so the AI's current state was visible at a glance instead of hidden behind debug logs.</li>
       <li>Built the <strong>FPS controller</strong> and the <strong>interacting-object system</strong>.</li>
     </ul>
+    <figure class="hero-media">
+      <img src="../assets/silent-night/ai-fsm-animator.png" alt="Silent Night AI finite state machine in Unity's Animator Controller — Patrol, Search, Chase, Attack, Stun, Possessed, Dead, and FoundAndLost states with transitions" loading="lazy">
+      <figcaption>The AI's finite state machine in Unity's Animator Controller &mdash; each behaviour is a state (Patrol, Search, Chase, Attack, Stun&hellip;), so the current one is visible at a glance.</figcaption>
+    </figure>
   </section>
 
   <section>
-    <div class="section-head"><span class="tag">02</span><h2>Media</h2></div>
+    <div class="section-head"><span class="tag">02</span><h2>Progression</h2></div>
+    <p style="margin:0 0 1.4rem; max-width:62ch;">Development clips from the project's build-up, ending in the Alpha milestone &mdash; much of it tracking the AI going from a tangle of if-statements to a readable state machine.</p>
     <div class="yt-wrap yt-hero">
       <div class="yt-embed">
         <iframe src="https://www.youtube.com/embed/0oMrCdpUZ5g" title="Silent Night Alpha" allowfullscreen loading="lazy"></iframe>
@@ -55,18 +62,64 @@
       <p class="yt-label">Silent Night &mdash; Alpha build</p>
     </div>
     <div class="media-grid">
-    <div class="yt-wrap" style="margin-bottom:1.2rem;">
-      <div class="yt-embed">
-        <iframe src="https://www.youtube.com/embed/0JEyj_yyVKw" title="Silent Night Gameplay pre-Alpha" allowfullscreen loading="lazy"></iframe>
+      <div class="yt-wrap">
+        <div class="yt-embed">
+          <iframe src="https://www.youtube.com/embed/wDQBxkSClz0" title="Early AI loop" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p class="yt-label">AI patrol loop &mdash; Oct 17, 2017</p>
       </div>
-      <p class="yt-label">Silent Night &mdash; Gameplay pre-Alpha</p>
-    </div>
-    <div class="yt-wrap">
-      <div class="yt-embed">
-        <iframe src="https://www.youtube.com/embed/djTyDT1XMhc" title="Apply Looking Around anim to station state" allowfullscreen loading="lazy"></iframe>
+      <div class="yt-wrap">
+        <div class="yt-embed">
+          <iframe src="https://www.youtube.com/embed/V99ZG1Wmzb8" title="Silent Night dev build" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p class="yt-label">Dev build &mdash; Oct 18, 2017</p>
       </div>
-      <p class="yt-label">AI &mdash; Looking Around animation on station state</p>
+      <div class="yt-wrap">
+        <div class="yt-embed">
+          <iframe src="https://www.youtube.com/embed/0-Vis_DUdGc" title="Silent Night dev build" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p class="yt-label">Dev build &mdash; Oct 20, 2017</p>
+      </div>
+      <div class="yt-wrap">
+        <div class="yt-embed">
+          <iframe src="https://www.youtube.com/embed/xzrF8vdHdao" title="AI animation" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p class="yt-label">AI animation pass &mdash; Oct 20, 2017</p>
+      </div>
+      <div class="yt-wrap">
+        <div class="yt-embed">
+          <iframe src="https://www.youtube.com/embed/djTyDT1XMhc" title="Apply Looking Around anim to station state" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p class="yt-label">AI &mdash; looking-around animation on station state</p>
+      </div>
+      <div class="yt-wrap">
+        <div class="yt-embed">
+          <iframe src="https://www.youtube.com/embed/0JEyj_yyVKw" title="Silent Night Gameplay pre-Alpha" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p class="yt-label">Gameplay &mdash; pre-Alpha</p>
+      </div>
     </div>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="tag">03</span><h2>Screenshots</h2></div>
+    <div class="media-grid">
+      <figure>
+        <img src="../assets/silent-night/gameplay-stealth.jpg" alt="Silent Night stealth gameplay with objective prompt" loading="lazy">
+        <figcaption>Stealth gameplay</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/silent-night/gameplay-find-cherrin.jpg" alt="Silent Night gameplay — find Cherrin objective and dialogue" loading="lazy">
+        <figcaption>In-game objective &amp; dialogue</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/silent-night/tutorial-tests.jpg" alt="Silent Night tutorial test level" loading="lazy">
+        <figcaption>Tutorial &mdash; the &ldquo;tests&rdquo;</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/silent-night/story-cutscene.jpg" alt="Silent Night story cutscene — Jack and Cherrin" loading="lazy">
+        <figcaption>Story cutscene</figcaption>
+      </figure>
     </div>
   </section>
 

@@ -22,9 +22,11 @@
   <header>
     <p class="eyebrow">Other projects · solo exercise</p>
     <h1>Random Grid</h1>
-    <p class="lede">Colour-matching game with a twist: the grid size randomises. Single scene with a state manager; object pooling for pieces and borders for dynamic board scaling. Difficulty tweaks trigger on each randomise.</p>
+    <p class="lede">A colour-matching game with a twist: the grid can randomise its size.</p>
 
     <div class="panel">
+      <p class="panel-label">Introduction</p>
+      <p class="panel-intro">A really small exercise, but I had a lot of fun with it &mdash; match at least two colours to score before the timer runs out.</p>
       <div class="specs">
         <div class="spec"><div class="k">Role</div><div class="v">Solo</div></div>
         <div class="spec"><div class="k">Duration</div><div class="v">5 days</div></div>
@@ -42,7 +44,8 @@
     <div class="section-head"><span class="tag">01</span><h2>Systems</h2></div>
     <ul class="hud-list">
       <li><strong>Object pooling</strong> for pieces, and pooled borders for dynamic board scaling.</li>
-      <li>A <strong>state manager</strong> driving randomise/difficulty transitions in a single scene.</li>
+      <li>A <strong>state manager</strong> running the whole game in a single scene.</li>
+      <li><strong>Tweakable parameters</strong> &mdash; built the game rules, the board, and the difficulty as adjustable tweaks rather than hard-coded values.</li>
     </ul>
   </section>
 

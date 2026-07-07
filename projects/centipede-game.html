@@ -22,9 +22,11 @@
   <header>
     <p class="eyebrow">Other projects · solo exercise</p>
     <h1>Centipede Game</h1>
-    <p class="lede">Shoot to destroy all enemies for the highest score. Shooting the leader spawns a new head; shooting the middle splits the centipede into independent chains.</p>
+    <p class="lede">A shooting game &mdash; clear the entire centipede for the highest score.</p>
 
     <div class="panel">
+      <p class="panel-label">Introduction</p>
+      <p class="panel-intro">A small solo exercise; the interesting bit is the centipede's behaviour when you shoot different parts of it. Object pooling for bullets and dictionaries for positions kept it light enough to finish with ease.</p>
       <div class="specs">
         <div class="spec"><div class="k">Role</div><div class="v">Solo</div></div>
         <div class="spec"><div class="k">Duration</div><div class="v">6 days (~4hr/day)</div></div>
@@ -39,7 +41,17 @@
   </header>
 
   <section>
-    <div class="section-head"><span class="tag">01</span><h2>Systems</h2></div>
+    <div class="section-head"><span class="tag">01</span><h2>Gameplay</h2></div>
+    <ul class="hud-list">
+      <li>Shoot to <strong>destroy every centipede</strong> to win and chase the highest score.</li>
+      <li>Shoot the <strong>leader's head</strong> and the next segment becomes the new head, leading the centipede forward.</li>
+      <li>Shoot the <strong>middle</strong> and the trailing half breaks off as a new, independent centipede &mdash; repeating until none are left.</li>
+      <li><strong>Destroy obstacles</strong> freely &mdash; the player can take them out whenever they want.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="tag">02</span><h2>Systems</h2></div>
     <ul class="hud-list">
       <li><strong>Object pooling</strong> for bullets.</li>
       <li><strong>Dictionaries</strong> for tracking centipede, obstacle, and player positions.</li>
@@ -47,7 +59,7 @@
   </section>
 
   <section>
-    <div class="section-head"><span class="tag">02</span><h2>Media</h2></div>
+    <div class="section-head"><span class="tag">03</span><h2>Media</h2></div>
     <figure class="hero-media">
       <img src="https://static.wixstatic.com/media/b2af35_74fc83c705e84b1b9d7395740337c562~mv2.gif" alt="Centipede game gameplay" loading="lazy">
       <figcaption>Gameplay</figcaption>

@@ -1,0 +1,8 @@
+# Claude Code local tooling (preview config, local settings) — not part of the published site
+.claude/
+.agents/
+skills-lock.json
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db

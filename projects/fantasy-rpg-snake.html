@@ -22,9 +22,11 @@
   <header>
     <p class="eyebrow">Other projects · solo exercise</p>
     <h1>Fantasy RPG Snake</h1>
-    <p class="lede">Snake game with RPG elements — collect heroes as party members and battle enemies along the way. Adjustable tile map size; spawn percentages for heroes, enemies, and obstacles. Each move scales all unit stats.</p>
+    <p class="lede">A snake game with an RPG twist.</p>
 
     <div class="panel">
+      <p class="panel-label">Introduction</p>
+      <p class="panel-intro">A snake game reimagined with RPG mechanics: your &lsquo;snake&rsquo; is a growing party of heroes that battles enemies as it moves. There's no win state &mdash; you play for as long as you like.</p>
       <div class="specs">
         <div class="spec"><div class="k">Role</div><div class="v">Solo</div></div>
         <div class="spec"><div class="k">Duration</div><div class="v">6 days (4&ndash;6hr/day)</div></div>
@@ -39,16 +41,27 @@
   </header>
 
   <section>
-    <div class="section-head"><span class="tag">01</span><h2>Systems</h2></div>
+    <div class="section-head"><span class="tag">01</span><h2>Gameplay</h2></div>
     <ul class="hud-list">
-      <li><strong>State machine</strong> and <strong>object pooling</strong> for board management.</li>
-      <li><strong>Tweakable data containers</strong>, unit interfaces for movement and stats.</li>
-      <li>Lists, dictionaries, and queues for board population tracking.</li>
+      <li><strong>Collect heroes</strong> as you move and use them to battle enemies along the way.</li>
+      <li><strong>Switch the party leader</strong> or rotate between members of the party.</li>
+      <li><strong>Adjustable</strong> 2D tile-map size.</li>
+      <li><strong>Tweakable spawn rates</strong> &mdash; heroes, enemies, and obstacles each have their own spawn percentage.</li>
+      <li>Every move <strong>increases the stats</strong> of all heroes and enemies.</li>
     </ul>
   </section>
 
   <section>
-    <div class="section-head"><span class="tag">02</span><h2>Media</h2></div>
+    <div class="section-head"><span class="tag">02</span><h2>Systems</h2></div>
+    <ul class="hud-list">
+      <li>A <strong>state machine</strong> and a <strong>pool system</strong> for the board, plus a <strong>tweakable data container</strong> adjusted at runtime &mdash; spawn percentages tuned so the player can always move freely.</li>
+      <li>Every unit implements a shared <strong>interface</strong> for movement, stats, and collision callbacks &mdash; the party leader colliding with a unit either collects a hero or enters a battle with an enemy.</li>
+      <li><strong>Lists, dictionaries, and queues</strong> track all units and their positions to populate the board.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="tag">03</span><h2>Media</h2></div>
     <figure class="hero-media">
       <img src="https://static.wixstatic.com/media/b2af35_a0824baf820e4ae0a3a5d1d84c00a8d7~mv2.gif" alt="Fantasy RPG Snake gameplay" loading="lazy">
       <figcaption>Gameplay</figcaption>
