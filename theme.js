@@ -34,17 +34,72 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   });
 
-  // hidden easter egg: click the name 19 times to reveal the archive links
+  // hidden easter egg: click the name 19 times to open an access terminal,
+  // then enter the Konami code (up up down down left right left right B A)
+  // via the on-screen gamepad OR the keyboard. Wrong key shakes and resets.
   var nameEgg = document.getElementById('name-egg');
-  var eggPop = document.getElementById('egg-pop');
-  if(nameEgg && eggPop){
+  var eggTerm = document.getElementById('egg-term');
+  if(nameEgg && eggTerm){
+    var EGG_CODE = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+    var EGG_GLYPH = { ArrowUp: '↑', ArrowDown: '↓', ArrowLeft: '←', ArrowRight: '→', b: 'B', a: 'A' };
+    var eggSlots = eggTerm.querySelectorAll('.egg-slot');
+    var eggLinks = document.getElementById('egg-links');
+    var eggProgress = 0;
+    var eggUnlocked = false;
     var eggClicks = 0;
+
     nameEgg.addEventListener('click', function(){
+      if(eggUnlocked) return;
       eggClicks++;
       if(eggClicks === 19){
-        eggPop.hidden = false;
-        eggPop.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        eggTerm.hidden = false;
+        eggTerm.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
       }
+    });
+
+    // one checker for a single press, from a button OR the keyboard
+    function eggPress(key){
+      if(eggUnlocked || eggTerm.hidden) return;
+      if(key === EGG_CODE[eggProgress]){
+        eggSlots[eggProgress].textContent = EGG_GLYPH[key];
+        eggSlots[eggProgress].classList.add('on');
+        eggProgress++;
+        if(eggProgress === EGG_CODE.length){
+          eggUnlocked = true;
+          eggLinks.hidden = false;
+        }
+      } else {
+        eggProgress = 0;
+        for(var i = 0; i < eggSlots.length; i++){
+          eggSlots[i].textContent = '';
+          eggSlots[i].classList.remove('on');
+        }
+        // if the wrong key was itself a valid start (an Up), count it as press 1
+        if(key === EGG_CODE[0]){
+          eggSlots[0].textContent = EGG_GLYPH[key];
+          eggSlots[0].classList.add('on');
+          eggProgress = 1;
+        }
+        eggTerm.classList.remove('shake');
+        void eggTerm.offsetWidth; // force reflow so the shake animation restarts
+        eggTerm.classList.add('shake');
+      }
+    }
+
+    // on-screen gamepad buttons
+    eggTerm.querySelectorAll('.egg-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){ eggPress(btn.getAttribute('data-key')); });
+    });
+
+    // desktop keyboard — same checker
+    document.addEventListener('keydown', function(e){
+      if(eggTerm.hidden || eggUnlocked) return;
+      var k = e.key;
+      if(k === 'ArrowUp' || k === 'ArrowDown' || k === 'ArrowLeft' || k === 'ArrowRight'){
+        e.preventDefault();
+        eggPress(k);
+      } else if(k === 'b' || k === 'B'){ eggPress('b'); }
+      else if(k === 'a' || k === 'A'){ eggPress('a'); }
     });
   }
 

@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Public+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=20260708b">
+<link rel="stylesheet" href="style.css?v=20260708c">
 <script src="theme.js"></script>
 </head>
 <body>
@@ -48,9 +48,25 @@
       <a class="stamp" href="#about">About</a>
     </nav>
 
-    <div class="egg-pop" id="egg-pop" hidden>
-      <p class="egg-label">Access granted &middot; level 19</p>
-      <div class="egg-links">
+    <div class="egg-term" id="egg-term" hidden>
+      <p class="egg-label">Access terminal &middot; enter code</p>
+      <div class="egg-slots">
+        <span class="egg-slot"></span><span class="egg-slot"></span><span class="egg-slot"></span><span class="egg-slot"></span><span class="egg-slot"></span><span class="egg-slot"></span><span class="egg-slot"></span><span class="egg-slot"></span><span class="egg-slot"></span><span class="egg-slot"></span>
+      </div>
+      <div class="egg-pad">
+        <div class="egg-dpad">
+          <button class="egg-btn" type="button" data-key="ArrowUp" aria-label="Up">&uarr;</button>
+          <button class="egg-btn" type="button" data-key="ArrowLeft" aria-label="Left">&larr;</button>
+          <button class="egg-btn" type="button" data-key="ArrowRight" aria-label="Right">&rarr;</button>
+          <button class="egg-btn" type="button" data-key="ArrowDown" aria-label="Down">&darr;</button>
+        </div>
+        <div class="egg-ab">
+          <button class="egg-btn egg-b" type="button" data-key="b" aria-label="B">B</button>
+          <button class="egg-btn egg-a" type="button" data-key="a" aria-label="A">A</button>
+        </div>
+      </div>
+      <div class="egg-links" id="egg-links" hidden>
+        <p class="egg-label egg-ok">Access granted</p>
         <a class="stamp" href="docs/how-to-build.html" target="_blank" rel="noopener">How this site was built &#8599;</a>
         <a class="stamp" href="docs/documentation.html" target="_blank" rel="noopener">Project documentation &#8599;</a>
       </div>
