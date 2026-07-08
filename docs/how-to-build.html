@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How To Build This Portfolio — Caveman Edition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Public+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Same Division-HUD identity as the portfolio, self-contained */
+:root{
+  --bg:#050608; --bg-2:#14171D; --bg-3:#1C212A; --line:#272C35; --line-2:#434B57;
+  --grid:#131519; --shadow:rgba(0,0,0,0.45);
+  --ink:#E7E9EC; --ink-soft:#9198A1; --ink-dim:#5C636B;
+  --accent:#E8752E; --accent-dim:#8C4A1E; --accent-glow:rgba(232,117,46,0.22); --cyan:#4FD1D9;
+  --max:920px; --mono:'IBM Plex Mono',ui-monospace,Consolas,monospace;
+  --display:'Rajdhani','Arial Narrow',sans-serif; --sans:'Public Sans',system-ui,sans-serif;
+}
+*{ box-sizing:border-box; }
+body{
+  margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); line-height:1.6;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:42px 42px;
+}
+.wrap{ max-width:var(--max); margin:0 auto; padding:3.5rem 1.5rem 6rem; }
+.eyebrow{ font-family:var(--mono); font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent); }
+.eyebrow::before{ content:"// "; color:var(--ink-dim); }
+h1,h2,h3{ font-family:var(--display); font-weight:700; margin:0; }
+h1{ font-size:clamp(2.2rem,6vw,3.2rem); line-height:1.05; text-transform:uppercase; }
+h2{ font-size:1.15rem; text-transform:uppercase; letter-spacing:0.06em; }
+h3{ font-size:0.95rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--cyan); margin:1.3rem 0 0.4rem; }
+p{ color:var(--ink-soft); max-width:68ch; }
+p.lede{ font-size:1.05rem; }
+section{ margin:3rem 0; }
+.section-head{ display:flex; align-items:center; gap:0.8rem; margin-bottom:1.1rem; }
+.section-head::after{ content:""; flex:1 1 auto; height:1px; background:linear-gradient(90deg,var(--line-2),transparent); }
+.section-head .tag{ font-family:var(--mono); font-size:0.68rem; letter-spacing:0.1em; color:var(--bg); background:var(--accent); padding:0.15rem 0.5rem; }
+.panel{ position:relative; border:1px solid var(--line); background:var(--bg-2); padding:1.4rem 1.6rem; margin:1.4rem 0; }
+.panel::before{ content:""; position:absolute; top:-1px; left:-1px; width:10px; height:10px; border-top:2px solid var(--accent); border-left:2px solid var(--accent); }
+.panel::after{ content:""; position:absolute; bottom:-1px; right:-1px; width:10px; height:10px; border-bottom:2px solid var(--accent); border-right:2px solid var(--accent); }
+ul.hud-list{ list-style:none; padding:0; margin:0.4rem 0; display:flex; flex-direction:column; gap:0.6rem; }
+ul.hud-list li{ position:relative; padding-left:1.3rem; color:var(--ink-soft); }
+ul.hud-list li::before{ content:">"; position:absolute; left:0; color:var(--accent); font-family:var(--mono); }
+ul.hud-list li strong{ color:var(--ink); }
+code,pre{ font-family:var(--mono); font-size:0.82rem; }
+code{ background:var(--bg-3); border:1px solid var(--line); padding:0.05rem 0.35rem; color:var(--cyan); }
+pre{ background:var(--bg-2); border:1px solid var(--line-2); border-left:3px solid var(--accent-dim); padding:1rem 1.2rem; overflow-x:auto; color:var(--ink-soft); }
+pre code{ background:none; border:none; padding:0; color:inherit; }
+.grunt{ font-family:var(--display); font-weight:700; text-transform:uppercase; color:var(--accent); letter-spacing:0.04em; }
+.note{ border:1px dashed var(--line-2); border-left:3px solid var(--cyan); padding:0.8rem 1.1rem; margin:1rem 0; color:var(--ink-soft); font-size:0.9rem; }
+.note::before{ content:"CAVEMAN WISDOM // "; font-family:var(--mono); font-size:0.68rem; color:var(--cyan); letter-spacing:0.1em; }
+.fixnote{ border:1px dashed var(--accent-dim); border-left:3px solid var(--accent); background:rgba(232,117,46,0.06); padding:0.8rem 1.1rem; margin:1rem 0; color:var(--ink-soft); font-size:0.88rem; }
+.fixnote::before{ content:"PATCHED — A BUILD-TEST TRIPPED HERE // "; display:block; margin-bottom:0.35rem; font-family:var(--mono); font-size:0.64rem; color:var(--accent); letter-spacing:0.08em; }
+.fixnote strong{ color:var(--ink); }
+.democard{ border:1px solid var(--line-2); border-left:3px solid var(--accent-dim); background:var(--bg-2); margin:1rem 0; box-shadow:0 4px 18px var(--shadow); }
+.democard .dh{ display:flex; gap:0.9rem; align-items:center; padding:0.5rem 1rem; border-bottom:1px solid var(--line-2); font-family:var(--mono); font-size:0.7rem; background:repeating-linear-gradient(-45deg,rgba(255,255,255,0.035) 0 5px,transparent 5px 10px); }
+.democard .dh .co{ color:var(--accent); } .democard .dh .co::before{ content:"// "; color:var(--ink-dim); }
+.democard .dh time{ margin-left:auto; font-family:var(--display); font-weight:700; font-size:1.1rem; color:var(--ink); }
+.democard .db{ display:flex; gap:1rem; padding:1rem; }
+.democard .dm{ flex:1.15; } .democard .dm .img{ height:70px; background:linear-gradient(135deg,#1C212A,#2A3140); border:1px solid var(--line-2); display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:0.65rem; color:var(--ink-dim); margin-bottom:0.6rem; }
+.democard .dt{ flex:1; } .democard .dt h4{ font-family:var(--display); text-transform:uppercase; margin:0 0 0.3rem; }
+.democard .dt p{ font-size:0.8rem; margin:0; }
+.swatches{ display:flex; flex-wrap:wrap; gap:0.7rem; margin:0.8rem 0; }
+.sw{ width:120px; border:1px solid var(--line-2); }
+.sw .c{ height:36px; } .sw .l{ font-family:var(--mono); font-size:0.6rem; padding:0.3rem 0.45rem; background:var(--bg-2); color:var(--ink-soft); }
+footer{ margin-top:4rem; padding-top:1rem; border-top:1px solid var(--line); font-family:var(--mono); font-size:0.72rem; color:var(--ink-dim); display:flex; justify-content:space-between; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">Tutorial · caveman edition · 2026-07-08</p>
+    <h1>How To Build This Portfolio</h1>
+    <p class="lede"><span class="grunt">You. Make website. No framework. Just three files and some pictures.</span> This is the whole path from empty folder to a live site that looks like a video-game HUD, in order, with nothing assumed. <strong>Never seen code in your life?</strong> The <strong style="color:var(--accent)">&#9733;</strong> section teaches you to read HTML and CSS in five minutes &mdash; it sits right before you type anything.</p>
+  </header>
+
+  <section>
+    <div class="section-head"><span class="tag">A</span><h2>Get tools</h2></div>
+    <ul class="hud-list">
+      <li><strong>JetBrains Rider</strong> (or any editor) &mdash; you write text files in it. That's all a website is.</li>
+      <li><strong>GitHub Desktop</strong> + a github.com account &mdash; this is how the site gets on the internet, for free.</li>
+      <li><strong>A browser</strong> &mdash; this is how you look at what you made.</li>
+    </ul>
+    <div class="note">No Node, no React, no build tools. A website is text files. The browser reads them directly. Everything else is optional complexity we are not buying.</div>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="tag">B</span><h2>Make the magic repo</h2></div>
+    <ul class="hud-list">
+      <li>On github.com: create a new repository named exactly <strong><code>YOURUSERNAME.github.io</code></strong>.</li>
+      <li>That exact name is the trick: GitHub automatically serves whatever is in it at <code>https://YOURUSERNAME.github.io/</code>. This is called GitHub Pages. No server, no hosting bill.</li>
+      <li>In GitHub Desktop: <em>Clone repository</em> &rarr; pick it &rarr; now there's a folder on your computer connected to the internet one.</li>
+      <li>Open that folder in Rider: <em>File &rarr; Open</em> &rarr; select the folder. Rider treats a plain folder as a project just fine.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="tag">&#9733;</span><h2>Before you type: read the two languages</h2></div>
+    <p>The next steps ask you to type code. First learn to <em>read</em> it. A website is only two languages, and neither is scary. Five minutes here and every code block below stops looking like magic runes.</p>
+
+    <div class="panel">
+      <p style="margin:0; font-family:var(--display); text-transform:uppercase; letter-spacing:0.04em; color:var(--ink);">The whole idea in one breath</p>
+      <p style="margin:0.5rem 0 0;"><strong style="color:var(--accent)">HTML</strong> builds bare boxes and puts your words in them. <strong style="color:var(--cyan)">CSS</strong> is a list of paint rules for those boxes. One line links them. That is the entire craft &mdash; everything else is repetition.</p>
+    </div>
+
+    <h3>HTML = the boxes (structure)</h3>
+    <p>A web page is boxes stacked and nested inside boxes. HTML draws them with <strong>tags</strong>. A tag looks like this:</p>
+    <div style="font-family:var(--mono); font-size:1.2rem; margin:1rem 0 0.7rem;">
+      <span style="color:var(--accent);">&lt;h1&gt;</span><span style="color:var(--ink); background:var(--bg-3); padding:0 0.3rem;">My Name</span><span style="color:var(--accent);">&lt;/h1&gt;</span>
+    </div>
+    <ul class="hud-list">
+      <li><code style="color:var(--accent)">&lt;h1&gt;</code> &mdash; the <strong>opening tag</strong>: "a big heading starts here."</li>
+      <li><strong>My Name</strong> &mdash; the content a human actually sees.</li>
+      <li><code style="color:var(--accent)">&lt;/h1&gt;</code> &mdash; the <strong>closing tag</strong>. The <strong>slash</strong> <code>/</code> means "the heading ends here."</li>
+    </ul>
+    <p style="margin-top:1rem;">Four rules cover almost all of it:</p>
+    <ul class="hud-list">
+      <li>Most tags come in a <strong>pair</strong> (open + close). Whatever sits between them is what shows up.</li>
+      <li>A few tags are <strong>loners</strong> &mdash; they hold nothing and never close: <code>&lt;img&gt;</code> (a picture), <code>&lt;link&gt;</code>, <code>&lt;meta&gt;</code>.</li>
+      <li>Boxes go <strong>inside</strong> boxes: <code>&lt;div&gt;&lt;p&gt;hi&lt;/p&gt;&lt;/div&gt;</code> is a box holding a paragraph.</li>
+      <li>Tags can carry extra notes called <strong>attributes</strong>, written inside the <code>&lt;&gt;</code>:</li>
+    </ul>
+<pre><code>&lt;a href="about.html"&gt;About&lt;/a&gt;      &lt;!-- href = WHERE the link goes --&gt;
+&lt;img src="cat.jpg" alt="a cat"&gt;     &lt;!-- src = WHICH picture, alt = describe it --&gt;
+&lt;div class="card"&gt; ... &lt;/div&gt;        &lt;!-- class = a NICKNAME (the important one) --&gt;</code></pre>
+    <div class="note"><code>class="card"</code> is a nickname you stick on a box so the paint file can find it later. This one attribute is how HTML and CSS hold hands &mdash; remember it above all else.</div>
+
+    <p style="margin-top:1.2rem;">Every page has the same skeleton: a <strong>head</strong> (invisible setup) and a <strong>body</strong> (everything you see):</p>
+<pre><code>&lt;head&gt;   &larr; page title, font links, the link to your style file. Nobody SEES this.
+&lt;body&gt;   &larr; headings, text, pictures, cards. Everything a human looks at.</code></pre>
+
+    <p style="margin-top:1.2rem;">The dozen tags you will actually use:</p>
+    <ul class="hud-list">
+      <li><code>&lt;h1&gt; &lt;h2&gt; &lt;h3&gt;</code> &mdash; headings, biggest to smaller.</li>
+      <li><code>&lt;p&gt;</code> &mdash; a paragraph of text.</li>
+      <li><code>&lt;div&gt;</code> &mdash; a plain box. The workhorse; it holds other things.</li>
+      <li><code>&lt;span&gt;</code> &mdash; a small inline piece (to colour one word inside a sentence).</li>
+      <li><code>&lt;a&gt;</code> &mdash; a link &middot; <code>&lt;img&gt;</code> &mdash; a picture.</li>
+      <li><code>&lt;ul&gt;</code> + <code>&lt;li&gt;</code> &mdash; a bullet list and each bullet in it.</li>
+      <li><code>&lt;button&gt;</code> &mdash; a clickable button.</li>
+    </ul>
+
+    <h3>CSS = the paint (looks)</h3>
+    <p>HTML gave you bare boxes. CSS is a list of <strong>rules</strong>, each one saying "find these boxes, make them look like this." One rule:</p>
+<pre><code>.card {
+  background: #14171D;
+  padding: 1rem;
+}</code></pre>
+    <ul class="hud-list">
+      <li><code style="color:var(--cyan)">.card</code> &mdash; the <strong>selector</strong>: WHO to paint.</li>
+      <li><code>{ }</code> &mdash; the paint goes inside the curly braces.</li>
+      <li><code>background: #14171D;</code> &mdash; one instruction: <em>property</em> <code>:</code> <em>value</em> <code>;</code>. Every line ends in a <strong>semicolon</strong>.</li>
+    </ul>
+    <p style="margin-top:1rem;">How to point at boxes (selectors):</p>
+    <ul class="hud-list">
+      <li><code>h1 { }</code> &mdash; <strong>every</strong> h1 heading on the page.</li>
+      <li><code>.card { }</code> &mdash; every box wearing <code>class="card"</code>. <strong>The dot means "nickname."</strong></li>
+      <li><code>body { }</code> &mdash; the whole page.</li>
+    </ul>
+    <p style="margin-top:1rem;">The paint instructions (properties) you will use most:</p>
+    <ul class="hud-list">
+      <li><code>color</code> &mdash; text colour &middot; <code>background</code> &mdash; fill behind the box.</li>
+      <li><code>padding</code> &mdash; cushion <strong>inside</strong> &middot; <code>margin</code> &mdash; gap <strong>outside</strong>.</li>
+      <li><code>border</code> &mdash; the outline line &middot; <code>font-family</code> &mdash; which font.</li>
+      <li><code>width</code> / <code>max-width</code> &mdash; how wide &middot; <code>display: flex</code> &mdash; lay the children in a row.</li>
+    </ul>
+
+    <p style="margin-top:1.2rem;">Knowing <strong>the box model</strong> is most of not fighting CSS. Every box is four nested layers, from the inside out:</p>
+    <div style="max-width:360px; margin:1rem 0; font-family:var(--mono); font-size:0.62rem; text-align:center;">
+      <div style="background:rgba(232,117,46,0.10); border:1px dashed var(--accent-dim); padding:1.3rem 0.7rem 0.6rem; position:relative;">
+        <span style="position:absolute; top:0.25rem; left:0.6rem; color:var(--accent);">MARGIN &mdash; gap OUTSIDE (space to neighbours)</span>
+        <div style="border:2px solid var(--line-2); padding:1.2rem 0.7rem 0.5rem; position:relative; background:var(--bg);">
+          <span style="position:absolute; top:0.2rem; left:0.55rem; color:var(--ink-soft);">BORDER &mdash; the visible outline</span>
+          <div style="background:rgba(79,209,217,0.10); border:1px dashed var(--cyan); padding:1.1rem 0.6rem 0.5rem; position:relative;">
+            <span style="position:absolute; top:0.2rem; left:0.45rem; color:var(--cyan);">PADDING &mdash; cushion INSIDE</span>
+            <div style="background:var(--bg-3); border:1px solid var(--line); padding:0.8rem 0.6rem; color:var(--ink); font-size:0.7rem;">CONTENT<br>your text / picture</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top:1.2rem;"><strong>Colours</strong> like <code>#E8752E</code> are just a colour's secret code (called "hex"). You never memorise them &mdash; you copy them.</p>
+
+    <p style="margin-top:0.6rem;"><strong>Variables</strong> are the one clever trick, and they save your life. Name a colour once at the very top:</p>
+<pre><code>:root {
+  --accent: #E8752E;   /* name the orange once */
+}</code></pre>
+    <p>Then anywhere you want it, write <code>var(--accent)</code> instead of the code. Change the colour in that <strong>one</strong> place and it updates on every page at once. That is why the whole site shares a single look.</p>
+
+    <h3>How the two hold hands</h3>
+    <div class="panel">
+<pre style="margin:0; border:none; background:none; padding:0;"><code>HTML:  &lt;div class="card"&gt;...&lt;/div&gt;                 &larr; box wears the nickname "card"
+CSS:   .card { background: #14171D; }               &larr; paint rule for anything named "card"
+GLUE:  &lt;link rel="stylesheet" href="style.css"&gt;    &larr; goes in &lt;head&gt;; loads the rules</code></pre>
+    </div>
+    <p>That is the whole handshake. HTML makes boxes and nicknames them; CSS paints anything with a nickname; one <code>&lt;link&gt;</code> line loads the paint. Every step below is just doing this a lot.</p>
+
+    <div class="note">You do <strong>not</strong> memorise any of this. You copy a working block (this doc is full of them), swap the words, and look at the result in the browser. Every programmer alive keeps a tab open to copy from. Do that and you already <em>are</em> one.</div>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="tag">C</span><h2>Make three files</h2></div>
+<pre><code>your-folder/
+├── index.html     ← the front page (browsers look for this name)
+├── style.css      ← ALL the looks, for every page, in one file
+├── theme.js       ← tiny script: light/dark switch (whole file is in Section J)
+├── assets/        ← your pictures go here
+└── projects/      ← one extra .html per project</code></pre>
+    <p>The starting skeleton for <code>index.html</code> &mdash; type this, save, then right-click it in Rider &rarr; <em>Open in Browser</em>. It has the whole page's bones: a hero, a work section (cards go in later, Section&nbsp;E), and an about section. The classes it uses are all styled in Sections&nbsp;D and&nbsp;J.</p>
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;My Name — Game Programmer&lt;/title&gt;
+  &lt;link rel="stylesheet" href="style.css?v=1"&gt;
+  &lt;script src="theme.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="wrap"&gt;
+
+    &lt;!-- HERO --&gt;
+    &lt;p class="eyebrow"&gt;Game programmer&lt;/p&gt;
+    &lt;h1&gt;My Name&lt;/h1&gt;
+    &lt;p&gt;One line about me. I make games in Unity and C#.&lt;/p&gt;
+    &lt;nav class="stamps"&gt;
+      &lt;a class="stamp" href="#work"&gt;Work&lt;/a&gt;
+      &lt;a class="stamp" href="#about"&gt;About&lt;/a&gt;
+      &lt;button class="theme-toggle" onclick="toggleTheme()"&gt;theme&lt;/button&gt;
+    &lt;/nav&gt;
+
+    &lt;!-- WORK: cards go inside this section (Section E) --&gt;
+    &lt;section id="work"&gt;
+      &lt;div class="section-head"&gt;&lt;span class="tag"&gt;01&lt;/span&gt;&lt;h2&gt;Work experience&lt;/h2&gt;&lt;/div&gt;
+      &lt;!-- .entry cards here --&gt;
+    &lt;/section&gt;
+
+    &lt;!-- ABOUT --&gt;
+    &lt;section id="about"&gt;
+      &lt;div class="section-head"&gt;&lt;span class="tag"&gt;02&lt;/span&gt;&lt;h2&gt;About&lt;/h2&gt;&lt;/div&gt;
+      &lt;p&gt;A short paragraph about you.&lt;/p&gt;
+    &lt;/section&gt;
+
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    <div class="fixnote"><strong>Why this grew:</strong> the first draft showed only an <code>&lt;h1&gt;</code> and one <code>&lt;p&gt;</code> here, then later sections assumed a hero, nav, and sections already existed &mdash; a beginner build-test had nowhere to hang the cards. This skeleton is the missing frame.</div>
+    <div class="note">See the <code>?v=1</code> after style.css? Remember it. Every time you change the CSS later, make it <code>?v=2</code>, <code>?v=3</code>... Browsers hoard old CSS like a caveman hoards rocks; changing the number forces them to fetch the new one. Skip this and one day your live site looks broken while your files are fine.</div>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="tag">D</span><h2>Make it look like The Division</h2></div>
+    <p>The whole identity is: <strong style="color:var(--ink)">dark screen, one orange, one cyan, mono labels, corner brackets.</strong> Start <code>style.css</code> with colors as variables so every page can share them (and a light theme becomes a 10-line override later):</p>
+<pre><code>:root{
+  --bg:     #050608;   /* near-black background   */
+  --bg-2:   #14171D;   /* card background         */
+  --line:   #434B57;   /* borders                 */
+  --grid:   #131519;   /* the faint grid lines    */
+  --ink:    #E7E9EC;   /* text                    */
+  --ink-soft:#9198A1;  /* dimmer text             */
+  --accent: #E8752E;   /* THE orange. Use rarely. */
+  --cyan:   #4FD1D9;   /* secondary. Even rarer.  */
+}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:'Public Sans', sans-serif; line-height:1.6;
+  /* the faint grid = two 1px gradient lines repeating every 42px */
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
+.wrap{ max-width:920px; margin:0 auto; padding:3.5rem 1.5rem; }</code></pre>
+
+    <h3>The light theme (the "10-line override" this section promised)</h3>
+    <p>Because every colour is a variable, a second theme is just re-declaring the same names for when the page has <code>data-theme="light"</code> on its <code>&lt;html&gt;</code> tag. <code>theme.js</code> (Section&nbsp;J) flips that attribute; this is the palette it switches to. Paste it right under the first <code>:root</code>:</p>
+<pre><code>:root[data-theme="light"]{
+  --bg:     #F0EEE8;   /* warm paper, not white */
+  --bg-2:   #FFFFFF;   /* white cards           */
+  --line:   #ABA48E;   /* muted borders         */
+  --grid:   #E0DBCF;   /* faint grid, light ver */
+  --ink:    #17181A;   /* near-black text       */
+  --ink-soft:#4D4F53;
+  --accent: #C85A1E;   /* a hair deeper so orange still reads on white */
+  --cyan:   #0D7A82;
+}</code></pre>
+    <div class="fixnote"><strong>Why this was missing:</strong> the first draft said "a light theme becomes a 10-line override later" and never showed the ten lines. A beginner build-test got stuck inventing light colours &mdash; and two real traps surfaced: (1) the grid colour <em>must</em> be a <code>--grid</code> variable (added above), or light mode keeps dark grid lines; (2) a naive colour-invert leaves the orange glaring on white, so light <code>--accent</code> is set a shade deeper on purpose.</div>
+    <div class="swatches">
+      <div class="sw"><div class="c" style="background:#050608"></div><div class="l">bg</div></div>
+      <div class="sw"><div class="c" style="background:#14171D"></div><div class="l">card</div></div>
+      <div class="sw"><div class="c" style="background:#E8752E"></div><div class="l">orange (rare!)</div></div>
+      <div class="sw"><div class="c" style="background:#4FD1D9"></div><div class="l">cyan (rarer!)</div></div>
+    </div>
+    <h3>Fonts (paste in &lt;head&gt; of every page)</h3>
+<pre><code>&lt;link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&amp;family=Public+Sans:wght@400;500&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet"&gt;</code></pre>
+    <ul class="hud-list">
+      <li><strong>Rajdhani</strong> = big shouty uppercase titles.</li>
+      <li><strong>IBM Plex Mono</strong> = anything that should feel like machine data: labels, dates, chips.</li>
+      <li><strong>Public Sans</strong> = normal reading text.</li>
+    </ul>
+    <h3>The signature move: corner brackets</h3>
+    <p>A box with tiny orange L-shapes on two opposite corners. It's just a border plus two positioned pseudo-elements:</p>
+<pre><code>.panel{ position:relative; border:1px solid var(--line); background:var(--bg-2); padding:1.6rem; }
+.panel::before, .panel::after{ content:""; position:absolute; width:10px; height:10px; }
+.panel::before{ top:-1px; left:-1px;   border-top:2px solid var(--accent); border-left:2px solid var(--accent); }
+.panel::after { bottom:-1px; right:-1px; border-bottom:2px solid var(--accent); border-right:2px solid var(--accent); }</code></pre>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="tag">E</span><h2>The work card (index page)</h2></div>
+    <p>Each job/project on the front page is one card. Anatomy, live-rendered right here in this doc:</p>
+    <div class="democard">
+      <div class="dh"><span class="co">COMPANY NAME</span><span style="border:1px solid var(--line-2); padding:0.05rem 0.4rem; color:var(--cyan);">SHIPPED</span><time>2022&ndash;23</time></div>
+      <div class="db">
+        <div class="dm"><div class="img">PICTURE 1 (media column is a bit WIDER than text)</div><div class="img">PICTURE 2 (optional)</div></div>
+        <div class="dt"><h4>Project Title</h4><p>&gt;&gt; WHAT I WORKED ON<br>&gt; thing one<br>&gt; thing two</p></div>
+      </div>
+    </div>
+    <p>The layout trick is one line of flexbox &mdash; media gets a <em>slightly</em> bigger share:</p>
+<pre><code>.entry-body { display:flex; gap:1.2rem; padding:1rem 1.2rem; }
+.entry-media{ flex:1.15; display:flex; flex-direction:column; gap:0.9rem; }  /* 1.15 &gt; 1 = a tad bigger */
+.entry-text { flex:1; }
+.entry-media img{ width:100%; max-height:250px; object-fit:cover; border:1px solid var(--line); }
+
+/* phone: stack instead of squeeze */
+@media (max-width:560px){ .entry-body{ flex-direction:column; } }</code></pre>
+
+    <p style="margin-top:1.2rem;">Here is the <strong>whole card to copy</strong>. The top band (company, status, date) is a <code>.entry-head</code>; the body is the media + text you just saw:</p>
+<pre><code>&lt;div class="entry"&gt;
+  &lt;div class="entry-head"&gt;
+    &lt;span class="entry-co"&gt;Company Name&lt;/span&gt;
+    &lt;span class="entry-status"&gt;shipped&lt;/span&gt;
+    &lt;time&gt;2022&ndash;23&lt;/time&gt;
+  &lt;/div&gt;
+  &lt;div class="entry-body"&gt;
+    &lt;div class="entry-media"&gt;
+      &lt;img src="assets/shot1.jpg" alt="..."&gt;
+      &lt;img src="assets/shot2.jpg" alt="..."&gt;   &lt;!-- 2nd is optional --&gt;
+    &lt;/div&gt;
+    &lt;div class="entry-text"&gt;
+      &lt;h3&gt;&lt;a href="projects/my-game.html"&gt;Project Title&lt;/a&gt;&lt;/h3&gt;
+      &lt;p&gt;One line about the project.&lt;/p&gt;
+      &lt;span class="entry-label"&gt;what i worked on&lt;/span&gt;
+      &lt;ul class="hud-list"&gt;&lt;li&gt;thing one&lt;/li&gt;&lt;li&gt;thing two&lt;/li&gt;&lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <p>Styling for the card shell and its header band (the flex rules above handle the body):</p>
+<pre><code>.entry{ position:relative; background:var(--bg-2); border:1px solid var(--line);
+        border-left:3px solid var(--accent); margin:0 0 1.2rem; }
+.entry-head{ display:flex; align-items:center; gap:0.9rem; padding:0.6rem 1.2rem;
+             border-bottom:1px solid var(--line);
+             font-family:'IBM Plex Mono', monospace; font-size:0.78rem; }
+.entry-co{ color:var(--accent); }
+.entry-status{ border:1px solid var(--line); padding:0.05rem 0.4rem; color:var(--cyan);
+               text-transform:uppercase; font-size:0.68rem; }
+.entry-head time{ margin-left:auto; font-family:'Rajdhani', sans-serif; font-weight:700;
+                  font-size:1.1rem; color:var(--ink); }
+.entry-label{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.66rem;
+              text-transform:uppercase; color:var(--ink-soft); margin:0.6rem 0 0.3rem; }
+.entry-label::before{ content:">> "; color:var(--accent); }</code></pre>
+    <div class="fixnote"><strong>Ignore the demo's class names.</strong> The picture at the top of this section is drawn with throwaway names (<code>.dh</code>, <code>.co</code>, <code>.dm</code>, <code>.dt</code>) purely so it renders <em>inside</em> this document &mdash; a build-test copied <em>those</em> by mistake and got a broken card. The real copy-me classes are the ones in the two code blocks right here: <code>.entry</code>, <code>.entry-head</code>, <code>.entry-body</code>, <code>.entry-media</code>, <code>.entry-text</code>, <code>.entry-label</code>.</div>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="tag">F</span><h2>One page per project</h2></div>
+    <p>Make <code>projects/my-game.html</code>. Same head as index but the CSS link is <code>href="../style.css?v=1"</code> (it's one folder deeper). The page order that works:</p>
+    <ul class="hud-list">
+      <li><strong>Title + one-line "what the game is."</strong></li>
+      <li><strong>The briefing panel:</strong> a short first-person intro (what this project meant &mdash; what you learned, built from scratch, or rescued) sitting above a Role / Team / Duration / Engine readout. Story first, data second, in one bracketed box.</li>
+      <li><strong>Numbered sections</strong> (01 Gameplay, 02 Systems, 03 Media) with terse <code>&gt;</code> bullets. Gameplay always first. Media always last.</li>
+    </ul>
+<pre><code>&lt;div class="panel"&gt;
+  &lt;p class="panel-label"&gt;Introduction&lt;/p&gt;
+  &lt;p class="panel-intro"&gt;I built this from the ground up and ... (YOUR story, first person)&lt;/p&gt;
+  &lt;div class="specs"&gt;
+    &lt;div class="spec"&gt;&lt;div class="k"&gt;Role&lt;/div&gt;&lt;div class="v"&gt;Game Programmer&lt;/div&gt;&lt;/div&gt;
+    &lt;div class="spec"&gt;&lt;div class="k"&gt;Team&lt;/div&gt;&lt;div class="v"&gt;3 people&lt;/div&gt;&lt;/div&gt;
+    &lt;div class="spec"&gt;&lt;div class="k"&gt;Duration&lt;/div&gt;&lt;div class="v"&gt;4 months&lt;/div&gt;&lt;/div&gt;
+    &lt;div class="spec"&gt;&lt;div class="k"&gt;Engine&lt;/div&gt;&lt;div class="v"&gt;Unity&lt;/div&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <p>The CSS for that briefing panel's label, intro line, and the specs grid:</p>
+<pre><code>.panel-label{ font-family:'IBM Plex Mono', monospace; font-size:0.66rem; text-transform:uppercase;
+              letter-spacing:0.14em; color:var(--accent); }
+.panel-label::before{ content:">> "; color:var(--ink-soft); }
+.panel-intro{ color:var(--ink-soft); max-width:64ch; padding-bottom:1.2rem;
+              border-bottom:1px solid var(--line); }
+.specs{ display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));
+        gap:1px; background:var(--line); border:1px solid var(--line); margin-top:1.2rem; }
+.spec{ background:var(--bg-2); padding:0.8rem 1rem; }
+.spec .k{ font-family:'IBM Plex Mono', monospace; font-size:0.64rem; text-transform:uppercase; color:var(--ink-soft); }
+.spec .v{ font-family:'IBM Plex Mono', monospace; color:var(--ink); margin-top:0.25rem; }</code></pre>
+    <p>The numbered sections below the panel (<code>01 Gameplay</code>, <code>02 Systems</code>&hellip;) reuse <code>.section-head</code> and <code>.hud-list</code> from Section&nbsp;J:</p>
+<pre><code>&lt;section&gt;
+  &lt;div class="section-head"&gt;&lt;span class="tag"&gt;01&lt;/span&gt;&lt;h2&gt;Gameplay&lt;/h2&gt;&lt;/div&gt;
+  &lt;ul class="hud-list"&gt;
+    &lt;li&gt;&lt;strong&gt;Thing&lt;/strong&gt; &mdash; what you did.&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/section&gt;</code></pre>
+    <div class="fixnote"><strong>Why this was added:</strong> the HTML above uses <code>.panel-label</code>, <code>.panel-intro</code>, <code>.specs</code>, <code>.spec</code>, <code>.k</code>, <code>.v</code> &mdash; but the first draft never gave their CSS, so in a build-test the briefing box rendered as an unstyled blob and the specs stacked in a plain column instead of the grid readout.</div>
+    <div class="note">The date appears on the index card AND in this page's little header line. When a date changes, change BOTH. They drift apart otherwise — it happened on this very site.</div>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="tag">G</span><h2>Pictures &amp; videos</h2></div>
+    <h3>Pictures: shrink before you ship</h3>
+    <ul class="hud-list">
+      <li>Resize to <strong>1280px wide max</strong>, save as JPEG quality ~82. A 2 MB screenshot becomes ~80 KB and nobody can tell.</li>
+      <li>Put them in <code>assets/</code>, use <code>&lt;img src="assets/shot.jpg" loading="lazy" alt="what it shows"&gt;</code>.</li>
+      <li>Pick shots that show <em>your work</em>: a character being chased by YOUR ai beats an empty corridor. Diagrams count &mdash; a state-machine graph next to the bullet about state machines is proof.</li>
+    </ul>
+    <h3>Videos: don't host them, embed YouTube</h3>
+<pre><code>&lt;div class="yt-embed"&gt;  &lt;!-- css: position:relative; padding-top:56.25%; --&gt;
+  &lt;iframe src="https://www.youtube.com/embed/VIDEO_ID"
+          loading="lazy" allowfullscreen
+          style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"&gt;&lt;/iframe&gt;
+&lt;/div&gt;</code></pre>
+    <p><code>VIDEO_ID</code> = the 11 characters after <code>watch?v=</code> in the YouTube URL. The <code>padding-top:56.25%</code> box keeps it 16:9 at any width.</p>
+    <h3>Mixed-size picture grids: use columns, not grid</h3>
+<pre><code>.media-grid{ column-count:2; column-gap:1.1rem; }
+.media-grid figure{ break-inside:avoid; margin:0 0 1.1rem; }
+@media (max-width:560px){ .media-grid{ column-count:1; } }</code></pre>
+    <p>Why: CSS grid forces rows to equal height, so a tall portrait next to a short landscape leaves an ugly void. Columns pack them like a masonry wall.</p>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="tag">H</span><h2>Look at it, then ship it</h2></div>
+    <h3>Test</h3>
+    <ul class="hud-list">
+      <li><strong>Simplest:</strong> right-click the html in Rider &rarr; <em>Open in Browser</em>. It opens as a <code>file://</code> page and needs <strong>nothing installed</strong>. <em>Optional:</em> if you already have Node or Python, a local server behaves a touch more like the real web &mdash; <code>npx serve .</code> (Node) or <code>python -m http.server</code> (Python). Neither is required to build this.</li>
+      <li>Press <strong>F12</strong> &rarr; toggle the phone icon &rarr; check 375px width: nothing should scroll sideways, cards should stack.</li>
+      <li>Click your theme toggle both ways. Hover things in BOTH themes (a hover color that works on dark can read backwards on light).</li>
+    </ul>
+    <div class="fixnote"><strong>Contradiction fixed:</strong> an earlier draft said "no Node" in Section&nbsp;A but then told you to run <code>npx serve</code> (which needs Node) right here. You need nothing but a browser &mdash; the local server is optional.</div>
+    <h3>Ship</h3>
+    <ul class="hud-list">
+      <li>GitHub Desktop &rarr; it lists your changed files &rarr; write a summary &rarr; <em>Commit to main</em> &rarr; <em>Push origin</em>.</li>
+      <li>Wait ~1 minute. Open <code>https://YOURUSERNAME.github.io/</code>. Done. You have a live portfolio.</li>
+      <li>Live site looks broken but files are right? It's the browser hoarding old CSS &mdash; hard refresh (<strong>Ctrl+F5</strong>) and go bump that <code>?v=</code> number.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="tag">I</span><h2>The rules that keep it good</h2></div>
+    <ul class="hud-list">
+      <li><strong>Tell the truth.</strong> Write what you actually did, in your own voice. A short honest intro ("this was hard, I learned X") reads better than invented buzzwords &mdash; and interviewers ask about everything you claim.</li>
+      <li><strong>Two layers per project:</strong> a human intro paragraph (story) + terse factual bullets (scannable). Don't mix them.</li>
+      <li><strong>Orange is loud.</strong> The style works because 95% of the page is grayscale. If everything is orange, nothing is.</li>
+      <li><strong>One CSS file.</strong> Every page links the same <code>style.css</code>. Fix once, fixed everywhere.</li>
+      <li><strong>Change CSS &rarr; bump <code>?v=</code>. Change a date &rarr; change it in both places. Add media &rarr; shrink it first.</strong> That's the whole maintenance manual.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="tag">J</span><h2>Copy-paste appendix (the shared bits every page leans on)</h2></div>
+    <p>The steps above focused on the interesting parts. These are the small shared pieces they keep referencing &mdash; paste them into <code>style.css</code> once and every page gets them.</p>
+
+    <h3>Headings, eyebrow, section headers, bullets, nav stamps</h3>
+<pre><code>h1{ font-family:'Rajdhani', sans-serif; font-weight:700; font-size:clamp(2.2rem,6vw,3.2rem);
+    text-transform:uppercase; line-height:1.05; margin:0; }
+h2{ font-family:'Rajdhani', sans-serif; text-transform:uppercase; letter-spacing:0.06em; margin:0; }
+h3{ font-family:'Rajdhani', sans-serif; text-transform:uppercase; color:var(--cyan); margin:1.3rem 0 0.4rem; }
+p{ color:var(--ink-soft); }
+
+/* the "// GAME PROGRAMMER" mono label */
+.eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:0.72rem; letter-spacing:0.18em;
+          text-transform:uppercase; color:var(--accent); }
+.eyebrow::before{ content:"// "; color:var(--ink-soft); }
+
+/* the "01  Section Title" header, with a fading rule trailing off to the right */
+.section-head{ display:flex; align-items:center; gap:0.8rem; margin:2.6rem 0 1.2rem; }
+.section-head::after{ content:""; flex:1; height:1px; background:linear-gradient(90deg,var(--line),transparent); }
+.section-head .tag{ font-family:'IBM Plex Mono', monospace; font-size:0.68rem; letter-spacing:0.1em;
+                    color:var(--bg); background:var(--accent); padding:0.15rem 0.5rem; }
+.section-head h2{ font-size:1.15rem; }
+
+/* the &gt; bulleted work lists */
+ul.hud-list{ list-style:none; padding:0; margin:0.4rem 0; display:flex; flex-direction:column; gap:0.6rem; }
+ul.hud-list li{ position:relative; padding-left:1.3rem; color:var(--ink-soft); }
+ul.hud-list li::before{ content:">"; position:absolute; left:0; color:var(--accent); font-family:'IBM Plex Mono', monospace; }
+ul.hud-list li strong{ color:var(--ink); }
+
+/* nav "stamp" buttons (Work, About, LinkedIn, Resume...) */
+.stamps{ display:flex; flex-wrap:wrap; gap:0.6rem; margin-top:1.4rem; }
+.stamp{ font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--ink-soft);
+        border:1px solid var(--line); padding:0.35rem 0.7rem; text-decoration:none;
+        background:transparent; cursor:pointer; }
+.stamp:hover{ border-color:var(--accent); color:var(--accent); }
+
+/* the light/dark toggle button */
+.theme-toggle{ font-family:'IBM Plex Mono', monospace; font-size:0.72rem; text-transform:uppercase;
+               color:var(--ink-soft); background:transparent; border:1px solid var(--line);
+               padding:0.3rem 0.65rem; cursor:pointer; }
+.theme-toggle:hover{ border-color:var(--accent); color:var(--accent); }</code></pre>
+
+    <h3>theme.js &mdash; the light/dark switch (whole file)</h3>
+    <p>Two parts. First, the button &mdash; drop it wherever you want the toggle (the hero nav is a good spot):</p>
+<pre><code>&lt;button class="theme-toggle" onclick="toggleTheme()"&gt;theme&lt;/button&gt;</code></pre>
+    <p>Second, the file <code>theme.js</code> itself &mdash; pure JavaScript, no HTML tags &mdash; loaded once per page with <code>&lt;script src="theme.js"&gt;&lt;/script&gt;</code> in the <code>&lt;head&gt;</code>:</p>
+<pre><code>// theme.js — remember + toggle light/dark
+
+// 1) on load, re-apply whatever was chosen last time
+if (localStorage.getItem('theme') === 'light') {
+  document.documentElement.setAttribute('data-theme', 'light');
+}
+
+// 2) the button calls this
+function toggleTheme(){
+  var root = document.documentElement;
+  if (root.getAttribute('data-theme') === 'light') {
+    root.removeAttribute('data-theme');          // back to dark
+    localStorage.setItem('theme', 'dark');
+  } else {
+    root.setAttribute('data-theme', 'light');    // go light
+    localStorage.setItem('theme', 'light');
+  }
+}</code></pre>
+    <div class="fixnote"><strong>Why this section exists:</strong> a build-test found the tutorial named <code>theme.js</code>, <code>.section-head</code>, <code>.eyebrow</code>, <code>.hud-list</code>, and the nav <code>.stamp</code> buttons in its examples but never gave their code &mdash; so the tester had to invent them, and the invented toggle didn't remember the choice on reload. Everything the steps reference now lives here.</div>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="tag">K</span><h2>Extra: a hidden click-counter easter egg</h2></div>
+    <p>Optional and fun. A <strong>hidden button</strong> that does nothing until it is clicked a secret number of times &mdash; then it reveals a little panel of links. On this site, clicking the name 19 times unlocks links to these very docs. Three small pieces:</p>
+
+    <h3>1. Mark the secret trigger, and hide the panel</h3>
+    <p>Give the thing you will click an <code>id</code>, and drop a hidden panel wherever you want the reveal to appear. The <code>hidden</code> attribute keeps it invisible until JavaScript removes it:</p>
+<pre><code>&lt;h1 id="name-egg"&gt;My Name&lt;/h1&gt;
+
+&lt;div class="egg-pop" id="egg-pop" hidden&gt;
+  &lt;p class="egg-label"&gt;Access granted · level 19&lt;/p&gt;
+  &lt;div class="egg-links"&gt;
+    &lt;a class="stamp" href="docs/how-to-build.html"&gt;How this was built ↗&lt;/a&gt;
+    &lt;a class="stamp" href="docs/documentation.html"&gt;Documentation ↗&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+    <h3>2. Count the clicks (add this to theme.js)</h3>
+    <p>Keep a counter. Every click adds one; the moment it hits the magic number, un-hide the panel:</p>
+<pre><code>// theme.js loads in the &lt;head&gt;, BEFORE the &lt;h1&gt; exists — so wait for the
+// page to finish loading, THEN find the name and wire up the counter:
+document.addEventListener('DOMContentLoaded', function(){
+  var nameEgg = document.getElementById('name-egg');
+  var eggPop  = document.getElementById('egg-pop');
+  if (nameEgg &amp;&amp; eggPop) {
+    var clicks = 0;
+    nameEgg.addEventListener('click', function(){
+      clicks++;
+      if (clicks === 19) { eggPop.hidden = false; }   // reveal on the 19th
+    });
+  }
+});</code></pre>
+    <div class="fixnote"><strong>Why the wrapper matters:</strong> a re-test copied this block to the top of <code>theme.js</code> and the egg never fired. The reason: <code>theme.js</code> is loaded in the <code>&lt;head&gt;</code>, which runs <em>before</em> the <code>&lt;h1&gt;</code> has been created &mdash; so <code>getElementById('name-egg')</code> returned <code>null</code>, the <code>if</code> was false, and the click listener was never attached. Wrapping the code in <code>DOMContentLoaded</code> makes it wait until the page (and the name) actually exist. The theme toggle in Section&nbsp;J doesn't need this because it runs from the button's <code>onclick</code>, which only fires long after the page has loaded.</div>
+
+    <h3>3. Style the panel (add this to style.css)</h3>
+<pre><code>#name-egg{ cursor:default; user-select:none; }   /* looks normal; text won't select while you mash it */
+.egg-pop{ position:relative; max-width:440px; margin-top:1.6rem;
+          border:1px solid var(--line); border-left:3px solid var(--accent);
+          background:var(--bg-2); padding:1rem 1.15rem; animation:egg-in .35s ease; }
+.egg-pop::before{ content:""; position:absolute; top:-1px; left:-1px; width:10px; height:10px;
+                  border-top:2px solid var(--accent); border-left:2px solid var(--accent); }
+.egg-label{ font-family:'IBM Plex Mono', monospace; font-size:0.66rem; text-transform:uppercase;
+            letter-spacing:0.14em; color:var(--accent); margin:0 0 0.75rem; }
+.egg-links{ display:flex; flex-wrap:wrap; gap:0.6rem; }   /* reuses the .stamp buttons from Section J */
+@keyframes egg-in{ from{ opacity:0; transform:translateY(-6px); } to{ opacity:1; transform:none; } }</code></pre>
+    <div class="note">Two things make it feel "hidden": the trigger has no hover cue (<code>cursor:default</code>, no underline), and <code>user-select:none</code> stops the name from highlighting into a blue blob while you mash it. The counter is a plain variable &mdash; refresh the page and it resets to zero, which is perfectly fine for an easter egg.</div>
+  </section>
+
+  <footer>
+    <span>caveman edition · you make website · 2026-07-08</span>
+    <span>same style as the real thing</span>
+  </footer>
+
+</div>
+</body>
+</html>

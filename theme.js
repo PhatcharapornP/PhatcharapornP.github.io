@@ -34,6 +34,20 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   });
 
+  // hidden easter egg: click the name 19 times to reveal the archive links
+  var nameEgg = document.getElementById('name-egg');
+  var eggPop = document.getElementById('egg-pop');
+  if(nameEgg && eggPop){
+    var eggClicks = 0;
+    nameEgg.addEventListener('click', function(){
+      eggClicks++;
+      if(eggClicks === 19){
+        eggPop.hidden = false;
+        eggPop.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      }
+    });
+  }
+
   // back-to-top button, injected on every page that loads this script
   var toTop = document.createElement('button');
   toTop.className = 'to-top';

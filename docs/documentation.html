@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Full Project Documentation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Public+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Condensed copy of the portfolio's Division-HUD identity, self-contained for this doc */
+:root{
+  --bg:#050608; --bg-2:#14171D; --bg-3:#1C212A; --line:#272C35; --line-2:#434B57;
+  --grid:#131519; --hatch:rgba(255,255,255,0.035); --shadow:rgba(0,0,0,0.45);
+  --ink:#E7E9EC; --ink-soft:#9198A1; --ink-dim:#5C636B;
+  --accent:#E8752E; --accent-dim:#8C4A1E; --accent-glow:rgba(232,117,46,0.22); --cyan:#4FD1D9;
+  --max:920px; --mono:'IBM Plex Mono',ui-monospace,Consolas,monospace;
+  --display:'Rajdhani','Arial Narrow',sans-serif; --sans:'Public Sans',system-ui,sans-serif;
+}
+*{ box-sizing:border-box; }
+body{
+  margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); line-height:1.6;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:42px 42px;
+}
+.wrap{ max-width:var(--max); margin:0 auto; padding:3.5rem 1.5rem 6rem; }
+.eyebrow{ font-family:var(--mono); font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent); }
+.eyebrow::before{ content:"// "; color:var(--ink-dim); }
+h1,h2,h3{ font-family:var(--display); font-weight:700; margin:0; }
+h1{ font-size:clamp(2.2rem,6vw,3.2rem); line-height:1.05; text-transform:uppercase; }
+h2{ font-size:1.15rem; text-transform:uppercase; letter-spacing:0.06em; }
+h3{ font-size:1rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--cyan); margin:1.4rem 0 0.5rem; }
+p{ color:var(--ink-soft); }
+p.lede{ font-size:1.05rem; max-width:62ch; }
+section{ margin:3.2rem 0; }
+.section-head{ display:flex; align-items:center; gap:0.8rem; margin-bottom:1.2rem; }
+.section-head::after{ content:""; flex:1 1 auto; height:1px; background:linear-gradient(90deg,var(--line-2),transparent); }
+.section-head .tag{ font-family:var(--mono); font-size:0.68rem; letter-spacing:0.1em; color:var(--bg); background:var(--accent); padding:0.15rem 0.5rem; }
+.panel{ position:relative; border:1px solid var(--line); background:var(--bg-2); padding:1.6rem 1.8rem; margin:1.6rem 0; }
+.panel::before{ content:""; position:absolute; top:-1px; left:-1px; width:10px; height:10px; border-top:2px solid var(--accent); border-left:2px solid var(--accent); }
+.panel::after{ content:""; position:absolute; bottom:-1px; right:-1px; width:10px; height:10px; border-bottom:2px solid var(--accent); border-right:2px solid var(--accent); }
+ul.hud-list{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.7rem; }
+ul.hud-list li{ position:relative; padding-left:1.3rem; color:var(--ink-soft); }
+ul.hud-list li::before{ content:">"; position:absolute; left:0; color:var(--accent); font-family:var(--mono); }
+ul.hud-list li strong{ color:var(--ink); }
+table{ width:100%; border-collapse:collapse; font-size:0.85rem; margin:1rem 0; }
+th{ font-family:var(--mono); font-size:0.66rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-dim); text-align:left; padding:0.5rem 0.7rem; border-bottom:1px solid var(--line-2); }
+td{ padding:0.5rem 0.7rem; border-bottom:1px solid var(--line); color:var(--ink-soft); vertical-align:top; }
+td strong{ color:var(--ink); }
+code,pre{ font-family:var(--mono); font-size:0.82rem; }
+code{ background:var(--bg-3); border:1px solid var(--line); padding:0.05rem 0.35rem; color:var(--cyan); }
+pre{ background:var(--bg-2); border:1px solid var(--line-2); border-left:3px solid var(--accent-dim); padding:1rem 1.2rem; overflow-x:auto; color:var(--ink-soft); }
+pre code{ background:none; border:none; padding:0; color:inherit; }
+.swatches{ display:flex; flex-wrap:wrap; gap:0.7rem; margin:1rem 0; }
+.sw{ width:130px; border:1px solid var(--line-2); }
+.sw .c{ height:44px; }
+.sw .l{ font-family:var(--mono); font-size:0.62rem; padding:0.35rem 0.5rem; background:var(--bg-2); color:var(--ink-soft); }
+.chip{ display:inline-block; font-family:var(--mono); font-size:0.7rem; border:1px solid var(--line-2); padding:0.15rem 0.55rem; margin:0.15rem 0.2rem 0.15rem 0; color:var(--ink-soft); }
+.note{ border:1px dashed var(--line-2); border-left:3px solid var(--cyan); padding:0.8rem 1.1rem; margin:1rem 0; color:var(--ink-soft); font-size:0.9rem; }
+.note::before{ content:"NOTE // "; font-family:var(--mono); font-size:0.68rem; color:var(--cyan); letter-spacing:0.1em; }
+.tree{ line-height:1.5; }
+footer{ margin-top:4rem; padding-top:1rem; border-top:1px solid var(--line); font-family:var(--mono); font-size:0.72rem; color:var(--ink-dim); display:flex; justify-content:space-between; }
+@media (max-width:640px){ table{ font-size:0.75rem; } td,th{ padding:0.4rem 0.4rem; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">Internal documentation · 2026-07-08</p>
+    <h1>Portfolio &mdash; Full Project Documentation</h1>
+    <p class="lede">Everything about Phatcharaporn Phayakaniti's portfolio site: what it is, how it's built, what every part does, the facts it presents, and how to maintain it without breaking anything.</p>
+  </header>
+
+  <section>
+    <div class="section-head"><span class="tag">01</span><h2>Overview</h2></div>
+    <table>
+      <tr><th>Live site</th><td><strong>https://phatcharapornp.github.io/</strong> (GitHub Pages)</td></tr>
+      <tr><th>Repository</th><td><code>C:\Users\ADMIN\Documents\GitHub\PhatcharapornP.github.io\</code> &rarr; github.com/PhatcharapornP/PhatcharapornP.github.io, branch <code>main</code></td></tr>
+      <tr><th>Stack</th><td>Plain HTML + one shared CSS + one small JS file. <strong>No framework, no build step.</strong> What's in the folder is what ships.</td></tr>
+      <tr><th>Content source</th><td>Migrated &amp; fact-checked against the old Wix site (<code>tanphayakaniti.wixsite.com/portforlio</code>) + corrections from the owner directly.</td></tr>
+      <tr><th>Publish flow</th><td>Owner reviews in GitHub Desktop and pushes manually. Assistants never commit/push.</td></tr>
+    </table>
+    <p><strong style="color:var(--ink)">Visual identity:</strong> "The Division 1" tactical HUD / data-terminal &mdash; near-black background with a grid, one orange accent, cyan secondary, corner-bracket framing, mono data labels over big condensed values. One restrained Cyberpunk touch: a brief glitch flicker on project-title hover. Light theme included (warm paper tones), toggle top-right on every page.</p>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="tag">02</span><h2>File structure</h2></div>
+<pre class="tree"><code>PhatcharapornP.github.io/
+├── index.html              ← landing page: hero, work experience, exercises, about
+├── style.css               ← the ONLY stylesheet, shared by every page
+├── theme.js                ← theme toggle + email copy + back-to-top + the name easter egg
+├── .gitignore              ← keeps .claude/, .agents/, skills-lock.json out of the repo
+├── _SESSION_HANDOFF.md     ← working log / checkpoints (assistant sessions)
+├── assets/
+│   ├── avatar.png, linkedin.png, unity.png, ... (icons)
+│   ├── ais5g/              ← optimized AIS 5G media
+│   └── silent-night/       ← optimized Silent Night media + FSM diagram
+├── projects/               ← one page per project
+│   ├── league-of-bomb.html      ├── airship.html
+│   ├── ais5g.html               ├── replace.html
+│   ├── recall.html              ├── unreleased-fps-puzzle.html
+│   ├── silent-night.html        ├── random-grid.html
+│   └── centipede-game.html      └── fantasy-rpg-snake.html
+└── docs/                   ← THESE reference docs (reached via the 19-click name easter egg)
+    ├── documentation.html       └── how-to-build.html</code></pre>
+    <div class="note">Every HTML page links the stylesheet with a version tag: <code>style.css?v=20260708b</code>. Whenever <code>style.css</code> changes, bump this number on all pages, or returning visitors get a stale cached stylesheet and the layout looks broken.</div>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="tag">03</span><h2>Design system</h2></div>
+
+    <h3>Palette (dark theme)</h3>
+    <div class="swatches">
+      <div class="sw"><div class="c" style="background:#050608"></div><div class="l">--bg #050608</div></div>
+      <div class="sw"><div class="c" style="background:#14171D"></div><div class="l">--bg-2 #14171D (cards)</div></div>
+      <div class="sw"><div class="c" style="background:#1C212A"></div><div class="l">--bg-3 / --bg-hover</div></div>
+      <div class="sw"><div class="c" style="background:#E8752E"></div><div class="l">--accent #E8752E</div></div>
+      <div class="sw"><div class="c" style="background:#4FD1D9"></div><div class="l">--cyan #4FD1D9</div></div>
+      <div class="sw"><div class="c" style="background:#E7E9EC"></div><div class="l">--ink #E7E9EC</div></div>
+    </div>
+    <p>Light theme overrides live in <code>:root[data-theme="light"]</code> &mdash; warm paper (<code>#F0EEE8</code>) with white cards. <strong style="color:var(--ink)">Special case:</strong> <code>--bg-hover</code> is <code>#1C212A</code> in dark (hover = lift) but <code>#FFF6ED</code> in light (hover = warm glow) &mdash; a plain darker hover reads as "dimmed" on white cards and confuses which card is selected.</p>
+
+    <h3>Fonts</h3>
+    <ul class="hud-list">
+      <li><strong>Rajdhani</strong> (600/700) &mdash; big uppercase display headers.</li>
+      <li><strong>IBM Plex Mono</strong> &mdash; data readouts, labels, chips, dates, everything "HUD".</li>
+      <li><strong>Public Sans</strong> &mdash; body copy.</li>
+    </ul>
+
+    <h3>Component inventory (CSS classes)</h3>
+    <table>
+      <tr><th>Class</th><th>What it is</th></tr>
+      <tr><td><code>.panel</code></td><td>Corner-bracketed box (orange L-brackets top-left + bottom-right). Signature motif.</td></tr>
+      <tr><td><code>.panel-label</code> + <code>.panel-intro</code></td><td>The "briefing" intro inside a panel: <code>&gt;&gt; INTRODUCTION</code> mono label + first-person narrative paragraph, hairline divider, then specs.</td></tr>
+      <tr><td><code>.specs</code> / <code>.spec .k/.v</code></td><td>Role / Team / Duration / Engine readout grid.</td></tr>
+      <tr><td><code>.entry</code></td><td>Index card: hatched header band (<code>.entry-head</code>), company label (<code>.entry-co</code>), status badge (<code>.st-live/.st-shipped/.st-archive</code>), big year + cyan duration (<code>.entry-when/.entry-dur</code>).</td></tr>
+      <tr><td><code>.entry-body</code> + <code>.entry-media</code> + <code>.entry-text</code></td><td>Media-forward card layout: media column <code>flex:1.15</code> (a touch wider than text at <code>flex:1</code>), up to 2 stacked shots, <code>max-height:250px</code>. Stacks vertically under 560px.</td></tr>
+      <tr><td><code>.entry-label</code> + <code>.entry-points</code></td><td><code>&gt;&gt; WHAT I WORKED ON</code> mini-header + compact <code>&gt;</code>-bulleted work list.</td></tr>
+      <tr><td><code>ul.hud-list</code></td><td>Sub-page work bullets with orange <code>&gt;</code> markers.</td></tr>
+      <tr><td><code>.hero-media</code> / <code>.media-grid</code></td><td>Big bracketed feature shot / masonry columns (<code>column-count:2</code>) for mixed-aspect media &mdash; masonry chosen because CSS grid left voids next to tall items.</td></tr>
+      <tr><td><code>.yt-wrap .yt-embed</code></td><td>Responsive 16:9 YouTube embeds (+ <code>.yt-hero</code> for the big one).</td></tr>
+      <tr><td><code>.stamps .stamp</code></td><td>Button-like links (Email copy, Resume, store links, Back).</td></tr>
+      <tr><td><code>.xp-list</code> / <code>.lang-list</code></td><td>About section: company/role/duration rows; language proficiency rows.</td></tr>
+      <tr><td><code>.glitch</code></td><td>Brief glitch flicker on title hover. The one Cyberpunk allowance.</td></tr>
+      <tr><td><code>.theme-toggle</code> / <code>.to-top</code></td><td>Injected/managed by <code>theme.js</code>: theme persists via localStorage; back-to-top appears after 600px scroll.</td></tr>
+      <tr><td><code>.egg-pop</code> / <code>#name-egg</code></td><td>Hidden easter egg: <code>theme.js</code> counts clicks on the name (<code>#name-egg</code>) and reveals the corner-bracketed <code>.egg-pop</code> panel on the 19th, linking to <code>docs/how-to-build.html</code> and <code>docs/documentation.html</code>.</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="tag">04</span><h2>Page anatomy</h2></div>
+    <h3>Every project sub-page follows this pattern</h3>
+<pre><code>topbar (← back · breadcrumb · theme toggle)
+header
+  ├── .eyebrow        "WORK EXPERIENCE · 2022–23"   ← date lives HERE and on the index card. Update both!
+  ├── h1              project title
+  ├── .lede           one-line "what the game/app is"
+  ├── .panel          ── the briefing panel ──
+  │     ├── &gt;&gt; INTRODUCTION  first-person narrative (the Wix voice: learning / ownership / rework story)
+  │     └── .specs           Role · Team · Duration · Engine
+  └── .stamps         store links / Back
+sections 01..N        Gameplay first, then systems, then Media last
+  └── ul.hud-list     terse factual bullets (the scannable layer)
+footer</code></pre>
+    <p><strong style="color:var(--ink)">The two-layer content rule:</strong> the Introduction carries the personal story (first-person, faithful to the original Wix narrative &mdash; challenge, luck, learning, rework), while the bullets stay terse and factual. Never mix the two: no manufactured enthusiasm in bullets, no spec-dumps in the intro.</p>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="tag">05</span><h2>Project fact sheet (verified)</h2></div>
+    <table>
+      <tr><th>Project</th><th>Company</th><th>Role · Team</th><th>Dates · Duration</th><th>Engine</th><th>Status</th></tr>
+      <tr><td><strong>League of Bomb</strong></td><td>Nanuq Studio</td><td>Game Programmer · ~8&ndash;17</td><td>2025&ndash;now · ongoing</td><td>Unity · Photon Quantum</td><td>Closed beta</td></tr>
+      <tr><td><strong>Airship: Kingdoms Adrift</strong></td><td>Revolution Industry</td><td>Game Programmer · ~14</td><td>2022&ndash;23 · 1 yr 9 mo</td><td>Unity</td><td>Released &mdash; Steam / GOG / Epic</td></tr>
+      <tr><td><strong>AIS 5G Play AR</strong></td><td>Illusion Connect Thailand</td><td>Unity Programmer · 3</td><td>2021&ndash;22 · ~1.5 mo</td><td>Unity · Vuforia · Cardboard XR</td><td>Shipped (AR + VR feature)</td></tr>
+      <tr><td><strong>Replace</strong></td><td>Illusion Connect Thailand</td><td>Unity Programmer · 3</td><td>2021&ndash;22 · ~1.5 mo</td><td>Unity · Vuforia</td><td>Shipped &mdash; Google Play. Built from ground up.</td></tr>
+      <tr><td><strong>Recall</strong></td><td>Illusion Connect Thailand</td><td>Unity Programmer · 3</td><td>2020&ndash;21 · ~4 mo</td><td>Unity · Vuforia</td><td>Shipped &mdash; Google Play. Inherited &amp; re-architected.</td></tr>
+      <tr><td><strong>Unreleased FPS puzzle game</strong></td><td>RingZero Game Studio</td><td>Game Programmer · 12&ndash;15</td><td>2018&ndash;20 · 6&ndash;7 mo</td><td>Unity</td><td>Never released (many revisions)</td></tr>
+      <tr><td><strong>Silent Night</strong></td><td>University (senior milestone)</td><td>Game Programmer · 3</td><td>2016&ndash;17 · 10 mo</td><td>Unity</td><td>Milestone project (2018 = research paper year)</td></tr>
+      <tr><td><strong>Random Grid</strong></td><td>Personal exercise</td><td>Solo</td><td>5 days</td><td>Unity</td><td>Source on GitHub</td></tr>
+      <tr><td><strong>Centipede Game</strong></td><td>Personal exercise</td><td>Solo</td><td>6 days · ~4 hr/day</td><td>Unity</td><td>Source on GitLab</td></tr>
+      <tr><td><strong>Fantasy RPG Snake</strong></td><td>Personal exercise</td><td>Solo</td><td>6 days · 4&ndash;6 hr/day</td><td>Unity</td><td>Source on GitHub</td></tr>
+    </table>
+    <h3>Employment timeline (About section)</h3>
+    <ul class="hud-list">
+      <li><strong>RingZero Game Studio</strong> &mdash; 1 yr, junior game programmer, Agile/Scrum.</li>
+      <li><strong>Illusion Connect Thailand</strong> &mdash; ~2 yrs, until <strong>Feb 2022</strong>. The time beyond the named AR projects = maintenance work.</li>
+      <li><strong>Revolution Industry</strong> &mdash; 1 yr 9 mo (2022&ndash;23), Airship.</li>
+      <li><strong>Nanuq Studio</strong> &mdash; joined <strong>2024</strong>, current. Earlier Nanuq projects will be added later; League of Bomb stays the highlighted one.</li>
+      <li>City of Games (RingZero) was <strong>deliberately removed</strong> from the site &mdash; owner's call: "doesn't represent anything useful."</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="tag">06</span><h2>Content principles</h2></div>
+    <ul class="hud-list">
+      <li><strong>Info + narrative must both match the source.</strong> Facts from the Wix page (fetch the specific sub-page URL, not the SPA landing page); tone from its first-person intros. Owner's direct statements override everything.</li>
+      <li><strong>League of Bomb is capability-level only</strong> &mdash; no internal class names or architecture. NDA-safe by design; keep it that way.</li>
+      <li><strong>Dates live in two places</strong> &mdash; the index card and the sub-page eyebrow. They have drifted apart before; always change both.</li>
+      <li><strong>Don't invent.</strong> Every "hazard scenarios"-style embellishment found during cross-checks got removed. If a fact is missing, ask the owner (plain-text questions, one at a time &mdash; not batched forms).</li>
+      <li><strong>Media is optimized, not hot-linked raw</strong> &mdash; local assets resized to &le;1280px, JPEG q82&ndash;84 (45&ndash;150 KB each). Legacy Wix media still hot-links from <code>static.wixstatic.com</code>; migrating those to local optimized copies is a sensible future step.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="tag">07</span><h2>Maintenance guide</h2></div>
+    <h3>Add a new project</h3>
+    <ul class="hud-list">
+      <li>Copy the closest existing page in <code>projects/</code> (e.g. <code>replace.html</code>), replace: title, meta description, breadcrumb, eyebrow date, lede, Introduction, specs, sections, media.</li>
+      <li>Add an index card in the right chronological slot: <code>.entry</code> with company, status badge, year + duration, up to 2 media, title link, <code>&gt;&gt; WHAT I WORKED ON</code> bullets, stack chips.</li>
+      <li>If it's a new employer, add an <code>.xp-list</code> row in About.</li>
+    </ul>
+    <h3>Change styling</h3>
+    <ul class="hud-list">
+      <li>Edit <code>style.css</code>, then <strong>bump <code>?v=</code> on all 11 pages</strong> (find-replace <code>style.css?v=OLD</code> &rarr; <code>style.css?v=NEW</code>).</li>
+      <li>Check both themes (toggle) and mobile width (&lt;560px behaviors: media stacks, breadcrumb hides, media-grid goes 1-column).</li>
+    </ul>
+    <h3>Publish</h3>
+    <ul class="hud-list">
+      <li>Review in GitHub Desktop &rarr; commit &rarr; push &rarr; GitHub Pages deploys in ~1 min. If the live site looks unstyled: hard refresh (<code>Ctrl+F5</code>) &mdash; it's a cached stylesheet, not broken code.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="tag">08</span><h2>Open items</h2></div>
+    <ul class="hud-list">
+      <li>League of Bomb media + earlier Nanuq projects &mdash; owner will supply.</li>
+      <li>Exact AIS 5G year (currently 2021&ndash;22, inferred from the Feb-2022 departure + "Celebration 2021" visual).</li>
+      <li><code>assets/ais5g/promo-card.jpg</code> is optimized but unused &mdash; delete or keep.</li>
+      <li>Un-reviewed asset folders in <code>D:\Works\Documents\Resume\Port_resources_2024\</code> (LOB, Recall, Replace, Unreleased_Puzzle) + ambiguous AKA assets, incl. a People's Choice Award nomination promo that could become site copy.</li>
+      <li>Photon Quantum / Plastic SCM logos (text chips for now).</li>
+    </ul>
+  </section>
+
+  <footer>
+    <span>portfolio documentation · generated 2026-07-08</span>
+    <span>division-hud styled, self-contained</span>
+  </footer>
+
+</div>
+</body>
+</html>

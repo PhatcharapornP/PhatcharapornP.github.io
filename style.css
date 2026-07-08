@@ -532,6 +532,27 @@ footer{
 }
 .lang-list .v strong{ color: var(--ink); font-weight: 500; }
 
+/* ---- hidden easter-egg access panel (revealed by 19 clicks on the name) ---- */
+#name-egg{ cursor: default; -webkit-user-select: none; user-select: none; }
+.egg-pop{
+  position: relative;
+  margin: 1.6rem 0 0;
+  max-width: 440px;
+  border: 1px solid var(--line-2);
+  border-left: 3px solid var(--accent);
+  background: var(--bg-2);
+  padding: 1rem 1.15rem 1.1rem;
+  box-shadow: 0 0 0 1px var(--accent-glow), 0 6px 22px var(--shadow);
+  animation: egg-in 0.35s ease;
+}
+.egg-pop::before, .egg-pop::after{ content: ""; position: absolute; width: 10px; height: 10px; }
+.egg-pop::before{ top: -1px; left: -1px; border-top: 2px solid var(--accent); border-left: 2px solid var(--accent); }
+.egg-pop::after{ bottom: -1px; right: -1px; border-bottom: 2px solid var(--accent); border-right: 2px solid var(--accent); }
+.egg-label{ font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin: 0 0 0.75rem; }
+.egg-label::before{ content: ">> "; color: var(--ink-dim); }
+.egg-links{ display: flex; flex-wrap: wrap; gap: 0.6rem; }
+@keyframes egg-in{ from{ opacity: 0; transform: translateY(-6px); } to{ opacity: 1; transform: none; } }
+
 /* ---- back-to-top button (injected by theme.js on every page) ---- */
 .to-top{
   position: fixed; right: 1.2rem; bottom: 1.2rem; z-index: 50;

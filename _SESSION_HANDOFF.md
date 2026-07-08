@@ -1,6 +1,43 @@
 # Portfolio Redesign — Session Handoff
 
-> **Latest checkpoint is #3 (below). Read it first.** Earlier checkpoints follow for history.
+> **Latest checkpoint is #4 (below). Read it first.** Earlier checkpoints follow for history.
+
+---
+
+## Checkpoint #4 — 2026-07-08 · Status: media-forward index, dates corrected by user, live site pushed & debugged
+
+### Index media-forward pass (user: "see the work more")
+- New `.entry-media` component in `style.css`: media column `flex:1.15` vs text `flex:1` (media a tad bigger, per user), stacks up to 2 shots, `max-height:250px; object-fit:cover`, hover = accent border+glow. Mobile (<560px) stacks media above text.
+- Media per work card: **Airship** gameplay gif + ship-AI gif · **AIS 5G** ONE image only — the campaign visual (`assets/ais5g/celebration-campaign.jpg`; user chose "newest pic only"; `promo-card.jpg` optimized but currently unused) · **Replace** furniture + mobile UI · **Recall** demo gif + still · **Unreleased FPS** title + environment · **Silent Night** guard-AI shot (`assets/silent-night/gameplay-guard-ai.jpg`, chosen: character visible, not a tutorial shot) + FSM diagram. **League of Bomb: no media** (nothing public; user has projects "waiting for fill-in later").
+- Exercise cards (Random Grid/Centipede/Fantasy Snake) keep single `.entry-thumb` — user scoped media pass to work experience + Silent Night.
+
+### Date corrections (FROM THE USER — authoritative)
+- User **left Illusion Connect Feb 2022**. Illusion "2 yrs" tenure is legit: the gap beyond named projects = **maintenance work**.
+- **Airship / Revolution Industry: 2022–23** (was 2024–25) — index + sub-page eyebrow.
+- **AIS 5G: 2021–22** (was 2024) — my inference from Feb-2022 departure + "Celebration 2021" visual; exact year unconfirmed.
+- **Recall: 2020–21** (was 2021–22). Replace stays 2021–22.
+- **Joined Nanuq 2024** → About row "2024–now"; **LoB card intentionally stays "2025–now"** (earlier Nanuq projects to be added later).
+- **Silent Night stays "2016–17"** — that's the dev period; 2018 senior year was the **research paper**, not development. Do NOT bump to 2017–18.
+
+### Fixes & infra
+- Index misinformation synced to sub-pages: FPS bullet ("built closely with the art & design teams"), Recall blurb (re-architected inherited app), About Airship "Steam, GOG & Epic".
+- **Cache-busting**: all 11 pages link `style.css?v=20260708`. **RULE: bump this version on every style.css change.**
+- **Light-mode hover fix**: new `--bg-hover` var (dark `#1C212A` = lift; light `#FFF6ED` warm cream). Old behavior used `--bg-3`, which in light mode DARKENED the hovered card so neighbors looked selected (user: "hovering 1st, thought I'm hovering 2nd").
+- Mobile verified at 375px across index/airship/silent-night/ais5g/recall: no overflow, no oversized elements, both themes.
+
+### Live-site incident (user pushed; important lessons)
+- Site is now LIVE at https://phatcharapornp.github.io/ — user pushes via GitHub Desktop themselves (commits exist now; still never commit for them).
+- "Media out of place, text unreadable" on live = **stale browser-cached style.css** (old CSS + new HTML). Live files verified byte-identical to local (`curl | tr -d '\r'` then diff — CRLF makes naive diff useless). Fix = hard refresh + the version-tag convention above.
+- **Windows Grep-display gotcha:** the Grep tool can render `/*` as `\*` in output lines (path normalization), which looks like corrupted CSS. Verify with bash grep before "fixing" it.
+
+### Docs created this session (NOT in repo)
+- `D:\Works\Documents\AI\portfolio-docs\` → `PROJECT_DOCUMENTATION.html` (full reference: design system, fact sheet, maintenance guide) + `HOW_TO_BUILD_CAVEMAN.html` (A→I rebuild tutorial). Division-styled, self-contained, open in browser or Rider. Keep them updated if the site changes significantly.
+
+### Open items
+1. LoB media + earlier Nanuq projects — waiting on user.
+2. Exact AIS 5G year (2021 vs early 2022).
+3. Unused `assets/ais5g/promo-card.jpg` — delete or keep for later.
+4. Carried: remaining `Port_resources_2024` folders (LOB, Recall, Replace, Unreleased_Puzzle; AKA ambiguous assets; People's Choice Award as copy), Photon Quantum / Plastic SCM logos, more Silent Night screenshots available.
 
 > **IMPORTANT — live repo location changed.** All work now happens in the GitHub Pages repo:
 > `C:\Users\ADMIN\Documents\GitHub\PhatcharapornP.github.io\` (github.com/PhatcharapornP/PhatcharapornP.github.io, branch `main`, live at https://phatcharapornp.github.io/).
