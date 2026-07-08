@@ -576,7 +576,12 @@ footer{
 .egg-b{ border-radius: 50%; border-color: var(--cyan); color: var(--cyan); }
 .egg-a{ border-radius: 50%; border-color: var(--accent-dim); color: var(--accent); }
 
+/* once solved, collapse the terminal to just the "access granted" message + links */
+.egg-term.solved > .egg-label,
+.egg-term.solved .egg-slots,
+.egg-term.solved .egg-pad{ display: none; }
 .egg-links{ display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.1rem; }
+.egg-term.solved .egg-links{ margin-top: 0; }   /* no gap now that it's the only thing left */
 .egg-links[hidden]{ display: none; }  /* author display:flex would otherwise beat the [hidden] attribute */
 .egg-ok{ color: var(--cyan); margin: 0 0 0.2rem; }
 

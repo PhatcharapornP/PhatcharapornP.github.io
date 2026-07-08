@@ -636,6 +636,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
   function unlock(){
     unlocked = true;
+    term.classList.add('solved');   // hides the gamepad (see the CSS in step 4)
     links.hidden = false;
   }
 
@@ -698,7 +699,12 @@ document.addEventListener('DOMContentLoaded', function(){
 .egg-b{ border-radius:50%; border-color:var(--cyan); color:var(--cyan); }    /* round B, cyan  */
 .egg-a{ border-radius:50%; border-color:var(--accent-dim); color:var(--accent); } /* round A, orange */
 
+/* once solved, collapse the terminal to just the "access granted" message + links */
+.egg-term.solved &gt; .egg-label,
+.egg-term.solved .egg-slots,
+.egg-term.solved .egg-pad{ display:none; }
 .egg-links{ display:flex; flex-wrap:wrap; gap:0.6rem; margin-top:1.1rem; }   /* reuses .stamp from Section J */
+.egg-term.solved .egg-links{ margin-top:0; }
 .egg-links[hidden]{ display:none; }   /* IMPORTANT: without this the links show immediately (see fixnote) */
 .egg-ok{ color:var(--cyan); margin-top:0; }
 

@@ -66,6 +66,7 @@ document.addEventListener('DOMContentLoaded', function(){
         eggProgress++;
         if(eggProgress === EGG_CODE.length){
           eggUnlocked = true;
+          eggTerm.classList.add('solved');   // hides the gamepad (see style.css)
           eggLinks.hidden = false;
         }
       } else {
