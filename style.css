@@ -16,7 +16,7 @@
   --shadow: rgba(0, 0, 0, 0.45);
   --ink: #E7E9EC;
   --ink-soft: #9198A1;
-  --ink-dim: #5C636B;
+  --ink-dim: #7E858F;   /* raised from #5C636B: WCAG AA — 2.95:1 on cards failed 4.5:1 */
   --accent: #E8752E;
   --accent-dim: #8C4A1E;
   --accent-glow: rgba(232, 117, 46, 0.22);
@@ -40,7 +40,7 @@
   --shadow: rgba(46, 40, 28, 0.14);
   --ink: #17181A;
   --ink-soft: #4D4F53;
-  --ink-dim: #83807A;
+  --ink-dim: #6A6760;   /* darkened from #83807A: WCAG AA on the light paper bg */
   --accent: #C85A1E;
   --accent-dim: #E8752E;
   --accent-glow: rgba(200, 90, 30, 0.14);
@@ -87,6 +87,16 @@ a:focus-visible, button:focus-visible{
   outline-offset: 3px;
   border-radius: 2px;
 }
+
+/* skip-to-content link: off-screen until focused (keyboard/SR users) */
+.skip-link{
+  position: absolute; left: 0.5rem; top: -3rem; z-index: 100;
+  font-family: var(--mono); font-size: 0.8rem;
+  background: var(--accent); color: var(--bg);
+  padding: 0.5rem 0.9rem; text-decoration: none;
+  transition: top 0.15s ease;
+}
+.skip-link:focus{ top: 0.5rem; }
 
 .wrap{
   position: relative;
@@ -437,6 +447,12 @@ ul.hud-list li strong{ color: var(--ink); font-weight: 600; }
   html{ scroll-behavior: auto; }
   .entry h3 a.glitch:hover{ animation: none; }
   .entry-status.st-live::before{ animation: none; }
+  .egg-term{ animation: none; }
+  .egg-term.shake{ animation: none; }
+  .icon-row .icon-chip:hover,
+  .software-icons .icon-chip:hover{ transform: none; }
+  .stamp:active, .egg-btn:active{ transform: none; }
+  .skip-link{ transition: none; }
 }
 
 /* ---- index-only: register bar, avatar, role, about ---- */

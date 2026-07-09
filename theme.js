@@ -3,6 +3,8 @@
   if(saved === 'light' || saved === 'dark'){
     document.documentElement.setAttribute('data-theme', saved);
   }
+  // Dark-default by design (dark Division-HUD brand). System prefers-color-scheme is
+  // deliberately NOT followed; the toggle switches to light and remembers the choice.
 })();
 
 document.addEventListener('DOMContentLoaded', function(){
@@ -21,9 +23,12 @@ document.addEventListener('DOMContentLoaded', function(){
     if(!tip) return;
     var original = tip.textContent;
     el.addEventListener('click', function(){
+      if(!navigator.clipboard){ tip.textContent = el.getAttribute('data-copy'); return; }
       navigator.clipboard.writeText(el.getAttribute('data-copy')).then(function(){
         tip.textContent = 'Copied!';
         tip.classList.add('copied');
+      }).catch(function(){
+        tip.textContent = 'Press Ctrl+C to copy';
       });
     });
     el.addEventListener('mouseleave', function(){
