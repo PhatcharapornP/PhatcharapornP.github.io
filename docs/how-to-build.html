@@ -89,7 +89,7 @@ footer{ margin-top:4rem; padding-top:1rem; border-top:1px solid var(--line); fon
   <section>
     <div class="section-head"><span class="tag">B</span><h2>Make the magic repo</h2></div>
     <ul class="hud-list">
-      <li>On github.com: create a new repository named exactly <strong><code>YOURUSERNAME.github.io</code></strong>.</li>
+      <li>On github.com: create a new <strong>repository</strong> (a project folder GitHub stores online for you &mdash; "repo" for short) named exactly <strong><code>YOURUSERNAME.github.io</code></strong>.</li>
       <li>That exact name is the trick: GitHub automatically serves whatever is in it at <code>https://YOURUSERNAME.github.io/</code>. This is called GitHub Pages. No server, no hosting bill.</li>
       <li>In GitHub Desktop: <em>Clone repository</em> &rarr; pick it &rarr; now there's a folder on your computer connected to the internet one.</li>
       <li>Open that folder in Rider: <em>File &rarr; Open</em> &rarr; select the folder. Rider treats a plain folder as a project just fine.</li>
@@ -215,58 +215,74 @@ GLUE:  &lt;link rel="stylesheet" href="style.css"&gt;    &larr; goes in &lt;head
   &lt;meta charset="UTF-8"&gt;
   &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
   &lt;title&gt;My Name — Game Programmer&lt;/title&gt;
-  &lt;!-- the three fonts (this is the same line Section D explains) --&gt;
+  &lt;meta name="description" content="My Name — Unity programmer. Game portfolio."&gt;
+  &lt;!-- warm up the font server first (two lines = faster fonts, Section D) --&gt;
+  &lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+  &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+  &lt;!-- the three fonts (same line Section D explains) --&gt;
   &lt;link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&amp;family=Public+Sans:wght@400;500&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet"&gt;
   &lt;link rel="stylesheet" href="style.css?v=1"&gt;
-  &lt;script src="theme.js"&gt;&lt;/script&gt;
+  &lt;script src="theme.js?v=1"&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
+  &lt;a class="skip-link" href="#main"&gt;Skip to main content&lt;/a&gt;   &lt;!-- keyboard jump, Section L --&gt;
   &lt;div class="wrap"&gt;
 
-    &lt;!-- HERO --&gt;
-    &lt;p class="eyebrow"&gt;Game programmer&lt;/p&gt;
-    &lt;h1&gt;My Name&lt;/h1&gt;
-    &lt;p&gt;One line about me. I make games in Unity and C#.&lt;/p&gt;
-    &lt;nav class="stamps"&gt;
-      &lt;a class="stamp" href="#work"&gt;Work&lt;/a&gt;
-      &lt;a class="stamp" href="#about"&gt;About&lt;/a&gt;
-      &lt;button class="theme-toggle" onclick="toggleTheme()"&gt;theme&lt;/button&gt;
-    &lt;/nav&gt;
+    &lt;header&gt;   &lt;!-- the top block: name, links --&gt;
+      &lt;!-- HERO --&gt;
+      &lt;p class="eyebrow"&gt;Game programmer&lt;/p&gt;
+      &lt;h1&gt;My Name&lt;/h1&gt;
+      &lt;p class="lede"&gt;One line about me. I make games in Unity and C#.&lt;/p&gt;
+      &lt;nav class="stamps"&gt;
+        &lt;a class="stamp" href="#work"&gt;Work&lt;/a&gt;
+        &lt;a class="stamp" href="#about"&gt;About&lt;/a&gt;
+        &lt;button class="theme-toggle" type="button" aria-label="Toggle light/dark theme"&gt;&lt;/button&gt;
+      &lt;/nav&gt;
+    &lt;/header&gt;
 
-    &lt;!-- WORK: cards go inside this section (Section E) --&gt;
-    &lt;section id="work"&gt;
-      &lt;div class="section-head"&gt;&lt;span class="tag"&gt;01&lt;/span&gt;&lt;h2&gt;Work experience&lt;/h2&gt;&lt;/div&gt;
-      &lt;!-- .entry cards here --&gt;
-    &lt;/section&gt;
+    &lt;main id="main"&gt;   &lt;!-- THE one main region (the skip link lands here) --&gt;
 
-    &lt;!-- ABOUT --&gt;
-    &lt;section id="about"&gt;
-      &lt;div class="section-head"&gt;&lt;span class="tag"&gt;02&lt;/span&gt;&lt;h2&gt;About&lt;/h2&gt;&lt;/div&gt;
-      &lt;p&gt;A short paragraph about you.&lt;/p&gt;
-    &lt;/section&gt;
+      &lt;!-- WORK: cards go inside this section (Section E) --&gt;
+      &lt;section id="work"&gt;
+        &lt;div class="section-head"&gt;&lt;span class="tag"&gt;01&lt;/span&gt;&lt;h2&gt;Work experience&lt;/h2&gt;&lt;/div&gt;
+        &lt;!-- .entry cards here --&gt;
+      &lt;/section&gt;
+
+      &lt;!-- ABOUT --&gt;
+      &lt;section id="about"&gt;
+        &lt;div class="section-head"&gt;&lt;span class="tag"&gt;02&lt;/span&gt;&lt;h2&gt;About&lt;/h2&gt;&lt;/div&gt;
+        &lt;p&gt;A short paragraph about you.&lt;/p&gt;
+      &lt;/section&gt;
+
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+      &lt;span&gt;&amp;copy; 2026 My Name&lt;/span&gt;
+      &lt;span&gt;built with plain HTML, no framework&lt;/span&gt;
+    &lt;/footer&gt;
 
   &lt;/div&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
     <div class="fixnote"><strong>Why this grew:</strong> the first draft showed only an <code>&lt;h1&gt;</code> and one <code>&lt;p&gt;</code> here, then later sections assumed a hero, nav, and sections already existed &mdash; a beginner build-test had nowhere to hang the cards. This skeleton is the missing frame. Two more build-tests then noticed the <code>&lt;head&gt;</code> never loaded the fonts Section&nbsp;D relies on (so their pages fell back to plain system text), so the font <code>&lt;link&gt;</code> now lives in the skeleton too.</div>
-    <div class="note">See the <code>?v=1</code> after style.css? Remember it. Every time you change the CSS later, make it <code>?v=2</code>, <code>?v=3</code>... Browsers hoard old CSS like a caveman hoards rocks; changing the number forces them to fetch the new one. Skip this and one day your live site looks broken while your files are fine.</div>
+    <div class="note">The new head/body lines aren't decoration: <code>&lt;meta name="description"&gt;</code> is the sentence search engines show; the two <code>preconnect</code> lines make fonts load faster (Section&nbsp;D); and <code>skip-link</code> + <code>&lt;header&gt;</code> + <code>&lt;main id="main"&gt;</code> + <code>&lt;footer&gt;</code> are the <strong>accessibility bones</strong> (Section&nbsp;L explains each in one line). The theme button is icon-only, so it carries <code>aria-label</code> and <strong>no</strong> <code>onclick</code> &mdash; the switch is wired up in Section&nbsp;J.</div>
+    <div class="note">See the <code>?v=1</code> after <strong>both</strong> style.css and theme.js? Remember it. Every time you change that file, bump it: <code>?v=2</code>, <code>?v=3</code>... Browsers hoard old copies like a caveman hoards rocks; changing the number forces a fresh fetch. The two counts are independent &mdash; change the CSS, bump the CSS one; change the script's behaviour, bump the theme.js one. Skip this and one day your live site looks broken while your files are fine.</div>
   </section>
 
   <section>
     <div class="section-head"><span class="tag">D</span><h2>Make it look like The Division</h2></div>
     <p>The whole identity is: <strong style="color:var(--ink)">dark screen, one orange, one cyan, mono labels, corner brackets.</strong> Start <code>style.css</code> with colors as variables so every page can share them (and a light theme becomes a 10-line override later):</p>
 <pre><code>:root{
-  --bg:       #050608;   /* near-black background       */
-  --bg-2:     #14171D;   /* card background             */
-  --bg-hover: #1C212A;   /* a card when you hover it    */
-  --line:     #434B57;   /* borders                     */
-  --grid:     #131519;   /* the faint grid lines        */
-  --ink:      #E7E9EC;   /* text                        */
-  --ink-soft: #9198A1;   /* dimmer text                 */
-  --ink-dim:  #5C636B;   /* dimmest text (empty slots)  */
-  --accent:     #E8752E; /* THE orange. Use rarely.     */
-  --accent-dim: #8C4A1E; /* a darker orange for borders */
-  --cyan:     #4FD1D9;   /* secondary. Even rarer.      */
+  --bg:#050608; --bg-2:#14171D; --bg-3:#1C212A;       /* three dark surfaces           */
+  --line:#272C35; --line-2:#434B57; --grid:#131519;   /* borders + faint grid          */
+  --hatch:rgba(255,255,255,0.035); --shadow:rgba(0,0,0,0.45);
+  --ink:#E7E9EC; --ink-soft:#9198A1; --ink-dim:#7E858F;   /* text, dimmer, dimmest     */
+  --accent:#E8752E; --accent-dim:#8C4A1E; --accent-glow:rgba(232,117,46,0.22); /* THE orange (rare) */
+  --cyan:#4FD1D9; --bg-hover:#1C212A; --max:920px;    /* secondary (rarer)             */
+  /* fonts named once, reused as var(--mono) etc. */
+  --mono:'IBM Plex Mono', ui-monospace, Consolas, monospace;
+  --display:'Rajdhani', 'Arial Narrow', sans-serif;
+  --sans:'Public Sans', system-ui, -apple-system, sans-serif;
 }
 body{
   margin:0; background:var(--bg); color:var(--ink);
@@ -282,18 +298,14 @@ body{
     <h3>The light theme (the "10-line override" this section promised)</h3>
     <p>Because every colour is a variable, a second theme is just re-declaring the same names for when the page has <code>data-theme="light"</code> on its <code>&lt;html&gt;</code> tag. <code>theme.js</code> (Section&nbsp;J) flips that attribute; this is the palette it switches to. Paste it right under the first <code>:root</code>:</p>
 <pre><code>:root[data-theme="light"]{
-  --bg:       #F0EEE8;   /* warm paper, not white */
-  --bg-2:     #FFFFFF;   /* white cards           */
-  --bg-hover: #FFF6ED;   /* faint warm hover      */
-  --line:     #ABA48E;   /* muted borders         */
-  --grid:     #E0DBCF;   /* faint grid, light ver */
-  --ink:      #17181A;   /* near-black text       */
-  --ink-soft: #4D4F53;
-  --ink-dim:  #83807A;
-  --accent:     #C85A1E; /* a hair deeper so orange still reads on white */
-  --accent-dim: #E8752E;
-  --cyan:     #0D7A82;
+  --bg:#F0EEE8; --bg-2:#FFFFFF; --bg-3:#E7E3D9;        /* warm paper, white cards       */
+  --line:#D0CABA; --line-2:#ABA48E; --grid:#E0DBCF;
+  --hatch:rgba(0,0,0,0.045); --shadow:rgba(46,40,28,0.14);
+  --ink:#17181A; --ink-soft:#4D4F53; --ink-dim:#6A6760;
+  --accent:#C85A1E; --accent-dim:#E8752E; --accent-glow:rgba(200,90,30,0.14); /* deeper so orange reads on white */
+  --cyan:#0D7A82; --bg-hover:#FFF6ED;
 }</code></pre>
+    <div class="note">Besides the colours, that block also names a few <strong>structural</strong> tokens the later sections lean on &mdash; <code>--bg-3</code> (a third surface), <code>--line-2</code> (a brighter border), <code>--accent-glow</code> (the soft halo), <code>--hatch</code>/<code>--shadow</code>, and the three <strong>font</strong> vars (<code>--mono</code>, <code>--display</code>, <code>--sans</code>). Paste the whole block &mdash; Sections&nbsp;J and&nbsp;M and the easter egg all use them.</div>
     <div class="fixnote"><strong>Why this was missing:</strong> the first draft said "a light theme becomes a 10-line override later" and never showed the ten lines. A beginner build-test got stuck inventing light colours &mdash; and three real traps surfaced: (1) the grid colour <em>must</em> be a <code>--grid</code> variable (added above), or light mode keeps dark grid lines; (2) a naive colour-invert leaves the orange glaring on white, so light <code>--accent</code> is set a shade deeper on purpose; (3) a later build-test on the easter egg (Section&nbsp;K) reached for <code>--bg-hover</code>, <code>--ink-dim</code>, and <code>--accent-dim</code> and found them undefined, so its buttons and slots rendered with broken colours &mdash; all three are now declared here (in <em>both</em> themes) so every later section can lean on them.</div>
     <div class="swatches">
       <div class="sw"><div class="c" style="background:#050608"></div><div class="l">bg</div></div>
@@ -302,18 +314,32 @@ body{
       <div class="sw"><div class="c" style="background:#4FD1D9"></div><div class="l">cyan (rarer!)</div></div>
     </div>
     <h3>Fonts (paste in &lt;head&gt; of every page)</h3>
-<pre><code>&lt;link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&amp;family=Public+Sans:wght@400;500&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet"&gt;</code></pre>
+<p>Three lines, in this order:</p>
+<pre><code>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&amp;family=Public+Sans:wght@400;500&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet"&gt;</code></pre>
     <ul class="hud-list">
       <li><strong>Rajdhani</strong> = big shouty uppercase titles.</li>
       <li><strong>IBM Plex Mono</strong> = anything that should feel like machine data: labels, dates, chips.</li>
       <li><strong>Public Sans</strong> = normal reading text.</li>
+      <li>The two <code>preconnect</code> lines are a head-start handshake: they tell the browser "you'll need Google's font server in a second, start the connection now" so fonts arrive faster. (<code>crossorigin</code> on the second is required because the font <em>files</em> come from a different sub-server.)</li>
+      <li><code>display=swap</code> at the end of the URL = "show my text in a backup font immediately, then swap to the real font once it loads" &mdash; so words are never invisible while fonts download.</li>
     </ul>
     <h3>The signature move: corner brackets</h3>
-    <p>A box with tiny orange L-shapes on two opposite corners. It's just a border plus two positioned pseudo-elements:</p>
+    <p>A box with tiny orange L-shapes on two opposite corners. It's just a border plus two positioned <strong>pseudo-elements</strong> (<code>::before</code> / <code>::after</code> = extra shapes CSS draws on a box without adding any HTML; here they're the two corner Ls):</p>
 <pre><code>.panel{ position:relative; border:1px solid var(--line); background:var(--bg-2); padding:1.6rem; }
 .panel::before, .panel::after{ content:""; position:absolute; width:10px; height:10px; }
 .panel::before{ top:-1px; left:-1px;   border-top:2px solid var(--accent); border-left:2px solid var(--accent); }
 .panel::after { bottom:-1px; right:-1px; border-bottom:2px solid var(--accent); border-right:2px solid var(--accent); }</code></pre>
+    <h3>Foundation polish (two tiny extras on body)</h3>
+<pre><code>/* soft orange glow bleeding down from the top */
+body::before{ content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:radial-gradient(120% 90% at 50% -10%, var(--accent-glow), transparent 60%); opacity:0.5; }
+:root[data-theme="light"] body::before{ opacity:0.3; }
+
+/* highlight colour when you drag-select text */
+::selection{ background:var(--accent); color:var(--bg); }</code></pre>
+    <p>The first paints the faint orange wash at the top of every page; the second makes selected text orange-on-dark instead of the browser's default blue.</p>
   </section>
 
   <section>
@@ -326,7 +352,7 @@ body{
         <div class="dt"><h4>Project Title</h4><p>&gt;&gt; WHAT I WORKED ON<br>&gt; thing one<br>&gt; thing two</p></div>
       </div>
     </div>
-    <p>The layout trick is one line of flexbox &mdash; media gets a <em>slightly</em> bigger share:</p>
+    <p>The layout trick is one line of <strong>flexbox</strong> (CSS's way of lining boxes up in a row or column, from the &#9733; section) &mdash; media gets a <em>slightly</em> bigger share:</p>
 <pre><code>.entry-body { display:flex; gap:1.2rem; padding:1rem 1.2rem; }
 .entry-media{ flex:1.15; display:flex; flex-direction:column; gap:0.9rem; }  /* 1.15 &gt; 1 = a tad bigger */
 .entry-text { flex:1; }
@@ -335,6 +361,7 @@ body{
 /* phone: stack instead of squeeze */
 @media (max-width:560px){ .entry-body{ flex-direction:column; } }</code></pre>
 
+    <div class="note">Two little CSS words in that block: <code>object-fit:cover</code> = crop the image to fill its box without squishing it (its cousin <code>contain</code> fits the <em>whole</em> image inside instead, which can leave gaps). And <code>@media (max-width:560px)</code> is a "phone rule" &mdash; below 560px the card stacks top-to-bottom. You'll meet a second breakpoint, <strong>620px</strong>, on other components later; that's on purpose &mdash; each piece stacks at whatever width <em>it</em> starts to feel cramped. Copy the numbers as given.</div>
     <p style="margin-top:1.2rem;">Here is the <strong>whole card to copy</strong>. The top band (company, status, date) is a <code>.entry-head</code>; the body is the media + text you just saw:</p>
 <pre><code>&lt;div class="entry"&gt;
   &lt;div class="entry-head"&gt;
@@ -420,14 +447,20 @@ body{
       <li>Put them in <code>assets/</code>, use <code>&lt;img src="assets/shot.jpg" loading="lazy" alt="what it shows"&gt;</code>.</li>
       <li>Pick shots that show <em>your work</em>: a character being chased by YOUR ai beats an empty corridor. Diagrams count &mdash; a state-machine graph next to the bullet about state machines is proof.</li>
     </ul>
+    <div class="note">No real screenshots yet? Drop <em>any</em> placeholder into <code>assets/</code> (even a plain solid-colour PNG or a grey box) so the layout isn't broken while you build &mdash; swap the real shots in later. A broken-image icon makes the whole page look broken, so never ship one.</div>
     <h3>Videos: don't host them, embed YouTube</h3>
 <pre><code>&lt;div class="yt-embed"&gt;  &lt;!-- css: position:relative; padding-top:56.25%; --&gt;
   &lt;iframe src="https://www.youtube.com/embed/VIDEO_ID"
           loading="lazy" allowfullscreen
           style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"&gt;&lt;/iframe&gt;
 &lt;/div&gt;</code></pre>
-    <p><code>VIDEO_ID</code> = the 11 characters after <code>watch?v=</code> in the YouTube URL. The <code>padding-top:56.25%</code> box keeps it 16:9 at any width.</p>
+    <p><code>VIDEO_ID</code> = the 11 characters after <code>watch?v=</code> in the YouTube URL. The <code>padding-top:56.25%</code> box keeps it <strong>16:9</strong> (the standard widescreen shape &mdash; 56.25% is just 9 &divide; 16) at any width.</p>
     <h3>Mixed-size picture grids: use columns, not grid</h3>
+    <p>Wrap the shots in a <code>.media-grid</code>, one <code>&lt;figure&gt;</code> per picture:</p>
+<pre><code>&lt;div class="media-grid"&gt;
+  &lt;figure&gt;&lt;img src="assets/a.jpg" loading="lazy" alt="what it shows"&gt;&lt;figcaption&gt;caption&lt;/figcaption&gt;&lt;/figure&gt;
+  &lt;figure&gt;&lt;img src="assets/b.jpg" loading="lazy" alt="what it shows"&gt;&lt;/figure&gt;
+&lt;/div&gt;</code></pre>
 <pre><code>.media-grid{ column-count:2; column-gap:1.1rem; }
 .media-grid figure{ break-inside:avoid; margin:0 0 1.1rem; }
 @media (max-width:560px){ .media-grid{ column-count:1; } }</code></pre>
@@ -445,10 +478,11 @@ body{
     <div class="fixnote"><strong>Contradiction fixed:</strong> an earlier draft said "no Node" in Section&nbsp;A but then told you to run <code>npx serve</code> (which needs Node) right here. You need nothing but a browser &mdash; the local server is optional.</div>
     <h3>Ship</h3>
     <ul class="hud-list">
-      <li>GitHub Desktop &rarr; it lists your changed files &rarr; write a summary &rarr; <em>Commit to main</em> &rarr; <em>Push origin</em>.</li>
+      <li>GitHub Desktop &rarr; it lists your changed files &rarr; write a summary &rarr; <em>Commit to main</em> (save a snapshot of the changes) &rarr; <em>Push origin</em> (upload that snapshot to GitHub, which makes it live).</li>
       <li>Wait ~1 minute. Open <code>https://YOURUSERNAME.github.io/</code>. Done. You have a live portfolio.</li>
       <li>Live site looks broken but files are right? It's the browser hoarding old CSS &mdash; hard refresh (<strong>Ctrl+F5</strong>) and go bump that <code>?v=</code> number.</li>
     </ul>
+    <div class="note">Optional &mdash; a <strong>favicon</strong> (the tiny icon in the browser tab): drop a <code>favicon.ico</code> in the repo root, or add <code>&lt;link rel="icon" href="favicon.png"&gt;</code> to each page's <code>&lt;head&gt;</code>. This site doesn't ship one; add it only if you want the tab to show your mark.</div>
   </section>
 
   <section>
@@ -467,6 +501,7 @@ body{
     <p>The steps above focused on the interesting parts. These are the small shared pieces they keep referencing &mdash; paste them into <code>style.css</code> once and every page gets them.</p>
 
     <h3>Headings, eyebrow, section headers, bullets, nav stamps</h3>
+    <p>One thing to know before pasting: <code>clamp(min, ideal, max)</code> on the <code>h1</code> = a font size that grows and shrinks with the screen width but never below <em>min</em> or past <em>max</em> (so the title fits phones and desktops without extra rules).</p>
 <pre><code>h1{ font-family:'Rajdhani', sans-serif; font-weight:700; font-size:clamp(2.2rem,6vw,3.2rem);
     text-transform:uppercase; line-height:1.05; margin:0; }
 h2{ font-family:'Rajdhani', sans-serif; text-transform:uppercase; letter-spacing:0.06em; margin:0; }
@@ -493,40 +528,78 @@ ul.hud-list li strong{ color:var(--ink); }
 
 /* nav "stamp" buttons (Work, About, LinkedIn, Resume...) */
 .stamps{ display:flex; flex-wrap:wrap; gap:0.6rem; margin-top:1.4rem; }
-.stamp{ font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--ink-soft);
+.stamp{ position:relative;   /* anchor for the copy-email tooltip (Section M) */
+        font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--ink-soft);
         border:1px solid var(--line); padding:0.35rem 0.7rem; text-decoration:none;
         background:transparent; cursor:pointer; }
 .stamp:hover{ border-color:var(--accent); color:var(--accent); }
 
-/* the light/dark toggle button */
-.theme-toggle{ font-family:'IBM Plex Mono', monospace; font-size:0.72rem; text-transform:uppercase;
-               color:var(--ink-soft); background:transparent; border:1px solid var(--line);
-               padding:0.3rem 0.65rem; cursor:pointer; }
-.theme-toggle:hover{ border-color:var(--accent); color:var(--accent); }</code></pre>
+/* the light/dark toggle button — icon only; the label comes from ::before */
+.theme-toggle{ font-family:'IBM Plex Mono', monospace; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase;
+               color:var(--ink-soft); background:transparent; border:1px solid var(--line-2);
+               padding:0.3rem 0.65rem; cursor:pointer; transition:border-color 0.15s ease, color 0.15s ease; }
+.theme-toggle:hover{ border-color:var(--accent); color:var(--accent); }
+.theme-toggle::before{ content:"\2600  light"; }                            /* sun + "light" while dark  */
+:root[data-theme="light"] .theme-toggle::before{ content:"\263D  dark"; }   /* moon + "dark" while light */</code></pre>
 
-    <h3>theme.js &mdash; the light/dark switch (whole file)</h3>
-    <p>Two parts. First, the button &mdash; drop it wherever you want the toggle (the hero nav is a good spot):</p>
-<pre><code>&lt;button class="theme-toggle" onclick="toggleTheme()"&gt;theme&lt;/button&gt;</code></pre>
-    <p>Second, the file <code>theme.js</code> itself &mdash; pure JavaScript, no HTML tags &mdash; loaded once per page with <code>&lt;script src="theme.js"&gt;&lt;/script&gt;</code> in the <code>&lt;head&gt;</code>:</p>
-<pre><code>// theme.js — remember + toggle light/dark
-
-// 1) on load, re-apply whatever was chosen last time
-if (localStorage.getItem('theme') === 'light') {
-  document.documentElement.setAttribute('data-theme', 'light');
-}
-
-// 2) the button calls this
-function toggleTheme(){
-  var root = document.documentElement;
-  if (root.getAttribute('data-theme') === 'light') {
-    root.removeAttribute('data-theme');          // back to dark
-    localStorage.setItem('theme', 'dark');
-  } else {
-    root.setAttribute('data-theme', 'light');    // go light
-    localStorage.setItem('theme', 'light');
+    <h3>theme.js &mdash; the shared script (toggle + copy-email + back-to-top)</h3>
+    <p><code>theme.js</code> loads once per page (<code>&lt;script src="theme.js?v=1"&gt;&lt;/script&gt;</code> in the <code>&lt;head&gt;</code>) and does three jobs; the Konami egg (Section&nbsp;K) splices a fourth into the same file. The button itself carries <strong>no text and no <code>onclick</code></strong> &mdash; just an accessible label:</p>
+<pre><code>&lt;button class="theme-toggle" type="button" aria-label="Toggle light/dark theme"&gt;&lt;/button&gt;</code></pre>
+    <p><strong>Part 1 &mdash; remember the theme (runs right away).</strong> (<code>localStorage</code> = the browser's tiny memory box that survives a page refresh; we stash the chosen theme there.)</p>
+<pre><code>// Re-apply whatever was chosen last time. DARK is the default: we only set a
+// theme when one was saved, and we never follow the OS setting (see Section L).
+(function(){
+  var saved = localStorage.getItem('theme');
+  if (saved === 'light' || saved === 'dark') {
+    document.documentElement.setAttribute('data-theme', saved);
   }
-}</code></pre>
-    <div class="fixnote"><strong>Why this section exists:</strong> a build-test found the tutorial named <code>theme.js</code>, <code>.section-head</code>, <code>.eyebrow</code>, <code>.hud-list</code>, and the nav <code>.stamp</code> buttons in its examples but never gave their code &mdash; so the tester had to invent them, and the invented toggle didn't remember the choice on reload. Everything the steps reference now lives here.</div>
+})();</code></pre>
+    <p><strong>Part 2 &mdash; the rest waits for the page, then wires the buttons up:</strong></p>
+<pre><code>document.addEventListener('DOMContentLoaded', function(){
+
+  // (a) light/dark toggle — every .theme-toggle button flips the theme + remembers it
+  document.querySelectorAll('.theme-toggle').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+      var next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+  });
+
+  // (b) copy-email — click a [data-copy] element, its address jumps to the clipboard
+  document.querySelectorAll('[data-copy]').forEach(function(el){
+    var tip = el.querySelector('.copy-tooltip');
+    if (!tip) return;
+    var original = tip.textContent;
+    el.addEventListener('click', function(){
+      if (!navigator.clipboard) { tip.textContent = el.getAttribute('data-copy'); return; }  // old browser: just show it
+      navigator.clipboard.writeText(el.getAttribute('data-copy')).then(function(){
+        tip.textContent = 'Copied!'; tip.classList.add('copied');
+      }).catch(function(){
+        tip.textContent = 'Press Ctrl+C to copy';   // blocked — tell them how instead
+      });
+    });
+    el.addEventListener('mouseleave', function(){
+      setTimeout(function(){ tip.textContent = original; tip.classList.remove('copied'); }, 200);
+    });
+  });
+
+  // (c) back-to-top — build the button, reveal it after 600px, smooth-scroll home
+  var toTop = document.createElement('button');
+  toTop.className = 'to-top'; toTop.type = 'button';
+  toTop.setAttribute('aria-label', 'Back to top');
+  toTop.textContent = '▲ top';
+  document.body.appendChild(toTop);
+  toTop.addEventListener('click', function(){ window.scrollTo({ top:0, behavior:'smooth' }); });
+  var onScroll = function(){ toTop.classList.toggle('show', window.scrollY &gt; 600); };
+  window.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+
+});</code></pre>
+    <div class="note">Why <code>addEventListener</code>, not <code>onclick="…"</code>: the buttons carry no <code>onclick</code> in the HTML; the script attaches the behaviour here. That's the tidy standard ("unobtrusive JS") &mdash; the markup stays clean and one script wires every page. It's also why the toggle button holds no text: the CSS <code>::before</code> draws the sun/moon label.</div>
+    <div class="note">Copy-email asks for nothing: <code>navigator.clipboard.writeText</code> copies with no popup on a normal click. The two guards &mdash; the <code>if (!navigator.clipboard)</code> fallback and the <code>.catch(...)</code> &mdash; cover ancient browsers and the rare blocked case by just showing the address to copy by hand. No permission box, ever (a hard rule for this site).</div>
+    <div class="fixnote"><strong>Why this section exists:</strong> a build-test found the tutorial naming <code>theme.js</code>, <code>.section-head</code>, <code>.eyebrow</code>, <code>.hud-list</code>, <code>.stamp</code>, <code>.copy-tooltip</code>, and <code>.to-top</code> in its examples but never giving their code &mdash; so the tester invented them, and the invented toggle didn't remember the choice on reload. Everything the steps reference now lives here.</div>
   </section>
 
   <section>
@@ -662,6 +735,7 @@ document.addEventListener('DOMContentLoaded', function(){
     <div class="note">The keyboard and the buttons both call the exact same <code>press()</code> function &mdash; that's the trick that keeps them in perfect sync without writing the logic twice. <code>e.preventDefault()</code> on the arrows stops the page from scrolling while you enter the code.</div>
 
     <h3>4. Style the terminal and gamepad (add this to style.css)</h3>
+    <div class="note"><code>aspect-ratio:1</code> on each <code>.egg-slot</code> keeps it a perfect square no matter how wide the row stretches it.</div>
 <pre><code>#name-egg{ cursor:default; user-select:none; }   /* looks normal; text won't select while you mash it */
 
 .egg-term{ position:relative; max-width:300px; margin-top:1.6rem;
@@ -714,6 +788,288 @@ document.addEventListener('DOMContentLoaded', function(){
 .egg-term.shake{ animation:egg-shake .4s; }</code></pre>
     <div class="fixnote"><strong>The one line that isn't optional:</strong> <code>.egg-links[hidden]{ display:none; }</code>. A visual build-test found the "Access granted" links showing the instant the terminal opened &mdash; before any code was entered. The reason is a classic CSS trap: the browser hides a tag with the <code>hidden</code> attribute using its own rule <code>[hidden]{ display:none }</code>, but that rule is <em>weak</em>, and the moment you write your own <code>.egg-links{ display:flex }</code> your rule wins and the element becomes visible again &mdash; attribute or not. Re-stating <code>display:none</code> for the <code>[hidden]</code> case puts the hiding back. (Sneaky detail: in JavaScript <code>links.hidden</code> still reads <code>true</code>, so a code-only test passes while your eyes tell you it's broken &mdash; always <em>look</em> at the page.)</div>
     <div class="note">Three things make it feel "hidden" yet friendly: the name has no hover cue (<code>cursor:default</code>, no underline) so nobody stumbles in by accident; <code>user-select:none</code> stops the name highlighting into a blue blob while you mash it; and the gamepad is plainly a gamepad, so anyone who knows the code just <em>knows</em> what to do. The click counter and <code>progress</code> are plain variables &mdash; refresh the page and both reset to zero, which is perfectly fine for an easter egg.</div>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="tag">M</span><h2>Component catalog (every remaining part)</h2></div>
+    <p>Sections A&ndash;K build the spine. This is the <strong>parts bin</strong> for everything else the real site has &mdash; masthead, back-to-top, copy-email, the richer work-card bits (including the glitch hover), the media chips, and the whole About grid. Each entry is <strong>paste-this</strong> plus one line on what it is. CSS goes in <code>style.css</code>, HTML where noted.</p>
+    <div class="note">You don't need every part. Grab the ones your page uses. But if you want it to match the real site exactly, everything here is on it.</div>
+
+    <h3>1 &middot; Masthead: register bar</h3>
+<pre><code>&lt;div class="card-no"&gt;
+  &lt;span&gt;Register &amp;middot; No. 001&lt;/span&gt;
+  &lt;span class="topbar-right"&gt;
+    &lt;span&gt;Bangkok, TH&lt;/span&gt;
+    &lt;button class="theme-toggle" type="button" aria-label="Toggle light/dark theme"&gt;&lt;/button&gt;
+  &lt;/span&gt;
+&lt;/div&gt;</code></pre>
+<pre><code>.card-no{ font-family:var(--mono); font-size:0.75rem; letter-spacing:0.12em; color:var(--ink-soft);
+  text-transform:uppercase; display:flex; justify-content:space-between;
+  border-bottom:1px solid var(--line-2); padding-bottom:0.6rem; margin-bottom:2.2rem; }
+.topbar-right{ display:flex; align-items:center; gap:1rem; }</code></pre>
+    <p>A mono ID line pinned to the top; <code>.topbar-right</code> shoves the location + theme toggle to the right edge.</p>
+
+    <h3>Masthead: avatar + role</h3>
+<pre><code>&lt;img class="avatar" src="assets/avatar.png" alt="Your Name"&gt;
+&lt;h1 id="name-egg"&gt;Your Name&lt;/h1&gt;
+&lt;p class="role"&gt;Unity programmer&lt;/p&gt;</code></pre>
+<pre><code>.avatar{ width:88px; height:88px; border-radius:50%; object-fit:cover;
+  border:1px solid var(--line-2); box-shadow:0 0 0 4px var(--accent-glow);
+  margin-bottom:1.4rem; display:block; }
+.role{ font-family:var(--mono); font-size:0.95rem; color:var(--cyan); margin:0 0 2rem; }
+.role::before{ content:"// "; color:var(--ink-dim); }</code></pre>
+    <p>Round profile photo with a faint orange halo; the role sits under the name as a cyan <code>// mono</code> tag.</p>
+
+    <h3>2 &middot; Back-to-top button</h3>
+    <p>No HTML to write &mdash; <code>theme.js</code> (Section&nbsp;J) builds it on every page. Just add the CSS:</p>
+<pre><code>.to-top{ position:fixed; right:1.2rem; bottom:1.2rem; z-index:50;
+  font-family:var(--mono); font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--ink-soft); background:var(--bg-2); border:1px solid var(--line-2);
+  padding:0.5rem 0.8rem; cursor:pointer;
+  opacity:0; transform:translateY(8px); pointer-events:none;   /* hidden until you scroll */
+  transition:opacity 0.2s ease, transform 0.2s ease, border-color 0.15s ease, color 0.15s ease; }
+.to-top.show{ opacity:1; transform:translateY(0); pointer-events:auto; }   /* JS adds .show past 600px */
+.to-top:hover{ border-color:var(--accent); color:var(--accent); }</code></pre>
+    <p>Starts invisible; <code>theme.js</code> adds <code>.show</code> once you scroll 600px, and clicking it smooth-scrolls home.</p>
+
+    <h3>3 &middot; Copy-email button</h3>
+<pre><code>&lt;button class="stamp" type="button" data-copy="you@email.com" aria-label="Copy email address to clipboard"&gt;
+  Email
+  &lt;span class="copy-tooltip"&gt;you@email.com&lt;/span&gt;
+&lt;/button&gt;</code></pre>
+<pre><code>.copy-tooltip{ position:absolute; bottom:calc(100% + 10px); left:50%;
+  transform:translateX(-50%) translateY(4px);
+  background:var(--bg-3); border:1px solid var(--line-2); color:var(--ink-soft);
+  font-family:var(--mono); font-size:0.7rem; padding:0.45rem 0.75rem; white-space:nowrap;
+  opacity:0; pointer-events:none; transition:opacity 0.15s ease, transform 0.15s ease; z-index:10; }
+.copy-tooltip::after{ content:""; position:absolute; top:100%; left:50%; transform:translateX(-50%);
+  border:5px solid transparent; border-top-color:var(--line-2); }
+.stamp:hover .copy-tooltip, .stamp:focus-visible .copy-tooltip{ opacity:1; transform:translateX(-50%) translateY(0); }
+.copy-tooltip.copied{ color:var(--accent); border-color:var(--accent); }
+.copy-tooltip.copied::after{ border-top-color:var(--accent); }</code></pre>
+    <p>The <code>data-copy="…"</code> holds the address; the JS that copies it (with the no-permission fallback) is in Section&nbsp;J.</p>
+
+    <h3>Stamp with an inline logo (LinkedIn)</h3>
+<pre><code>&lt;a class="stamp" href="https://www.linkedin.com/in/you/" target="_blank" rel="noopener"
+   style="display:flex; align-items:center; gap:0.4rem;"&gt;
+  &lt;img src="assets/linkedin.png" alt="" style="height:14px; width:auto;"&gt;
+  LinkedIn &amp;#8599;
+&lt;/a&gt;</code></pre>
+    <p>A normal stamp with a tiny logo before the text; the logo's <code>alt=""</code> is empty on purpose &mdash; see the decorative-images note in Section&nbsp;L.</p>
+
+    <h3>4 &middot; Status chips (live / shipped / archived)</h3>
+<pre><code>&lt;span class="entry-status st-live"&gt;closed beta&lt;/span&gt;
+&lt;span class="entry-status st-shipped"&gt;released&lt;/span&gt;
+&lt;span class="entry-status st-archive"&gt;prototype&lt;/span&gt;</code></pre>
+<pre><code>.entry-status.st-live{ color:var(--accent); border-color:var(--accent-dim); }
+.entry-status.st-live::before{ content:""; width:6px; height:6px; border-radius:50%;
+  background:currentColor; animation:pulse 1.6s ease-in-out infinite; }   /* pulsing dot */
+.entry-status.st-shipped{ color:var(--cyan); }
+.entry-status.st-archive{ color:var(--ink-dim); }
+@keyframes pulse{ 0%,100%{ opacity:1; } 50%{ opacity:0.25; } }</code></pre>
+    <p>Three colour variants of the base <code>.entry-status</code>: live is orange with a blinking dot, shipped is cyan, archived is greyed.</p>
+
+    <h3>Date + duration readout</h3>
+<pre><code>&lt;span class="entry-when"&gt;&lt;time&gt;2022&amp;ndash;23&lt;/time&gt;&lt;span class="entry-dur"&gt;1 yr 9 mo&lt;/span&gt;&lt;/span&gt;</code></pre>
+<pre><code>.entry-when{ margin-left:auto; text-align:right; display:flex; flex-direction:column; gap:0.15rem; }
+.entry-dur{ font-family:var(--mono); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--cyan); }</code></pre>
+    <p><code>margin-left:auto</code> pushes it to the right edge of the head strip; the year stacks over a small cyan duration.</p>
+
+    <h3>Index-card body wrapper + tight bullets</h3>
+<pre><code>&lt;div class="entry-main"&gt;
+  &lt;h3&gt;&lt;a class="glitch" href="projects/my-game.html"&gt;Project Title&lt;/a&gt;&lt;/h3&gt;
+  &lt;p&gt;One line about the game.&lt;/p&gt;
+  &lt;span class="entry-label"&gt;what i worked on&lt;/span&gt;
+  &lt;ul class="entry-points"&gt;&lt;li&gt;&lt;strong&gt;Thing&lt;/strong&gt; &amp;mdash; what you did&lt;/li&gt;&lt;/ul&gt;
+  &lt;div class="stack-chips"&gt;&lt;span&gt;unity&lt;/span&gt;&lt;span&gt;c#&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<pre><code>.entry-main{ padding:1.05rem 1.2rem 1.2rem; }
+.entry-points{ list-style:none; padding:0; margin:0.15rem 0 0; display:flex; flex-direction:column; gap:0.3rem; }
+.entry-points li{ position:relative; padding-left:1.05rem; color:var(--ink-soft); font-size:0.92rem; }
+.entry-points li::before{ content:"&gt;"; position:absolute; left:0; color:var(--accent); font-family:var(--mono); }
+.entry-points li strong{ color:var(--ink); font-weight:400; }</code></pre>
+    <p>On the index cards the body sits in <code>.entry-main</code> (padding), and the bullets use <code>.entry-points</code> &mdash; the same <code>&gt;</code> look as <code>.hud-list</code> but tighter for the dense front-page list. (When a card has side images, add both: <code>class="entry-main entry-body"</code>.)</p>
+
+    <h3>Tech stack chips</h3>
+<pre><code>.stack-chips{ display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.75rem; }
+.stack-chips span, .stack-chips a{ font-family:var(--mono); font-size:0.66rem; color:var(--cyan);
+  background:var(--bg-3); border:1px solid var(--line-2); padding:0.18rem 0.5rem; }
+.stack-chips a{ transition:border-color 0.15s ease, color 0.15s ease; }
+.stack-chips a:hover{ border-color:var(--accent); color:var(--accent); }</code></pre>
+    <p>Little cyan bordered tags for tech; a <code>&lt;span&gt;</code> is a plain tag, an <code>&lt;a&gt;</code> is a clickable one (e.g. a GitHub link).</p>
+
+    <h3>&#9733; The glitch hover on titles</h3>
+<pre><code>&lt;h3&gt;&lt;a class="glitch" href="projects/my-game.html"&gt;Project Title&lt;/a&gt;&lt;/h3&gt;</code></pre>
+<pre><code>@keyframes glitch{
+  0%{ text-shadow:0 0 var(--accent); }
+  30%{ text-shadow:-2px 0 var(--accent), 2px 0 var(--cyan); }
+  60%{ text-shadow:2px 0 var(--accent), -2px 0 var(--cyan); }
+  100%{ text-shadow:0 0 var(--accent); }
+}
+.entry h3 a.glitch:hover{ animation:glitch 0.25s steps(2, jump-none); }</code></pre>
+    <p>Add <code>class="glitch"</code> to any title link and hovering it fires a quick orange/cyan text-shadow jitter &mdash; the RGB-split glitch. The <code>steps(2, jump-none)</code> in the keyframe is what makes it <em>flicker</em> in two hard jumps instead of gliding smoothly. (Switched off for reduced-motion users in Section&nbsp;L.)</p>
+
+    <h3>Single-thumbnail card variant</h3>
+<pre><code>&lt;img class="entry-thumb" src="assets/thumb.gif" alt="preview" loading="lazy"&gt;</code></pre>
+<pre><code>.entry-thumb{ flex:0 0 auto; width:220px; height:140px; object-fit:cover;
+  border:1px solid var(--line-2); filter:saturate(0.85) contrast(1.02);
+  transition:filter 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease; }
+.entry:hover .entry-thumb{ border-color:var(--accent); filter:saturate(1) contrast(1.05); box-shadow:0 0 0 3px var(--accent-glow); }</code></pre>
+    <p>One fixed-size preview image instead of the stacked <code>.entry-media</code> column &mdash; used for the small side projects.</p>
+
+    <h3>5 &middot; Project-page breadcrumb bar</h3>
+    <p>Project pages start with this instead of the register bar:</p>
+<pre><code>&lt;nav class="topbar" aria-label="Breadcrumb"&gt;
+  &lt;a href="../index.html"&gt;&amp;larr; back&lt;/a&gt;
+  &lt;span class="topbar-right"&gt;
+    &lt;span class="crumb-current"&gt;work / my-game&lt;/span&gt;
+    &lt;button class="theme-toggle" type="button" aria-label="Toggle light/dark theme"&gt;&lt;/button&gt;
+  &lt;/span&gt;
+&lt;/nav&gt;</code></pre>
+<pre><code>.topbar{ display:flex; align-items:center; justify-content:space-between; gap:1rem;
+  font-family:var(--mono); font-size:0.78rem; color:var(--ink-soft);
+  border-bottom:1px solid var(--line); padding-bottom:0.9rem; margin-bottom:2.4rem; }
+.topbar a{ color:var(--ink-soft); transition:color 0.15s ease; }
+.topbar a:hover{ color:var(--accent); }
+.topbar .crumb-current{ color:var(--ink); }
+@media (max-width:560px){ .topbar{ flex-wrap:wrap; row-gap:0.6rem; } .topbar .crumb-current{ display:none; } }</code></pre>
+    <p>A "&larr; back … work / page-name" strip so you always know where you are; on phones the middle crumb hides.</p>
+
+    <h3>6 &middot; Media: hero frame, icon row, YouTube wrapper</h3>
+<pre><code>.hero-media{ margin:1.8rem 0 2.2rem; border:1px solid var(--line-2); background:var(--bg-2); position:relative; overflow:hidden; }
+.hero-media img{ width:100%; display:block; max-height:540px; object-fit:cover; }
+.hero-media figcaption{ font-family:var(--mono); font-size:0.72rem; color:var(--ink-dim); padding:0.7rem 1rem; border-top:1px solid var(--line); background:var(--bg-3); }
+.hero-media:hover{ box-shadow:0 0 0 3px var(--accent-glow); }
+
+.icon-row{ display:flex; align-items:center; flex-wrap:wrap; gap:0.7rem; margin:1.2rem 0; }
+.icon-row .icon-chip{ display:flex; align-items:center; justify-content:center;
+  padding:0.7rem 1.1rem; background:var(--bg-3); border:1px solid var(--line-2);
+  transition:border-color 0.2s ease, transform 0.15s ease; }
+.icon-row .icon-chip:hover{ border-color:var(--accent); transform:translateY(-2px); }
+.icon-row .icon-chip img{ height:40px; width:auto; max-width:110px; object-fit:contain; }
+
+.yt-wrap{ max-width:100%; }
+.yt-wrap.yt-hero{ margin-bottom:1.6rem; }
+.yt-label{ font-family:var(--mono); font-size:0.7rem; color:var(--ink-dim); margin-top:0.4rem; }</code></pre>
+    <p><code>.hero-media</code> = one big framed shot with a mono caption bar. <code>.icon-row</code> = bordered logo tiles that lift on hover. <code>.yt-wrap</code>/<code>.yt-hero</code>/<code>.yt-label</code> wrap the 16:9 <code>.yt-embed</code> from Section&nbsp;G.</p>
+
+    <h3>7 &middot; The About grid</h3>
+<pre><code>.about p{ color:var(--ink-soft); max-width:62ch; margin:0.8rem 0 0; }
+.about-grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:1rem; margin:1.6rem 0; }
+.about-card{ margin:0; }
+.about-card--wide{ grid-column:1 / -1; }          /* span both columns */
+@media (max-width:620px){ .about-grid{ grid-template-columns:1fr; } }</code></pre>
+    <p>Each card is a <code>.panel</code> (Section&nbsp;D); a two-up grid where <code>--wide</code> cards stretch across the whole row. The four inserts:</p>
+<pre><code>&lt;!-- language rows --&gt;
+&lt;ul class="lang-list"&gt;&lt;li&gt;&lt;span class="k"&gt;Speaking:&lt;/span&gt;&lt;span class="v"&gt;&lt;strong&gt;Thai&lt;/strong&gt; native&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;!-- experience rows --&gt;
+&lt;ul class="xp-list"&gt;&lt;li&gt;&lt;span class="xp-co"&gt;Studio&lt;/span&gt;&lt;span class="xp-role"&gt;What you did&lt;/span&gt;&lt;span class="xp-dur"&gt;2024&amp;ndash;now&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;!-- skill chips --&gt;
+&lt;div class="chip-row"&gt;&lt;span class="chip"&gt;C#&lt;/span&gt;&lt;span class="chip"&gt;Unity&lt;/span&gt;&lt;/div&gt;
+&lt;!-- software icons (text chip when you have no logo) --&gt;
+&lt;div class="software-icons"&gt;&lt;span class="icon-chip"&gt;&lt;img src="assets/unity.png" alt="Unity"&gt;&lt;/span&gt;&lt;span class="icon-chip icon-chip--text"&gt;Plastic SCM&lt;/span&gt;&lt;/div&gt;</code></pre>
+<pre><code>.lang-list{ list-style:none; padding:0; margin:0.9rem 0 0; display:flex; flex-direction:column; gap:0.5rem; }
+.lang-list li{ display:flex; gap:0.8rem; align-items:baseline; font-size:0.9rem; color:var(--ink-soft); }
+.lang-list .k{ font-family:var(--mono); font-size:0.66rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-dim); min-width:5rem; }
+.lang-list .v strong{ color:var(--ink); font-weight:500; }
+
+.xp-list{ list-style:none; padding:0; margin:0.9rem 0 0; }
+.xp-list li{ display:flex; flex-wrap:wrap; align-items:baseline; gap:0.2rem 1rem; padding:0.55rem 0; border-bottom:1px dashed var(--line); }
+.xp-list li:last-child{ border-bottom:0; padding-bottom:0; }
+.xp-list .xp-co{ flex:0 0 13.5rem; font-family:var(--mono); font-size:0.72rem; text-transform:uppercase; color:var(--ink); }
+.xp-list .xp-role{ flex:1 1 16rem; font-size:0.9rem; color:var(--ink-soft); }
+.xp-list .xp-dur{ margin-left:auto; font-family:var(--mono); font-size:0.68rem; color:var(--ink-dim); white-space:nowrap; }
+@media (max-width:620px){ .xp-list .xp-co{ flex-basis:100%; } }
+
+.chip-row{ display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:0.9rem; }
+.chip-row .chip{ font-family:var(--mono); font-size:0.74rem; color:var(--ink);
+  border:1px solid var(--line-2); background:var(--bg-3); padding:0.35rem 0.75rem;
+  transition:border-color 0.15s ease, color 0.15s ease; }
+.chip-row .chip:hover{ border-color:var(--cyan); color:var(--cyan); }
+
+.software-icons{ display:flex; align-items:center; flex-wrap:wrap; gap:0.7rem; margin:0.8rem 0 0; }
+.software-icons .icon-chip{ display:flex; align-items:center; justify-content:center; padding:0.6rem 0.9rem; background:var(--bg-3); border:1px solid var(--line-2); transition:border-color 0.2s ease, transform 0.15s ease; }
+.software-icons .icon-chip:hover{ border-color:var(--accent); transform:translateY(-2px); }
+.software-icons img{ height:28px; width:auto; max-width:80px; object-fit:contain; filter:grayscale(0.3); opacity:0.9; }
+.software-icons .icon-chip--text{ font-family:var(--mono); font-size:0.74rem; color:var(--ink-soft); min-height:28px; }</code></pre>
+    <p>Language label/value rows (<code>.k</code>/<code>.v</code>), a dashed experience timeline (<code>.xp-*</code>), skill chips (<code>.chip-row</code>/<code>.chip</code>), and software tiles (<code>.software-icons</code>, with <code>.icon-chip--text</code> when you have no logo file).</p>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="tag">L</span><h2>Accessibility (a11y)</h2></div>
+    <div class="note"><strong>What "a11y" means:</strong> a11y = <strong>a</strong>-ccessibilit-<strong>y</strong> (an "a", then 11 letters, then "y" &mdash; a nerd shortcut for a long word). It means the site also works for people who can't use it the normal way: folks on a <strong>screen reader</strong> (software that reads the page aloud), keyboard-only users, and low-vision users. None of it changes how the site looks &mdash; a handful of extra tags and one CSS block.</div>
+    <p>Everything below is on the real site. Add it and your build matches; skip it and you fail both the standard and the control.</p>
+
+    <h3>1 &middot; Landmarks &mdash; name the big regions</h3>
+    <p>Screen readers let people jump between <strong>landmarks</strong> (the page's major zones). You get them almost free by using the right tags instead of a plain <code>&lt;div&gt;</code>:</p>
+<pre><code>&lt;body&gt;
+  &lt;a class="skip-link" href="#main"&gt;Skip to main content&lt;/a&gt;
+  &lt;div class="wrap"&gt;
+    &lt;header&gt; … masthead / hero … &lt;/header&gt;
+    &lt;main id="main"&gt;
+      &lt;section&gt; … &lt;/section&gt;
+    &lt;/main&gt;
+    &lt;footer&gt; … &lt;/footer&gt;
+  &lt;/div&gt;
+&lt;/body&gt;</code></pre>
+    <ul class="hud-list">
+      <li><code>&lt;header&gt;</code> = the top block &middot; <code>&lt;main id="main"&gt;</code> = THE one main area (exactly one per page) &middot; <code>&lt;section&gt;</code> = a chunk of it &middot; <code>&lt;nav&gt;</code> = a set of links &middot; <code>&lt;footer&gt;</code> = the bottom block.</li>
+      <li>Give a <code>&lt;nav&gt;</code> a name when there's more than one: <code>&lt;nav class="topbar" aria-label="Breadcrumb"&gt;</code>.</li>
+    </ul>
+
+    <h3>2 &middot; Skip link</h3>
+<pre><code>&lt;a class="skip-link" href="#main"&gt;Skip to main content&lt;/a&gt;</code></pre>
+<pre><code>.skip-link{ position:absolute; left:0.5rem; top:-3rem; z-index:100;   /* parked off-screen */
+  font-family:var(--mono); font-size:0.8rem; background:var(--accent); color:var(--bg);
+  padding:0.5rem 0.9rem; text-decoration:none; transition:top 0.15s ease; }
+.skip-link:focus{ top:0.5rem; }   /* slides in only when tabbed to */</code></pre>
+    <p>Invisible until a keyboard user presses Tab; then it appears so they can skip straight to <code>#main</code> instead of tabbing through every header link.</p>
+
+    <h3>3 &middot; Icon-only buttons need a text label</h3>
+<pre><code>&lt;button class="theme-toggle" type="button" aria-label="Toggle light/dark theme"&gt;&lt;/button&gt;</code></pre>
+    <div class="note"><code>aria-label</code> = a hidden label read aloud by screen readers. Use it whenever a control shows an icon but no text.</div>
+
+    <h3>4 &middot; Images: alt text (and when to leave it empty)</h3>
+<pre><code>&lt;img src="assets/shot.jpg" alt="Guard chasing the player past my AI patrol"&gt;   &lt;!-- meaningful --&gt;
+&lt;img src="assets/linkedin.png" alt=""&gt;   &lt;!-- decorative: text nearby already says "LinkedIn" --&gt;</code></pre>
+    <p><code>alt</code> describes the picture for people who can't see it. If it's purely decorative and the words next to it already say the same thing, use an <strong>empty</strong> <code>alt=""</code> so the reader skips it.</p>
+
+    <h3>5 &middot; Reduced motion</h3>
+    <p>Some people get motion-sick; their device has a "reduce motion" switch. Honour it with one block at the end of <code>style.css</code>:</p>
+<pre><code>@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  .entry h3 a.glitch:hover{ animation:none; }   /* glitch stays for everyone else */
+  .entry-status.st-live::before{ animation:none; }   /* the pulsing dot */
+  .egg-term, .egg-term.shake{ animation:none; }
+  .icon-row .icon-chip:hover, .software-icons .icon-chip:hover{ transform:none; }
+  .stamp:active, .egg-btn:active{ transform:none; }
+  .skip-link{ transition:none; }
+}</code></pre>
+    <div class="note"><code>prefers-reduced-motion</code> = a setting the browser reports; the code says "if they asked for less motion, switch the moving parts off." The glitch and pulse still play for everyone who didn't ask.</div>
+
+    <h3>6 &middot; Keyboard focus ring</h3>
+<pre><code>a:focus-visible, button:focus-visible{ outline:1px solid var(--accent); outline-offset:3px; border-radius:2px; }</code></pre>
+    <p>When someone tabs with the keyboard, an orange outline marks the focused link/button. <code>:focus-visible</code> shows it for keyboard users but not on mouse clicks.</p>
+
+    <h3>7 &middot; Safe external links</h3>
+<pre><code>&lt;a href="https://example.com" target="_blank" rel="noopener"&gt;Site &amp;#8599;&lt;/a&gt;</code></pre>
+    <p><code>target="_blank"</code> opens a new tab; <code>rel="noopener"</code> goes with it &mdash; one word that stops the new page from reaching back and messing with yours. Always pair them.</p>
+
+    <h3>8 &middot; Two more that live elsewhere</h3>
+    <ul class="hud-list">
+      <li><strong>Lazy images</strong> &mdash; <code>loading="lazy"</code> (Section&nbsp;G) makes the page show sooner.</li>
+      <li><strong>Real dates</strong> &mdash; wrap dates in <code>&lt;time&gt;</code> (Sections&nbsp;E and&nbsp;M); marks them as machine-readable, not just text.</li>
+    </ul>
+
+    <h3>9 &middot; Colour contrast</h3>
+    <p>Dim grey text on a dark card can drop below the readable line, and there's an official rule for it. <strong>WCAG</strong> (say it "W-cag") is short for <strong>Web Content Accessibility Guidelines</strong> &mdash; the world's checklist for making a website usable by everyone. It's written by the <strong>W3C</strong>, the international group that makes the web's rulebooks (the same people who decide how HTML itself works). WCAG sorts a site into three grades:</p>
+    <ul class="hud-list">
+      <li><strong>A</strong> &mdash; the bare minimum.</li>
+      <li><strong>AA</strong> &mdash; the level real sites and most accessibility laws expect. <strong>This is the one to aim for.</strong></li>
+      <li><strong>AAA</strong> &mdash; the strictest, gold-plated level.</li>
+    </ul>
+    <p>So "<strong>WCAG AA</strong>" just means "meets that middle grade." The main thing AA asks for here: normal text should stand out from its background by about <strong>4.5 to 1</strong> in brightness. The site's dimmest ink (<code>--ink-dim</code>) was nudged brighter for exactly this reason.</p>
+    <div class="note"><strong>Light/dark and the system setting:</strong> there's a browser feature (<code>prefers-color-scheme</code>) that follows the visitor's OS light/dark setting. This site <strong>deliberately does not use it</strong> &mdash; it's a dark-brand ("Division HUD") that always opens dark, and the toggle lets anyone switch. Following the system setting here would fight the brand. For a non-branded site, following it is a fine choice.</div>
   </section>
 
   <footer>
