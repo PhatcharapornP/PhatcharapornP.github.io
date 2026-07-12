@@ -23,7 +23,7 @@
   <header>
     <p class="eyebrow">Work experience · 2024&ndash;now</p>
     <h1>Dicemon Tactics &mdash; Nanuq Studio</h1>
-    <p class="lede">Client-side gameplay and live-service systems for Dicemon Tactics, Nanuq Studio's &ldquo;Dicemon&rdquo; gacha monster-collector for mobile &mdash; new Dicemon skills built on a node-graph system, the gacha shop and summoning cutscene, the progression loop (level-up, transmute, star promotion), and the meta layer (realtime chat, season pass, mail, and animated post-match chest rewards).</p>
+    <p class="lede">Dicemon Tactics, &rdquo;Dicemon&rdquo; gacha monster-collector for mobile &mdash; comes with beautiful gacha shop and summoning cutscenes, the progression loop (level-up, transmute, star promotion), and the live-service system (realtime chat, season pass, mail, and animated post-match chest rewards).</p>
 
     <div class="panel">
       <div class="specs">
@@ -49,22 +49,22 @@
   <section>
     <div class="section-head"><span class="tag">01</span><h2>Gameplay &amp; progression</h2></div>
     <ul class="hud-list">
-      <li><strong>Dicemon skills</strong> &mdash; authored new skills on a node-graph skill system, extending it with new graph nodes where a skill needed behaviour the existing nodes couldn't express.</li>
-      <li><strong>Summoning cutscene</strong> &mdash; the pull-opening sequence built as a state machine paired with Unity Timeline, with rarity-based VFX and first-time-user variants.</li>
-      <li><strong>Gacha shop</strong> &mdash; banners with single and 10&times; pulls, ticket currency, drop-rate display, and SSR pity.</li>
-      <li><strong>Dicemon level-up</strong> &mdash; feeding XP materials to cross per-rarity thresholds and raise stats.</li>
-      <li><strong>Transmute</strong> &mdash; converting surplus units, chips, and costumes into the upgrade materials the other flows consume.</li>
-      <li><strong>Star promotion</strong> &mdash; ascending a Dicemon by sacrificing duplicates for per-star skill effects.</li>
+      <li><strong>Dicemon skills</strong> &mdash; Skills implemented on a node-graph sequence skill system, extending it with new graph nodes for new skill behaviours</li>
+      <li><strong>Summoning cutscene</strong> &mdash; The gacha-opening sequence built as a state machine paired with Unity Timeline, with rarity-based VFX variants.</li>
+      <li><strong>Gacha shop</strong> &mdash; Gacha shop system which handle addressable assets and cutscene router</li>
+      <li><strong>Dicemon level-up</strong> &mdash; Dicemon progression system, by spending XP can result in stronger Dicemon's skill and stronger gameplay builds</li>
+      <li><strong>Transmute</strong> &mdash; Converting system that transform Dicemon Units into upgrade materials that can be using in Dicemon progression system.</li>
+      <li><strong>Star promotion</strong> &mdash; Sacrificing Dicemon to upgrade another Dicemon's star in Dicemon progression system.</li>
     </ul>
   </section>
 
   <section>
     <div class="section-head"><span class="tag">02</span><h2>Live-service &amp; social</h2></div>
     <ul class="hud-list">
-      <li><strong>Chat</strong> &mdash; multi-channel realtime chat (channel, direct, club, and announcements) over a WebSocket backend.</li>
-      <li><strong>Post-match chest rewards</strong> &mdash; an animated chest-opening flow (state machine + Unity Timeline) with rarity upgrades and gating.</li>
-      <li><strong>Season pass</strong> &mdash; free and premium tracks, XP-driven levels, reward claims, and paid level skips.</li>
-      <li><strong>Mail</strong> &mdash; a server-driven inbox with system and gift mail, attachments, and claim-all.</li>
+      <li><strong>Chat</strong> &mdash; Multi-channel realtime chat (channel, direct, club, and announcements) over a WebSocket backend.</li>
+      <li><strong>Post-match chest rewards</strong> &mdash; Animated chest-opening flow (state machine + Unity Timeline) with rarity upgrades.</li>
+      <li><strong>Season pass</strong> &mdash; Free and premium tracks, XP-driven levels, reward claims, and paid level skips.</li>
+      <li><strong>Mail</strong> &mdash; Server-driven mail box providing gifts and announcements.</li>
     </ul>
   </section>
 
@@ -72,7 +72,7 @@
     <div class="section-head"><span class="tag">03</span><h2>Gameplay</h2></div>
     <figure class="hero-media">
       <img src="../assets/dicemon-tactics/skill.gif" alt="A Dicemon skill firing mid-match — a golden node-graph-driven skill effect" loading="lazy">
-      <figcaption>Skill cast &mdash; the node-graph skill system firing in a match.</figcaption>
+      <figcaption>Skill cast &mdash; showcase of Dicemon skill sequence.</figcaption>
     </figure>
     <div class="media-grid">
       <figure>
@@ -81,7 +81,7 @@
       </figure>
       <figure>
         <img src="../assets/dicemon-tactics/minigame.gif" alt="Creature race minigame — runners sprinting down the track at GO" loading="lazy">
-        <figcaption>Minigame &mdash; the creature race.</figcaption>
+        <figcaption>Minigame &mdash;.</figcaption>
       </figure>
       <figure>
         <img src="../assets/dicemon-tactics/chest.gif" alt="Post-match chest opening — rarity upgrades to Epic and bursts open into rewards" loading="lazy">
@@ -93,13 +93,13 @@
         <div class="yt-embed">
           <iframe src="https://www.youtube.com/embed/m6DdknMD1uY" title="Gacha summon cutscene" allowfullscreen loading="lazy"></iframe>
         </div>
-        <p class="yt-label">Summon cutscene &mdash; the pull-opening sequence (click to watch).</p>
+        <p class="yt-label">Gacha summonning cutscene &mdash; (click to watch).</p>
       </div>
       <div class="yt-wrap">
         <div class="yt-embed">
           <iframe src="https://www.youtube.com/embed/Uztai9gIv24" title="Realtime chat" allowfullscreen loading="lazy"></iframe>
         </div>
-        <p class="yt-label">Realtime chat &mdash; multi-channel over a WebSocket backend.</p>
+        <p class="yt-label">Realtime chat &mdash; multi-channel over a WebSocket backend &mdash; (click to watch).</p>
       </div>
     </div>
   </section>
@@ -108,7 +108,7 @@
     <div class="section-head"><span class="tag">04</span><h2>Screenshots</h2></div>
     <div class="media-grid">
       <figure>
-        <img src="../assets/dicemon-tactics/gacha-shop.jpg" alt="Dicemon Tactics gacha summon screen — featured banner, single and 10x pulls, SSR-guarantee counter" loading="lazy">
+        <img src="../assets/dicemon-tactics/gacha-shop.jpg" alt="Dicemon Tactics gacha summon screen — featured banner, SSR-guarantee counter" loading="lazy">
         <figcaption>Gacha &mdash; summon banners, X1/X10 pulls, SSR-guarantee pity.</figcaption>
       </figure>
       <figure>
